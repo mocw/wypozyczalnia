@@ -13,8 +13,21 @@ if(isset($_POST['remind-submit'])){
             echo '<p class="alert">>Błąd SQL!</p>';
             require 'logowanie.php'; 
         } else {
-           // mysqli_stmt_bind_param($stmt,"s",$username);
-           //mysqli_stmt_execute($stmt);
+            mysqli_stmt_bind_param($stmt,"s",$email);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_store_result($stmt);
+            $resultCheck=mysqli_stmt_num_rows($stmt);
+            if($resultCheck!=1)
+            {
+            echo '<p class="alert">Na podany adres nie jest zarejestorwany żaden użytkowik!</p>';
+            require 'forgottenpassword.php';  
+            }
+            else{
+                echo '<center>OK</center>';
+                require 'forgottenpassword.php';
+                //C.D.N          
+            }
+
         }
     }
 }else header('Location: index.php?action=home');
