@@ -9,5 +9,6 @@ if(!$conn)
 {
     die("Connection failed: ".mysqli_connect_error());
 }
-else $conn -> query("SET NAMES 'utf8'");
+else $conn->query("SET NAMES 'utf8'");
+
 ?>

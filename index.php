@@ -5,7 +5,7 @@ session_start();
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Wypożyczalnia</title>
 <script type="text/javascript" src="scripts/scripts.js"></script>
 <script type="text/javascript" src="scripts/slider.js"></script>
@@ -56,6 +56,8 @@ switch($site) {
   case 'employeepanel' : include 'includes/employeepanel.php'; break;
   case 'oferta' : include 'oferta.php'; break;
   case 'accountmgm' : include 'zarzadzaniekontem.php'; break;
+  case 'forgottenpassword' : include 'includes/forgottenpassword.php'; break;
+  case 'remindpassword' : include 'includes/remindpassword.php'; break;
 }
 
 ?>

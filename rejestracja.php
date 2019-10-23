@@ -1,6 +1,6 @@
 ﻿<?php
 if(!isset($_SESSION['uID'])) 
-echo '<center><form method="POST" action="index.php?action=register">
+echo '<center><form method="POST" action="index.php?action=register" accept-charset="character_set">
 <label for="username">Nazwa użytkownika:</label>
 <input type="text" id="username" name="username">
 <label for="password">Hasło:</label>
