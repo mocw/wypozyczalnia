@@ -9,16 +9,13 @@ $email=$_POST['email'];
 $imie=$_POST['imie'];
 $nazwisko=$_POST['nazwisko'];
 
-
 if(empty($username) or empty($password) or empty($password_rpt) or empty($email) or empty($imie) or empty($nazwisko)){
     echo '<p class="alert">Uzupełnij wszystkie pola!</p>';
     require 'rejestracja.php';   
  } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     echo '<p class="alert">Nieprawidłowy adres e-mail!</p>';
     require 'rejestracja.php'; 
-}
-
- else if(strcmp($password,$password_rpt))
+} else if(strcmp($password,$password_rpt))
  {
     echo '<p class="alert">Hasła nie są zgodne!</p>';
     require 'rejestracja.php'; 
@@ -47,9 +44,27 @@ if(empty($username) or empty($password) or empty($password_rpt) or empty($email)
             require 'rejestracja.php';  
          }
          else {
-             $sql="INSERT INTO users(uidUsers,pwdUsers,email,imie,nazwisko) VALUES(?,?,?,?,?)";
+             $sql="SELECT uidUsers FROM users WHERE email=?";
              $stmt=mysqli_stmt_init($conn);
-                if(!mysqli_stmt_prepare($stmt,$sql))
+             if(!mysqli_stmt_prepare($stmt,$sql))
+             {
+                echo '<p class="alert">Błąd SQL!</p>';
+                require 'rejestracja.php'; 
+             }
+             else {
+                 mysqli_stmt_bind_param($stmt,"s",$email);
+                 mysqli_stmt_execute($stmt);
+                 mysqli_stmt_store_result($stmt);
+                 $resultCheck=mysqli_stmt_num_rows($stmt);
+                 if($resultCheck > 0 )
+                {
+                    echo '<p class="alert">Ten email jest już wykorzystany!</p>';
+                    require 'rejestracja.php';  
+                }
+                else {
+                    $sql="INSERT INTO users(uidUsers,pwdUsers,email,imie,nazwisko) VALUES(?,?,?,?,?)";
+                    $stmt=mysqli_stmt_init($conn);
+                    if(!mysqli_stmt_prepare($stmt,$sql))
                     {
                     echo '<p class="alert">Błąd SQL!</p>';
                     require 'rejestracja.php'; 
@@ -64,17 +79,15 @@ if(empty($username) or empty($password) or empty($password_rpt) or empty($email)
                         echo '<p class="success">Zarejestorwano!</p>';
                         require 'rejestracja.php';  
                     }
+                }
+             }
          }
      }
      mysqli_stmt_close($stmt);
      mysqli_close($conn);
  }
-
-
 }
 else{
     header("Location: index.php?action=rejestracja");
 }
-
-
 ?>
