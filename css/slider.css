@@ -19,7 +19,8 @@ label.slider, #active, img.slider {
 }
 #slider {
     margin: 0 auto;
-    max-width: 50%;
+    max-width: 70%;
+    margin-bottom: 55px;
 }
 input.slider {
     display: none;

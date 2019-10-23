@@ -32,7 +32,8 @@ session_start();
         <li><a href="index.php?action=logowanie">Zaloguj się</a></li>';
         else 
         {
-        echo '<li><a href="index.php?action=logout">Wyloguj się</a></li>';
+        echo '<li><a class="logout" href="index.php?action=logout">Wyloguj się</a></li>';
+        echo '<li><a href="index.php?action=accountmgm">Zarządzaj kontem</a></li>';
         if($_SESSION['czyPracownik']==1) echo '<li><a href="index.php?action=employeepanel">Panel pracownika</a></li>';   
         }
         ?>
@@ -52,6 +53,7 @@ switch($site) {
   case 'logout' : include 'includes/logout.inc.php'; break;
   case 'employeepanel' : include 'includes/employeepanel.php'; break;
   case 'oferta' : include 'oferta.php'; break;
+  case 'accountmgm' : include 'zarzadzaniekontem.php'; break;
 }
 
 ?>

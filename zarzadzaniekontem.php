@@ -1,0 +1,1 @@
+<center>Tu będzie zarządzanie kontem</center>

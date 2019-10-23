@@ -22,6 +22,7 @@ p {
 	color: #FFF;
 }
 
+
 p.alert
 {
 	text-align: center;
@@ -91,13 +92,18 @@ a:hover {
 #menu a:hover {
 	color: #888;
 }
+
+#menu a.logout {
+	color:red;
+}
 	
 #header {
 	float: left;
 	width: 950px;
-	height: 350px;
+	height: 250px;
 	background: url(../images/logo.png) no-repeat;
 	margin-top: 10px;
+	margin-left:150px;
 }
 
 .margin1 {
