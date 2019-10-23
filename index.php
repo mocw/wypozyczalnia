@@ -7,8 +7,9 @@ session_start();
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Wypożyczalnia</title>
-
+<script type="text/javascript" src="scripts/slider.js"></script>
  <link rel="stylesheet" type="text/css" href="css/style.css" />
+ <link rel="stylesheet" type="text/css" href="css/slider.css" />
  <link rel="stylesheet" type="text/css" href="css/panel_log.css" />
 </head>
 
@@ -36,7 +37,7 @@ session_start();
         }
         ?>
         <li><a href="#">Kontakt</a></li>
-        <li><a href="#">Oferta</a></li>
+        <li><a href="index.php?action=oferta">Oferta</a></li>
         </ul>
     </div>
     </div>
@@ -50,6 +51,7 @@ switch($site) {
   case 'register' : include 'includes/register.inc.php'; break;
   case 'logout' : include 'includes/logout.inc.php'; break;
   case 'employeepanel' : include 'includes/employeepanel.php'; break;
+  case 'oferta' : include 'oferta.php'; break;
 }
 
 ?>
