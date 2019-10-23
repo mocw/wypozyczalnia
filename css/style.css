@@ -90,7 +90,8 @@ a:hover {
 }
 
 #menu a:hover {
-	color: #888;
+	color: 	#8B4513;
+	transform: scale(1.1);
 }
 
 #menu a.logout {
