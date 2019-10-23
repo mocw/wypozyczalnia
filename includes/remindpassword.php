@@ -23,9 +23,15 @@ if(isset($_POST['remind-submit'])){
             require 'forgottenpassword.php';  
             }
             else{
-                echo '<center>OK</center>';
-                require 'forgottenpassword.php';
-                //C.D.N          
+                $subject = "Sukces";
+                $messages= "Wiadomość została pomyślnie wysłana z serwera lokalnego.";
+                if( mail($email, $subject, $messages) ) {
+                echo '<center>Wiadomość wysłana!<center>';
+                require 'forgottenpassword.php';  
+                } else {
+                echo '<center><Niepowodzenie!</center>';
+                require 'forgottenpassword.php';  
+                }                        
             }
 
         }

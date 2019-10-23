@@ -20,3 +20,4 @@ echo '<center><form method="POST" action="index.php?action=register" accept-char
 </form></center>';
 else  header('Location: index.php?action=home');
 ?>
+
