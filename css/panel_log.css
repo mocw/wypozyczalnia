@@ -1,0 +1,38 @@
+#panel {
+width: 400px; 
+margin: 0 auto; 
+padding: 20px 0 0;
+background: #888;
+background-color: #888;
+border: 1px solid #888;;
+font: 16px calibri;
+letter-spacing: -1px;
+-webkit-box-shadow: 0 0 2px #888;; 
+-moz-box-shadow: 0 0 2px #888;; 
+box-shadow: 0 0 2px #888;;
+}
+form {
+margin: 15px;
+}
+
+label {
+display: block;
+width: 200px;
+padding: 10px 20px;
+color: black;
+font-size: 16px;
+text-shadow: 0 0 1px silver;
+}
+
+#username, #password, #email,#imie,#nazwisko {
+    display: block;
+    width: 300x; 
+    margin: 0 auto;
+    padding: 10px 5px;
+    border: 1px solid black;
+    outline: 2px solid #ebebeb;
+    font-size: 15px;
+    }
+    #username:focus, #password:focus, #email:focus {
+    outline: 5px solid #e5f2f8;
+    }
