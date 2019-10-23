@@ -9,15 +9,14 @@ $email=$_POST['email'];
 $imie=$_POST['imie'];
 $nazwisko=$_POST['nazwisko'];
 
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
+if(empty($username) or empty($password) or empty($password_rpt) or empty($email) or empty($imie) or empty($nazwisko)){
+    echo '<p class="alert">Uzupełnij wszystkie pola!</p>';
+    require 'rejestracja.php';   
+ } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     echo '<p class="alert">Nieprawidłowy adres e-mail!</p>';
     require 'rejestracja.php'; 
 }
-
-else if(empty($username) or empty($password) or empty($password_rpt) or empty($email) or empty($imie) or empty($nazwisko)){
-    echo '<p class="alert">Uzupełnij wszystkie pola!</p>';
-    require 'rejestracja.php';   
- }
 
  else if(strcmp($password,$password_rpt))
  {
@@ -25,6 +24,11 @@ else if(empty($username) or empty($password) or empty($password_rpt) or empty($e
     require 'rejestracja.php'; 
  }
  else {
+     $imie=strtolower($imie);
+     $nazwisko=strtolower($nazwisko);
+     $imie=ucfirst($imie);
+     $nazwisko=ucfirst($nazwisko);
+
      $sql="SELECT uidUsers FROM users WHERE uidUsers=?";
      $stmt=mysqli_stmt_init($conn);
      if(!mysqli_stmt_prepare($stmt,$sql))
