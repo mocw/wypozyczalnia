@@ -29,7 +29,11 @@ session_start();
         if(!isset($_SESSION['uID'])) echo
         '<li><a href="index.php?action=rejestracja">Zarejestruj się</a></li>
         <li><a href="index.php?action=logowanie">Zaloguj się</a></li>';
-        else echo '<li><a href="index.php?action=logout">Wyloguj się</a></li>';
+        else 
+        {
+        echo '<li><a href="index.php?action=logout">Wyloguj się</a></li>';
+        if($_SESSION['czyPracownik']==1) echo '<li><a href="index.php?action=employeepanel">Panel pracownika</a></li>';   
+        }
         ?>
         <li><a href="#">Kontakt</a></li>
         <li><a href="#">Oferta</a></li>
@@ -45,6 +49,7 @@ switch($site) {
   case 'login' : include 'includes/login.inc.php'; break;
   case 'register' : include 'includes/register.inc.php'; break;
   case 'logout' : include 'includes/logout.inc.php'; break;
+  case 'employeepanel' : include 'includes/employeepanel.php'; break;
 }
 
 ?>
