@@ -99,11 +99,12 @@ a:hover {
 	
 #header {
 	float: left;
-	width: 950px;
+	width: 750px;
 	height: 250px;
 	background: url(../images/logo.png) no-repeat;
 	margin-top: 10px;
-	margin-left:150px;
+	margin-left:100px;
+	cursor: pointer;
 }
 
 .margin1 {

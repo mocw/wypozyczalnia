@@ -7,6 +7,7 @@ session_start();
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Wypożyczalnia</title>
+<script type="text/javascript" src="scripts/scripts.js"></script>
 <script type="text/javascript" src="scripts/slider.js"></script>
  <link rel="stylesheet" type="text/css" href="css/style.css" />
  <link rel="stylesheet" type="text/css" href="css/slider.css" />
@@ -16,7 +17,7 @@ session_start();
 <body>
   <div id="wrapper">
  
-    <div id="header">
+    <div id="header" onclick="openPage('index.php?action=home');">
     </div>   
     <div id="top">
     
@@ -37,7 +38,7 @@ session_start();
         if($_SESSION['czyPracownik']==1) echo '<li><a href="index.php?action=employeepanel">Panel pracownika</a></li>';   
         }
         ?>
-        <li><a href="#">Kontakt</a></li>
+        <li><a href="index.php?action=kontakt">Kontakt</a></li>
         <li><a href="index.php?action=oferta">Oferta</a></li>
         </ul>
     </div>
@@ -49,6 +50,7 @@ switch($site) {
   case 'rejestracja': include 'rejestracja.php'; break;
   case 'logowanie': include 'logowanie.php'; break;
   case 'login' : include 'includes/login.inc.php'; break;
+  case 'kontakt' : include 'kontakt.php'; break;
   case 'register' : include 'includes/register.inc.php'; break;
   case 'logout' : include 'includes/logout.inc.php'; break;
   case 'employeepanel' : include 'includes/employeepanel.php'; break;
