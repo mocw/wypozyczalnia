@@ -20,6 +20,14 @@
     margin-bottom: 0.4em;
     color: black;
   }
+
+  .offerbtn
+  {
+    background: none;
+     border: none;  
+     outline: none; 
+     cursor: pointer;
+  }
   
   /*Flex items*/
   .list {

@@ -59,6 +59,7 @@ switch($site) {
   case 'accountmgm' : include 'zarzadzaniekontem.php'; break;
   case 'forgottenpassword' : include 'includes/forgottenpassword.php'; break;
   case 'remindpassword' : include 'includes/remindpassword.php'; break;
+  case 'carreserv' : include 'carreservation.php'; break;
 }
 
 ?>

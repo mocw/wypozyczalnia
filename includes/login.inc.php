@@ -34,8 +34,9 @@ else{
               $_SESSION['email'] = $row['email'];
               $_SESSION['imie'] = $row['imie'];
               $_SESSION['nazwisko'] = $row['nazwisko'];
-              $_SESSION['czyPracownik'] = $row['czyPracownik'];
-              header('Location: index.php?action=home');
+              $_SESSION['czyPracownik'] = $row['czyPracownik'];              
+              if(isset($_SESSION['doZalogowania'])) header('Location: index.php?action=oferta');
+              else header('Location: index.php?action=home');
           }
           else {
             echo '<p class="alert">Błędne hasło!</p>';

@@ -7,7 +7,7 @@ if(!isset($_SESSION['uID'])) echo
 <input type="password" id="password" name="password">
 <div id="lower">
 <p><a href="index.php?action=forgottenpassword">Zapomniałeś hasła?</a></p>
-<input type="checkbox"><label class="check" for="checkbox">Zapamiętaj mnie!</label>
+<p>Nie masz konta? <a href="index.php?action=rejestracja">Zarejestruj się!</a></p>
 <input type="submit" name="login-submit" value="Zaloguj"></center>
 </div>
 </form>';
