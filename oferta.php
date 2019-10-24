@@ -1,1 +1,0 @@
-<center>Tu będzie oferta</center>

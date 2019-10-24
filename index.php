@@ -12,6 +12,7 @@ session_start();
  <link rel="stylesheet" type="text/css" href="css/style.css" />
  <link rel="stylesheet" type="text/css" href="css/slider.css" />
  <link rel="stylesheet" type="text/css" href="css/panel_log.css" />
+ <link rel="stylesheet" type="text/css" href="css/offer.css" />
 </head>
 
 <body>

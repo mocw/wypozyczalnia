@@ -3,6 +3,7 @@
     height: 200px;
     margin: 20px auto;
     position: relative;
+    cursor: pointer;
   }
   .slide1,.slide2,.slide3,.slide4,.slide5 {
     position: absolute;
