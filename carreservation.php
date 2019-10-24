@@ -9,10 +9,9 @@ if(isset($_POST['car'])) {
         {
             echo '</br>OK';
             echo $_POST['car'];
-
     
         }
     }
-else echo 'Niezbyt';
+else header('Location: index.php?action=home');
 
 ?>
