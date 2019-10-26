@@ -15,6 +15,7 @@ form {
 margin: 15px;
 }
 
+
 label {
 display: block;
 width: 200px;
@@ -24,15 +25,19 @@ font-size: 16px;
 text-shadow: 0 0 1px silver;
 }
 
+
 #username, #password, #email,#imie,#nazwisko {
     display: block;
-    width: 300x; 
+    width: 50x; 
     margin: 0 auto;
     padding: 10px 5px;
     border: 1px solid black;
     outline: 2px solid #ebebeb;
     font-size: 15px;
+    background:darkgrey;
     }
-    #username:focus, #password:focus, #email:focus {
+    #username:focus, #password:focus,
+    #email:focus, #imie:focus, #nazwisko:focus {
     outline: 5px solid #e5f2f8;
+    background:white;
     }
