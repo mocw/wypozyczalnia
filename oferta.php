@@ -1,10 +1,63 @@
 <?php
-$marka="Ford";
-$model="Fiesta";
-$silnik="1.2";
-$test=$marka."&#xa;".$model."&#xa;".$silnik;
+require 'includes/dbh.inc.php';
+$sql="SELECT * FROM pojazdy";
+$stmt=mysqli_stmt_init($conn);
+mysqli_stmt_prepare($stmt,$sql);
+mysqli_stmt_execute($stmt);
+$cars=mysqli_stmt_get_result($stmt);
+mysqli_fetch_all($cars,MYSQLI_ASSOC);
+echo '  <div class="box">
+<div class="demo">
+<form method="POST" action="index.php?action=carreserv">
+<ul class="list">';
+
+foreach ($cars as $row) {
+  $id=$row["id"];
+  $marka=$row["marka"];
+  $model=$row["model"];
+  $poj_silnika=$row["poj_silnika"];
+  $rok_produkcji=$row["rok_produkcji"];
+  $img=$row["zdjecie"];
+  $toBox=$marka."&#xa;".$model."&#xa;".$poj_silnika;
+  //echo '<img src="data:image/png;base64,'.base64_encode($img).'">';
+
+  echo'
+  <li class="list-item">
+    <div class="list-content">
+      <center>
+        <button data-html="true" data-tooltip='.$toBox.' name="car" class="offerbtn" value='.$id.'>
+        <img src="data:image/jpeg;base64,'.base64_encode($img).'"/>
+      </button>
+    </center>
+    </div>
+  </li>
+  ';
+}
+echo '</ul>
+</form>
+</div>
+</div>';
+
 //"Ford&#xa; Fiesta&#xa; 1.2"
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
 <div class="box">
 <div class="demo">
 <form method="POST" action="index.php?action=carreserv">
@@ -12,7 +65,7 @@ $test=$marka."&#xa;".$model."&#xa;".$silnik;
   <li class="list-item">
     <div class="list-content">
       <center>
-        <button data-html="true" data-tooltip=<?php echo $test?> name="car" class="offerbtn" value="car1">
+        <button data-html="true" data-tooltip=<?php echo $test?> name="car" class="offerbtn" value=<?php echo $id ?>>
         <img src="images/car2.png" alt="" action="index.php?action=register" />
       </button>
     </center>
@@ -103,3 +156,4 @@ $test=$marka."&#xa;".$model."&#xa;".$silnik;
 </form>
 </div>
 </div>
+-->
