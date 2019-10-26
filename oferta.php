@@ -18,7 +18,7 @@ foreach ($cars as $row) {
   $poj_silnika=$row["poj_silnika"];
   $rok_produkcji=$row["rok_produkcji"];
   $img=$row["zdjecie"];
-  $toBox=$marka."&#xa;".$model."&#xa;".$poj_silnika;
+  $toBox=$marka."&#xa;".$model."&#xa;".$poj_silnika."&#xa;"."$rok_produkcji";
   //echo '<img src="data:image/png;base64,'.base64_encode($img).'">';
 
   echo'
