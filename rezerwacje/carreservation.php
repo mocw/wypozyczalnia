@@ -8,9 +8,8 @@ if(isset($_POST['carID'])) {
     }
         else
         {
-            echo '<center></br>OK</center>';
-            echo '<center>',$_POST['carID'],'</center>';
-    
+            echo '<center>ID Pojazdu: ',$_POST['carID'],'</center>';
+            echo '<center>Tu będzie będzie wniosek z egzemplarzami pojazdów o podanym ID</center>';    
         }
     }
 else header('Location: index.php?action=home');

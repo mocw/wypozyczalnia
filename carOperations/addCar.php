@@ -1,3 +1,7 @@
+<?php
+require 'includes/employeepanel.php';
+?>
+
 <div class="container">  
   <form id="contact" action="index.php?action=addCar" method="post" enctype="multipart/form-data">
     <fieldset>

@@ -1,5 +1,6 @@
 <?php
 if(isset($_POST['add-car-submit']) && $_SESSION['czyPracownik']==1 ){
+    error_reporting(0);
     require 'dbh.inc.php';
     $marka=$_POST['marka'];
     $model=$_POST['model'];
@@ -7,8 +8,10 @@ if(isset($_POST['add-car-submit']) && $_SESSION['czyPracownik']==1 ){
     $poj_silnika=$_POST['poj_silnika'];
     $check = getimagesize($_FILES['image']['tmp_name']);
     if($check === false){
-        echo '<p class="alert">Dodaj zdjecie!</p>';
-        require 'carOperations/addCar.php';   
+        require 'carOperations/addCar.php';  
+        echo '<script language="javascript">';
+        echo 'alert("Dodaj zdjęcie!")';
+        echo '</script>';        
     }
         else {
             $image = $_FILES['image']['tmp_name'];
@@ -21,11 +24,14 @@ if(isset($_POST['add-car-submit']) && $_SESSION['czyPracownik']==1 ){
                 require 'carOperations/addCar.php'; 
                 }
                 else {                    
-                    echo '<p class="success">Pojazd został dodany!</p>';
                     require 'carOperations/addCar.php'; 
+                    echo '<script language="javascript">';
+                    echo 'alert("Pojazd został dodany!")';
+                    echo '</script>';                 
                 } 
             //mysqli_stmt_close($stmt);
             //mysqli_close($conn);       
         }
+error_reporting(1);
 } else header('Location: index.php?action=home');
 ?>
