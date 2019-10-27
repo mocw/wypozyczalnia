@@ -62,7 +62,8 @@ switch($site) {
   case 'forgottenpassword' : include 'includes/forgottenpassword.php'; break;
   case 'remindpassword' : include 'includes/remindpassword.php'; break;
   case 'carreserv' : include 'rezerwacje/carreservation.php'; break;
-  case 'addCar' : include 'carOperations/addCar.php'; break;
+  case 'addCarForm' : include 'carOperations/addCar.php'; break;
+  case 'addCar' : include 'includes/add.car.inc.php'; break;
 }
 
 ?>

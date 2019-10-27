@@ -1,19 +1,20 @@
 <div class="container">  
-  <form id="contact" action="" method="post">
+  <form id="contact" action="index.php?action=addCar" method="post" enctype="multipart/form-data">
     <fieldset>
-      <input placeholder="Your name" type="text" tabindex="1" required autofocus>
+      <input placeholder="Marka" name="marka" type="text" tabindex="1" required autofocus>
     </fieldset>
     <fieldset>
-      <input placeholder="Your Email Address" type="email" tabindex="2" required>
+      <input placeholder="Model" name="model" type="text" tabindex="2" required>
     </fieldset>
     <fieldset>
-      <input placeholder="Your Phone Number (optional)" type="password" tabindex="3" required>
+      <input placeholder="Rok produkcji" name="rok_produkcji" name type="number" tabindex="3" required>
     </fieldset>
     <fieldset>
-      <input placeholder="Your Web Site (optional)" type="url" tabindex="4" required>
+      <input placeholder="Pojemność silnika" name="poj_silnika" type="number" tabindex="4" required>
     </fieldset>
     <fieldset>
-      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Zatwierdź</button>
+    <p>Wybierz zdjęcie </br></br><input type="file" id="carImg" name="image" accept="image/png, image/jpeg"></p>
+  <button name="add-car-submit" type="submit" id="contact-submit" data-submit="...Sending">Zatwierdź</button>
     </fieldset>
   </form>
 </div>

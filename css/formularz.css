@@ -9,6 +9,7 @@
 
 #contact input[type="username"],
 #contact input[type="password"],
+#contact input[type="number"],
 #contact input[type="text"],
 #contact input[type="email"],
 #contact input[type="tel"],
@@ -47,13 +48,13 @@ fieldset {
   width: 100%;
 }
 
+#contact input[type="number"],
 #contact input[type="username"],
 #contact input[type="password"],
 #contact input[type="text"],
 #contact input[type="email"],
 #contact input[type="tel"],
 #contact input[type="url"],
-#contact input[type="password"],
 #contact textarea {
   width: 100%;
   border: 1px solid #ccc;
@@ -61,7 +62,9 @@ fieldset {
   margin: 0 0 5px;
   padding: 10px;
 }
-
+#contact input[type="number"]:hover,
+#contact input[type="username"]:hover,
+#contact input[type="password"]:hover,
 #contact input[type="text"]:hover,
 #contact input[type="email"]:hover,
 #contact input[type="tel"]:hover,
