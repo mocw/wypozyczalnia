@@ -5,7 +5,7 @@ $username=$_POST['username'];
 $password=$_POST['password'];
 
 if(empty($username) or empty($password)){
-    echo '<p class="alert">Uzupełnij pola!</p>';
+    echo '<div class="alert alert-danger" role="alert">Uzupełnij dane!</div>';
    require 'logowanie.php';   
 }
 else{
@@ -25,7 +25,7 @@ else{
           $pwdCheck=password_verify($password,$row['pwdUsers']);
           if($pwdCheck==false)
           {
-           echo '<p class="alert">Błędne hasło!</p>';
+            echo '<div class="alert alert-danger" role="alert">Błędne hasło!</div>';
             require 'logowanie.php';  
           }
           else if($pwdCheck==true) {
@@ -39,15 +39,15 @@ else{
               else header('Location: index.php?action=home');
           }
           else {
-            echo '<p class="alert">Błędne hasło!</p>';
+            echo '<div class="alert alert-danger" role="alert">Błędne hasło!</div>';
             require 'logowanie.php';    
           }
 
         }
         else
         {
-            echo '<p class="alert">Użytkownik nie istnieje!</p>';
-            require 'logowanie.php'; 
+          echo '<div class="alert alert-danger" role="alert">Nie ma takiego użytkownika!</div>';
+          require 'logowanie.php'; 
         }
      }
 }

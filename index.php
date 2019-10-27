@@ -15,6 +15,7 @@ session_start();
  <link rel="stylesheet" type="text/css" href="css/offer.css" />
  <link rel="stylesheet" type="text/css" href="css/menu.css" />
  <link rel="stylesheet" type="text/css" href="css/formularz.css" />
+ <link rel="stylesheet" type="text/css" href="css/alert.css" />
 </head>
 
 <body>

@@ -10,14 +10,14 @@ $imie=$_POST['imie'];
 $nazwisko=$_POST['nazwisko'];
 
 if(empty($username) or empty($password) or empty($password_rpt) or empty($email) or empty($imie) or empty($nazwisko)){
-    echo '<p class="alert">Uzupełnij wszystkie pola!</p>';
+    echo '<div class="alert alert-danger" role="alert">Uzypełnij wszystkie pola!</div>';
     require 'rejestracja.php';   
  } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    echo '<p class="alert">Nieprawidłowy adres e-mail!</p>';
+    echo '<div class="alert alert-danger" role="alert">Nieprawidłowy adres e-mail!</div>';
     require 'rejestracja.php'; 
 } else if(strcmp($password,$password_rpt))
  {
-    echo '<p class="alert">Hasła nie są zgodne!</p>';
+    echo '<div class="alert alert-danger" role="alert">>Hasła nie są zgodne!</div>';
     require 'rejestracja.php'; 
  }
  else {
@@ -30,7 +30,7 @@ if(empty($username) or empty($password) or empty($password_rpt) or empty($email)
      $stmt=mysqli_stmt_init($conn);
      if(!mysqli_stmt_prepare($stmt,$sql))
      {
-        echo '<p class="alert">Błąd SQL!</p>';
+        echo '<div class="alert alert-danger" role="alert">Błąd SQL!</div>';
         require 'rejestracja.php'; 
      }
      else{
@@ -40,7 +40,7 @@ if(empty($username) or empty($password) or empty($password_rpt) or empty($email)
          $resultCheck=mysqli_stmt_num_rows($stmt);
          if($resultCheck > 0 )
          {
-            echo '<p class="alert">Nazwa użytkownika zajęta!</p>';
+            echo '<div class="alert alert-danger" role="alert">Nazwa użytkownika zajęta!</div>';
             require 'rejestracja.php';  
          }
          else {
@@ -48,7 +48,7 @@ if(empty($username) or empty($password) or empty($password_rpt) or empty($email)
              $stmt=mysqli_stmt_init($conn);
              if(!mysqli_stmt_prepare($stmt,$sql))
              {
-                echo '<p class="alert">Błąd SQL!</p>';
+                echo '<div class="alert alert-danger" role="alert">Błąd SQL!</div>';
                 require 'rejestracja.php'; 
              }
              else {
@@ -58,7 +58,7 @@ if(empty($username) or empty($password) or empty($password_rpt) or empty($email)
                  $resultCheck=mysqli_stmt_num_rows($stmt);
                  if($resultCheck > 0 )
                 {
-                    echo '<p class="alert">Ten email jest już wykorzystany!</p>';
+                    echo '<div class="alert alert-danger" role="alert">Ten email jest już wykorzystany!</div>';
                     require 'rejestracja.php';  
                 }
                 else {
@@ -66,17 +66,16 @@ if(empty($username) or empty($password) or empty($password_rpt) or empty($email)
                     $stmt=mysqli_stmt_init($conn);
                     if(!mysqli_stmt_prepare($stmt,$sql))
                     {
-                    echo '<p class="alert">Błąd SQL!</p>';
+                    echo '<div class="alert alert-danger" role="alert">Błąd SQL!</div>';
                     require 'rejestracja.php'; 
                     }
                     else
                     {
                         $hashedPwd=password_hash($password,PASSWORD_DEFAULT);
-
                         mysqli_stmt_bind_param($stmt,"sssss",$username,$hashedPwd,$email,$imie,$nazwisko);
                         mysqli_stmt_execute($stmt);
                         mysqli_stmt_store_result($stmt);
-                        echo '<p class="success">Zarejestorwano!</p>';
+                        echo '<div class="alert alert-success" role="alert">Zarejestorwano!</div>';
                         require 'rejestracja.php';  
                     }
                 }

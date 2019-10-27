@@ -1,7 +1,8 @@
 <?php
 require 'includes/employeepanel.php';
+if(isset($dodajZdj)) echo '<div class="alert alert-danger" role="alert">Dodaj zdjęcie!</div>';
+if(isset($success)) echo '<div class="alert alert-success" role="alert">Pojazd został dodany!</div>';
 ?>
-
 <div class="container">  
   <form id="contact" action="index.php?action=addCar" method="post" enctype="multipart/form-data">
     <fieldset>
