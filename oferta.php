@@ -18,14 +18,14 @@ foreach ($cars as $row) {
   $poj_silnika=$row["poj_silnika"];
   $rok_produkcji=$row["rok_produkcji"];
   $img=$row["zdjecie"];
-  $toBox=$marka."&#xa;".$model."&#xa;".$poj_silnika."&#xa;"."$rok_produkcji";
+  $toBox=$marka."&#xa;".$model."&#xa;"."Silnik:".$poj_silnika."&#xa;"."$rok_produkcji";
   //echo '<img src="data:image/png;base64,'.base64_encode($img).'">';
 
   echo'
   <li class="list-item">
     <div class="list-content">
       <center>
-        <button data-html="true" data-tooltip='.$toBox.' name="car" class="offerbtn" value='.$id.'>
+        <button data-html="true" data-tooltip='.$toBox.' name="carID" class="offerbtn" value='.$id.'>
         <img src="data:image/jpeg;base64,'.base64_encode($img).'"/>
       </button>
     </center>

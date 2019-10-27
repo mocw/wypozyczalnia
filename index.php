@@ -13,6 +13,8 @@ session_start();
  <link rel="stylesheet" type="text/css" href="css/slider.css" />
  <link rel="stylesheet" type="text/css" href="css/panel_log.css" />
  <link rel="stylesheet" type="text/css" href="css/offer.css" />
+ <link rel="stylesheet" type="text/css" href="css/menu.css" />
+ <link rel="stylesheet" type="text/css" href="css/formularz.css" />
 </head>
 
 <body>
@@ -59,7 +61,8 @@ switch($site) {
   case 'accountmgm' : include 'zarzadzaniekontem.php'; break;
   case 'forgottenpassword' : include 'includes/forgottenpassword.php'; break;
   case 'remindpassword' : include 'includes/remindpassword.php'; break;
-  case 'carreserv' : include 'carreservation.php'; break;
+  case 'carreserv' : include 'rezerwacje/carreservation.php'; break;
+  case 'addCar' : include 'carOperations/addCar.php'; break;
 }
 
 ?>
