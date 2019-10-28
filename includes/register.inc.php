@@ -8,16 +8,17 @@ $password_rpt=$_POST['password-rpt'];
 $email=$_POST['email'];
 $imie=$_POST['imie'];
 $nazwisko=$_POST['nazwisko'];
+$rejestracjaSite='rejestracja.php';
 
-if(empty($username) or empty($password) or empty($password_rpt) or empty($email) or empty($imie) or empty($nazwisko)){
+if(empty($username) || empty($password) || empty($password_rpt) || empty($email) || empty($imie) || empty($nazwisko)){
     echo '<div class="alert alert-danger" role="alert">Uzypełnij wszystkie pola!</div>';
-    require 'rejestracja.php';   
+    require $rejestracjaSite;   
  } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     echo '<div class="alert alert-danger" role="alert">Nieprawidłowy adres e-mail!</div>';
     require 'rejestracja.php'; 
 } else if(strcmp($password,$password_rpt))
  {
-    echo '<div class="alert alert-danger" role="alert">>Hasła nie są zgodne!</div>';
+    echo '<div class="alert alert-danger" role="alert">Hasła nie są zgodne!</div>';
     require 'rejestracja.php'; 
  }
  else {
@@ -31,7 +32,7 @@ if(empty($username) or empty($password) or empty($password_rpt) or empty($email)
      if(!mysqli_stmt_prepare($stmt,$sql))
      {
         echo '<div class="alert alert-danger" role="alert">Błąd SQL!</div>';
-        require 'rejestracja.php'; 
+        require $rejestracjaSite; 
      }
      else{
          mysqli_stmt_bind_param($stmt,"s",$username);
@@ -41,7 +42,7 @@ if(empty($username) or empty($password) or empty($password_rpt) or empty($email)
          if($resultCheck > 0 )
          {
             echo '<div class="alert alert-danger" role="alert">Nazwa użytkownika zajęta!</div>';
-            require 'rejestracja.php';  
+            require $rejestracjaSite;  
          }
          else {
              $sql="SELECT uidUsers FROM users WHERE email=?";
@@ -49,7 +50,7 @@ if(empty($username) or empty($password) or empty($password_rpt) or empty($email)
              if(!mysqli_stmt_prepare($stmt,$sql))
              {
                 echo '<div class="alert alert-danger" role="alert">Błąd SQL!</div>';
-                require 'rejestracja.php'; 
+                require $rejestracjaSite; 
              }
              else {
                  mysqli_stmt_bind_param($stmt,"s",$email);
@@ -59,7 +60,7 @@ if(empty($username) or empty($password) or empty($password_rpt) or empty($email)
                  if($resultCheck > 0 )
                 {
                     echo '<div class="alert alert-danger" role="alert">Ten email jest już wykorzystany!</div>';
-                    require 'rejestracja.php';  
+                    require $rejestracjaSite;  
                 }
                 else {
                     $sql="INSERT INTO users(uidUsers,pwdUsers,email,imie,nazwisko) VALUES(?,?,?,?,?)";
@@ -67,7 +68,7 @@ if(empty($username) or empty($password) or empty($password_rpt) or empty($email)
                     if(!mysqli_stmt_prepare($stmt,$sql))
                     {
                     echo '<div class="alert alert-danger" role="alert">Błąd SQL!</div>';
-                    require 'rejestracja.php'; 
+                    require $rejestracjaSite; 
                     }
                     else
                     {
@@ -76,7 +77,7 @@ if(empty($username) or empty($password) or empty($password_rpt) or empty($email)
                         mysqli_stmt_execute($stmt);
                         mysqli_stmt_store_result($stmt);
                         echo '<div class="alert alert-success" role="alert">Zarejestorwano!</div>';
-                        require 'rejestracja.php';  
+                        require $rejestracjaSite;  
                     }
                 }
              }
