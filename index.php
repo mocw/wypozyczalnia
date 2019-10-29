@@ -70,7 +70,7 @@ switch($site) {
 ?>
     </div>
     <div id="footer">
-        <p>&copy Wszelkie prawa zastrzeżone. <br></p>
+        <p>&copy 2019 Wszelkie prawa zastrzeżone. <br></p>
     </div>
     </div>
 </body>
