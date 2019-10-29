@@ -22,6 +22,15 @@ echo '
       <input placeholder="Nazwisko" name="nazwisko" type="text" tabindex="1" required autofocus>
 </fieldset>
 <fieldset>
+      <input placeholder="Pesel" name="pesel" type="text" tabindex="1" required autofocus>
+</fieldset>
+<fieldset>
+      <input placeholder="Numer telefonu" name="nr_tel" type="text" tabindex="1" required autofocus>
+</fieldset>
+<fieldset>
+      <input placeholder="Data urodzenia" name="data_ur" type="date" tabindex="1" required autofocus>
+</fieldset>
+<fieldset>
       <button name="reg-submit" type="submit" id="contact-submit" data-submit="...Sending">Zatwierdź</button>
 </fieldset>
 </div>

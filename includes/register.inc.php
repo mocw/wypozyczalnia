@@ -8,6 +8,12 @@ $password_rpt=$_POST['password-rpt'];
 $email=$_POST['email'];
 $imie=$_POST['imie'];
 $nazwisko=$_POST['nazwisko'];
+$pesel=$_POST['pesel'];
+$nr_tel=$_POST['nr_tel'];
+$data_ur=$_POST['data_ur'];
+$data_ur = date("Y-m-d", strtotime($data_ur));
+echo $data_ur;
+
 $rejestracjaSite='rejestracja.php';
 
 if(empty($username) || empty($password) || empty($password_rpt) || empty($email) || empty($imie) || empty($nazwisko)){
@@ -63,7 +69,8 @@ if(empty($username) || empty($password) || empty($password_rpt) || empty($email)
                     require $rejestracjaSite;  
                 }
                 else {
-                    $sql="INSERT INTO users(uidUsers,pwdUsers,email,imie,nazwisko) VALUES(?,?,?,?,?)";
+                    $sql="INSERT INTO users(uidUsers,pwdUsers,email,imie,nazwisko,
+                    pesel,nr_tel,data_ur) VALUES(?,?,?,?,?,?,?,?)";
                     $stmt=mysqli_stmt_init($conn);
                     if(!mysqli_stmt_prepare($stmt,$sql))
                     {
@@ -73,7 +80,8 @@ if(empty($username) || empty($password) || empty($password_rpt) || empty($email)
                     else
                     {
                         $hashedPwd=password_hash($password,PASSWORD_DEFAULT);
-                        mysqli_stmt_bind_param($stmt,"sssss",$username,$hashedPwd,$email,$imie,$nazwisko);
+                        mysqli_stmt_bind_param($stmt,"ssssssss",$username,$hashedPwd,$email,$imie,$nazwisko,
+                     $pesel,$nr_tel,$data_ur);
                         mysqli_stmt_execute($stmt);
                         mysqli_stmt_store_result($stmt);
                         echo '<div class="alert alert-success" role="alert">Zarejestorwano!</div>';
