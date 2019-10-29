@@ -6,7 +6,7 @@ session_start();
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Wypożyczalniasssds</title>
+<title>Wypożyczalnia</title>
 <script type="text/javascript" src="scripts/scripts.js"></script>
 <script type="text/javascript" src="scripts/slider.js"></script>
  <link rel="stylesheet" type="text/css" href="css/style.css" />
