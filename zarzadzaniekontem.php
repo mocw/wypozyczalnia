@@ -6,8 +6,9 @@ if(isset($_SESSION['uID']))
     <ul>
        <li><a href="#">Twoje wypożyczenia</a></li>
        <li class="active"><a href="">Dane</a>
-          <ul>
-             <li><a href="">Edytuj</a>
+          <ul>';
+             if($isDataFilled==0) echo '<li><b><a href="index.php?action=fillData">Uzupełnij</a></b>';
+          echo'<li><a href="">Edytuj</a>
              </li>            
           </ul>
        </li>

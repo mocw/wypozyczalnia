@@ -26,7 +26,7 @@ session_start();
     <div id="top">
     
     <div id="logo">
-   
+
     </div>
     <div id="menu">
         <ul>        
@@ -49,6 +49,7 @@ session_start();
     </div>
     <div id="container">
     <?php
+    if(isset($_SESSION['uID'])) require 'includes/check_user_inc.php';
 switch($site) {
   case 'home': include 'home.php'; break;
   case 'rejestracja': include 'rejestracja.php'; break;
@@ -65,8 +66,9 @@ switch($site) {
   case 'carreserv' : include 'rezerwacje/carreservation.php'; break;
   case 'addCarForm' : include 'carOperations/addCar.php'; break;
   case 'addCar' : include 'includes/add.car.inc.php'; break;
+  case 'fillData' : include 'includes/fillData.php'; break;
+  case 'fillData_send' : include 'includes/fillData.inc.php'; break;
 }
-
 ?>
     </div>
     <div id="footer">

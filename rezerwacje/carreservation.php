@@ -8,8 +8,17 @@ if(isset($_POST['carID'])) {
     }
         else
         {
-            echo '<center>ID Pojazdu: ',$_POST['carID'],'</center>';
-            echo '<center>Tu będzie będzie wniosek z egzemplarzami pojazdów o podanym ID</center>';    
+            if($isDataFilled==0)
+            {
+                echo '<p class="alert alert-danger">Musisz wypełnić dane!</p>';
+                require 'oferta.php';  
+            }
+            else
+            {
+                echo '<center>ID Pojazdu: ',$_POST['carID'],'</center>';
+                echo '<center>Tu będzie będzie wniosek z egzemplarzami pojazdów o podanym ID</center>';    
+            }
+
         }
     }
 else header('Location: index.php?action=home');
