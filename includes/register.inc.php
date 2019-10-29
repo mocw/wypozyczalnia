@@ -12,7 +12,6 @@ $pesel=$_POST['pesel'];
 $nr_tel=$_POST['nr_tel'];
 $data_ur=$_POST['data_ur'];
 $data_ur = date("Y-m-d", strtotime($data_ur));
-echo $data_ur;
 
 $rejestracjaSite='rejestracja.php';
 
