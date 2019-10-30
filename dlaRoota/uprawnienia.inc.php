@@ -1,7 +1,7 @@
 <?php
 if(isset($_POST['permiss-submit'])){
     require 'includes/dbh.inc.php';
-    $sql="UPDATE users SET isRoot=0";
+    $sql="UPDATE users SET isRoot=0 WHERE NOT userID=? AND NOT uidUsers='root'";
     $stmt=mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt,$sql))
     {
@@ -9,6 +9,7 @@ if(isset($_POST['permiss-submit'])){
     require 'uprawnienia.php';
     }
     else {
+        mysqli_stmt_bind_param($stmt,"i",$_SESSION['uID']);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_store_result($stmt);
         foreach($_POST as $key => $name){
@@ -24,11 +25,9 @@ if(isset($_POST['permiss-submit'])){
                 mysqli_stmt_execute($stmt);
                 mysqli_stmt_store_result($stmt);
                 $_SESSION['isRoot']=1;
-                $success=1;
             }
         }
-        if(isset($success)) echo '<div class="alert alert-success" role="alert">Sukces!</div>';
-        else echo '<div class="alert alert-danger" role="alert">Błąd!</div>';
+        echo '<div class="alert alert-success" role="alert">Sukces!</div>';
         require 'uprawnienia.php';
     } 
 } else header('Location: index.php?action=home');
