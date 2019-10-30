@@ -3,7 +3,9 @@ if(isset($_SESSION['uID']))
 {
     echo '
     <div id="cssmenu">
-    <ul>
+    <ul>';
+    if($_SESSION['isRoot']==1) echo '<li><a href="index.php?action=panelAdmin">Panel administracyjny</a></li>';
+      echo'
        <li><a href="#">Twoje wypożyczenia</a></li>
        <li class="active"><a href="">Dane</a>
           <ul>';

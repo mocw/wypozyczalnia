@@ -16,6 +16,8 @@ session_start();
  <link rel="stylesheet" type="text/css" href="css/menu.css" />
  <link rel="stylesheet" type="text/css" href="css/formularz.css" />
  <link rel="stylesheet" type="text/css" href="css/alert.css" />
+ <link rel="stylesheet" type="text/css" href="css/menuRoot.css" />
+ <link rel="stylesheet" type="text/css" href="css/tabela.css" />
 </head>
 
 <body>
@@ -37,9 +39,11 @@ session_start();
         <li><a href="index.php?action=logowanie">Zaloguj się</a></li>';
         else 
         {
+        if($_SESSION['uUID']=='root') { 
+          echo '<li><a href="index.php?action=employeepanel">Panel pracownika</a></li>';
+        } 
         echo '<li><a class="logout" href="index.php?action=logout">Wyloguj się</a></li>';
         echo '<li><a href="index.php?action=accountmgm">Zarządzaj kontem</a></li>';
-        if($_SESSION['czyPracownik']==1) echo '<li><a href="index.php?action=employeepanel">Panel pracownika</a></li>';   
         }
         ?>
         <li><a href="index.php?action=kontakt">Kontakt</a></li>
@@ -68,6 +72,9 @@ switch($site) {
   case 'addCar' : include 'includes/add.car.inc.php'; break;
   case 'fillData' : include 'includes/fillData.php'; break;
   case 'fillData_send' : include 'includes/fillData.inc.php'; break;
+  case 'panelAdmin' : include 'dlaRoota/panelAdmina.php'; break;
+  case 'uprawnienia' : include 'dlaRoota/uprawnienia.php'; break;
+  case 'setPermissions' : include 'dlaRoota/uprawnienia.inc.php'; break;
 }
 ?>
     </div>

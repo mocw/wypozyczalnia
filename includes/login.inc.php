@@ -36,7 +36,8 @@ else{
               $_SESSION['nazwisko'] = $row['nazwisko'];
               $_SESSION['czyPracownik'] = $row['czyPracownik']; 
               $_SESSION['id_klienta'] = $row['id_klienta'];   
-              $_SESSION['id_pracownika'] = $row['id_pracownika'];                
+              $_SESSION['id_pracownika'] = $row['id_pracownika'];
+              $_SESSION['isRoot'] = $row['isRoot'];                  
               if(isset($_SESSION['doZalogowania'])) header('Location: index.php?action=oferta');
               else header('Location: index.php?action=home');
           }
