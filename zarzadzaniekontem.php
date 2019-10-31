@@ -14,14 +14,11 @@ if(isset($_SESSION['uID']))
             <ul>';
             if($isDataFilled==0) echo '<li><a href="#">Uzupełij</a></li>';
             echo '<li><a href="#">Edytuj</a></li>
-</ul>  
-            </li>
+            </ul>  
         </ul>
+        </li>
     </nav>
 </div>
     ';
-    echo '<center>Witaj ',$_SESSION['imie']," ",$_SESSION['nazwisko'],'</center>';
-    if($_SESSION['id_pracownika']!=NULL) echo '<center></br>Pracownik!</center>';   
-    else echo '<center>Klient!</center>';
 } else header('Location: index.php?action=home');
 ?>

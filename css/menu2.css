@@ -9,7 +9,7 @@ nav.menu2 {
 }
 
 nav.menu2 ul {
-	z-index: 3;
+	z-index: 1;
 	padding: 0;
   margin: 0;
 	list-style: none;

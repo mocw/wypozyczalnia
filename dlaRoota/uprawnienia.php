@@ -1,4 +1,5 @@
 <?php
+require 'zarzadzaniekontem.php';
 if(isset($_SESSION['uID']) && $_SESSION['isRoot']==1){
     require 'includes/dbh.inc.php';
     $sql="SELECT * FROM users";

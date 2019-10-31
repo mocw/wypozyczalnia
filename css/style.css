@@ -101,11 +101,11 @@ a:hover {
 	
 #header {
 	float: left;
-	width: 750px;
+	width: 800px;
 	height: 250px;
 	background: url(../images/logo.png) no-repeat;
 	margin-top: 10px;
-	margin-left:100px;
+	margin-left:150px;
 	cursor: pointer;
 }
 
@@ -198,3 +198,4 @@ input.pracownik[type="text"]
     background: transparent;
     border: none;
 }
+
