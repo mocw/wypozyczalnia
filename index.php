@@ -18,6 +18,7 @@ session_start();
  <link rel="stylesheet" type="text/css" href="css/alert.css" />
  <link rel="stylesheet" type="text/css" href="css/menuRoot.css" />
  <link rel="stylesheet" type="text/css" href="css/tabela.css" />
+ <link rel="stylesheet" type="text/css" href="css/menu2.css" />
 </head>
 <body>
   <div id="wrapper">
@@ -38,7 +39,7 @@ session_start();
         <li><a href="index.php?action=logowanie">Zaloguj się</a></li>';
         else 
         {
-        if($_SESSION['id_pracownika']!=NULL || $_SESSION['uUID']=='root') { 
+        if($_SESSION['id_pracownika']!=NULL || $_SESSION['isRoot']==1) { 
           echo '<li><a href="index.php?action=employeepanel">Panel pracownika</a></li>';
         } 
         echo '<li><a class="logout" href="index.php?action=logout">Wyloguj się</a></li>';

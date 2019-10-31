@@ -1,5 +1,16 @@
 <?php
 if(isset($_POST['customer-submit'])){
+    $cnt=0;
+    foreach($_POST as $key => $name){
+        if($key=='customer-submit') break;
+        $cnt++;
+    }
+
+    if($cnt==0){
+        echo '<div class="alert alert-success" role="alert">Sukces!</div>';
+        require 'dodajPracownika.php';
+    }
+    else {
     require 'includes/dbh.inc.php';
     $sql="UPDATE users SET id_pracownika=NULL WHERE NOT userID=? AND NOT uidUsers='root'";
     $stmt=mysqli_stmt_init($conn);
@@ -41,10 +52,19 @@ if(isset($_POST['customer-submit'])){
         <td>'.$data_ur.'</td>
         <td><input type="date" id="data_zatr" name="data_zatrudnienia"></td>
         <td>
-        <select name="stanowisko">
-        <option value="konserwator">Konserwator</option>
-        <option value="księgowy/a">Księgowy/a</option>
-        <option value="sekretarka">Sekretarka</option>
+        <select name="stanowisko">';
+        $sql="SELECT nazwa FROM stanowiska";
+        $stmt=mysqli_stmt_init($conn);
+        mysqli_stmt_prepare($stmt,$sql);
+        mysqli_stmt_bind_param($stmt,"i",$key);
+        mysqli_stmt_execute($stmt);
+        $stanowiska=mysqli_stmt_get_result($stmt);
+        mysqli_fetch_all($stanowiska,MYSQLI_ASSOC);
+        foreach ($stanowiska as $row) {
+        $nazwa=$row['nazwa'];
+        echo'<option value="'.$nazwa.'">'.$nazwa.'</option>';
+        }
+        echo'    
         </select>
         </td>
         </tr>
@@ -55,6 +75,6 @@ if(isset($_POST['customer-submit'])){
     </br><center><input type="submit" VALUE="Zatwierdź" NAME="customer-submit-data"></center>
     </form>';
     }
-    
+}
 } else header('Location: index.php?action=home');
 ?>
