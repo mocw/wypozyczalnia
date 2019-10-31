@@ -3,6 +3,8 @@
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     border-collapse: collapse;
     width: 100%;
+    table-layout: fixed;
+    word-break: break-all;
   }
   
   .table td,

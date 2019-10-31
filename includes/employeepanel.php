@@ -7,7 +7,7 @@ $_SESSION['isRoot']==1)
     <nav class="menu2">
         <ul>
             <li><a href="#">Wypożyczenia</a></li>
-            <li><a href="#">Pojazdy</a>
+            <li><a>Pojazdy</a>
             <!-- Pierwszy Drop Down -->
             <ul>
                 <li><a href="index.php?action=addCarForm" name="addCar">Dodaj</a></li>

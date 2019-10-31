@@ -45,7 +45,7 @@ if(isset($_SESSION['uID']) && $_SESSION['isRoot']==1){
 echo '</table>
 </br><center><input type="submit" VALUE="Zatwierdź" NAME="permiss-submit"></center>
 </form>';
-}
+} else header('Location: index.php?action=home');
 ?>
 
 
