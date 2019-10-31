@@ -191,3 +191,9 @@ h2 {
 #footer a {
 	color: #777;
 }
+
+input.pracownik[type="text"]
+{
+    background: transparent;
+    border: none;
+}

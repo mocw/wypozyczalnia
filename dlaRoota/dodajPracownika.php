@@ -8,16 +8,19 @@ if(isset($_SESSION['uID']) && $_SESSION['isRoot']==1){
     $users=mysqli_stmt_get_result($stmt);
     mysqli_fetch_all($users,MYSQLI_ASSOC);
     echo '
-    <form method="POST" action="index.php?action=setPermissions">
+    <form method="POST" action="index.php?action=dodajPracownika_inc">
     <table class="table">
     <thead>
         <tr>
             <th>
-            Root
+            Pracownik
             </th>
             <th>Nazwa użytkownika</th>
             <th>Imię</th>
             <th>Nazwisko</th>
+            <th>Pesel</th>
+            <th>Data urodzenia</th>
+            <th>Numer telefonu</th>
         </tr>
     </thead> ';
     foreach ($users as $row) {
@@ -25,28 +28,31 @@ if(isset($_SESSION['uID']) && $_SESSION['isRoot']==1){
         $username=$row['uidUsers'];
         $imie=$row['imie'];
         $nazwisko=$row['nazwisko'];
-        $isRoot=$row['isRoot'];
+        $pesel=$row['pesel'];
+        $data_ur=$row['data_ur'];
+        $nr_tel=$row['nr_tel'];
+        $id_pracownika=$row['id_pracownika'];
         echo '
         <tbody>
         <tr>';
-        if($row['userID']!=$_SESSION['uID'] && $row['uidUsers']!='root')
+        if($row['userID']!=$_SESSION['uID'])
         {
-            if($isRoot==1) {
+            if($id_pracownika!=NULL) {
                 echo '<td><input type="checkbox" name="'.$id.'" value="'.$id.'" checked></td>';
             } else echo '<td><input type="checkbox" name="'.$id.'" value="'.$id.'"></td>';
         } else echo '<td></td>';     
             echo'
             <td>'.$username.'</td>
-            <td>'.$imie.'</td>
-            <td>'.$nazwisko.'</td>
+            <td><input type="text" class="pracownik" name="'.$imie.'" disabled value="'.$imie.'"></td>
+            <td><input type="text" class="pracownik" name="'.$nazwisko.'" disabled value="'.$nazwisko.'"></td>
+            <td>'.$pesel.'</td>
+            <td><input type="text" class="pracownik" name="'.$data_ur.'" disabled value="'.$data_ur.'"></td>
+            <td>'.$nr_tel.'</td>
         </tr>
         </tbody>';
     }    
 echo '</table>
-</br><center><input type="submit" VALUE="Zatwierdź" NAME="permiss-submit"></center>
+</br><center><input type="submit" VALUE="Zatwierdź" NAME="customer-submit"></center>
 </form>';
-}
+} else header('Location: index.php?action=home');
 ?>
-
-
-

@@ -1,5 +1,6 @@
 <?php
-if(isset($_SESSION['uID']) && $_SESSION['czyPracownik']==1)
+if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) || 
+$_SESSION['uUID']=='root')
 {
     echo '
     <div id="cssmenu">

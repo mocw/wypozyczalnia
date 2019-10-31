@@ -18,7 +18,7 @@ if(isset($_SESSION['uID']))
     </div>
     ';
     echo '<center>Witaj ',$_SESSION['imie']," ",$_SESSION['nazwisko'],'</center>';
-    if($_SESSION['czyPracownik']==1) echo '<center></br>Pracownik!</center>';   
-    else echo '<center>Jesteś klientem!</center>';
+    if($_SESSION['id_pracownika']!=NULL) echo '<center></br>Pracownik!</center>';   
+    else echo '<center>Klient!</center>';
 } else header('Location: index.php?action=home');
 ?>

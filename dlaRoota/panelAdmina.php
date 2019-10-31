@@ -18,7 +18,7 @@ if(isset($_SESSION['uID']) && $_SESSION['isRoot']==1){
         <div class=icon> 
         <i class=""></i>
         </div>
-        <a class="root" href="#"><span class="root">Dodaj pracownika</span></a>
+        <a class="root" href="index.php?action=dodajPracownika"><span class="root">Dodaj/usuń pracownika</span></a>
       </div>
    </li>
   </UL>

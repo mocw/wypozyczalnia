@@ -45,7 +45,6 @@ else{
             echo '<div class="alert alert-danger" role="alert">Błędne hasło!</div>';
             require 'logowanie.php';    
           }
-
         }
         else
         {
