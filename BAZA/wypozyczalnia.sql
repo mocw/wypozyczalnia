@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 31 Paź 2019, 02:23
+-- Czas generowania: 01 Lis 2019, 03:25
 -- Wersja serwera: 10.4.8-MariaDB
 -- Wersja PHP: 7.3.10
 
@@ -38,14 +38,6 @@ CREATE TABLE `klienci` (
   `nr_mieszkania` varchar(3) DEFAULT NULL,
   `nr_domu` varchar(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2;
-
---
--- Zrzut danych tabeli `klienci`
---
-
-INSERT INTO `klienci` (`id`, `nr_dowodu`, `nr_karty_kredytowej`, `ulica`, `miejscowosc`, `kod_pocztowy`, `nr_mieszkania`, `nr_domu`) VALUES
-(20, '5', '5', '5', '5', '5', '5', '5'),
-(21, '5', '5', '5', '5', '5', '5', '5');
 
 -- --------------------------------------------------------
 
@@ -89,7 +81,8 @@ INSERT INTO `pojazdy` (`id`, `marka`, `model`, `rok_produkcji`, `poj_silnika`, `
 
 CREATE TABLE `pracownicy` (
   `id` int(11) NOT NULL,
-  `data_zatr` date NOT NULL DEFAULT current_timestamp()
+  `data_zatr` date NOT NULL DEFAULT current_timestamp(),
+  `id_stanowiska` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2;
 
 -- --------------------------------------------------------
@@ -112,7 +105,8 @@ INSERT INTO `stanowiska` (`id`, `nazwa`, `pensja`) VALUES
 (1, 'szef', '7200.00'),
 (2, 'konserwator', '3200.00'),
 (3, 'księgowy/a', '3200.00'),
-(4, 'sekretarka', '3000.00');
+(4, 'sekretarka', '3000.00'),
+(5, 'obsługa', '3100.00');
 
 -- --------------------------------------------------------
 
@@ -140,9 +134,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userID`, `uidUsers`, `pwdUsers`, `email`, `imie`, `nazwisko`, `pesel`, `nr_tel`, `data_ur`, `id_klienta`, `id_pracownika`, `isRoot`) VALUES
-(17, 'root', '$2y$10$blce71/wA4rY/U61GaKo.eJQLpO7lzFIk7L6fJSlE.ucXrMf7wwXm', 'root@wp.pl', 'Łukasz', 'Zgliński', '', '', '0000-00-00', NULL, NULL, 1),
-(63, 'ula', '$2y$10$khWj0uy8pmkqeIMPuGdWsuaHRSC2U36kkJjicLhzn6Xfmg0HzneNW', 'ula@wp.pl', 'Ula', 'Ulakowska', '252', '25252', '2019-10-30', 20, NULL, 0),
-(64, 'konto', '$2y$10$ui9BMDkQQpuczwC1teodfuyxoa2otyMDVpUdXwZbP6xjeZpUTq2HS', 'konto@wp.pl', 'Konto', 'Konto', '252', '25252', '2020-11-30', 21, NULL, 0);
+(17, 'root', '$2y$10$blce71/wA4rY/U61GaKo.eJQLpO7lzFIk7L6fJSlE.ucXrMf7wwXm', 'root@wp.pl', 'Łukasz', 'Zgliński', '', '', '0000-00-00', NULL, NULL, 1);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -164,7 +156,8 @@ ALTER TABLE `pojazdy`
 -- Indeksy dla tabeli `pracownicy`
 --
 ALTER TABLE `pracownicy`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_stanowiska` (`id_stanowiska`);
 
 --
 -- Indeksy dla tabeli `stanowiska`
@@ -188,7 +181,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `klienci`
 --
 ALTER TABLE `klienci`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT dla tabeli `pojazdy`
@@ -200,23 +193,29 @@ ALTER TABLE `pojazdy`
 -- AUTO_INCREMENT dla tabeli `pracownicy`
 --
 ALTER TABLE `pracownicy`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT dla tabeli `stanowiska`
 --
 ALTER TABLE `stanowiska`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `userID` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- Ograniczenia dla zrzutów tabel
 --
+
+--
+-- Ograniczenia dla tabeli `pracownicy`
+--
+ALTER TABLE `pracownicy`
+  ADD CONSTRAINT `pracownicy_ibfk_1` FOREIGN KEY (`id_stanowiska`) REFERENCES `stanowiska` (`id`);
 
 --
 -- Ograniczenia dla tabeli `users`
