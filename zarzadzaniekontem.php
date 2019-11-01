@@ -12,7 +12,7 @@ if(isset($_SESSION['uID']))
             <li><a href="#">Dane</a>
             <!-- First Tier Drop Down -->  
             <ul>';
-            if($isDataFilled==0) echo '<li><a href="#">Uzupełij</a></li>';
+            if($isDataFilled==0) echo '<li><a href="index.php?action=fillData">Uzupełij</a></li>';
             echo '<li><a href="#">Edytuj</a></li>
             </ul>  
         </ul>

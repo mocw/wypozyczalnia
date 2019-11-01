@@ -9,7 +9,7 @@ if(isset($_SESSION['uID']) && $_SESSION['isRoot']==1){
     ON u.id_pracownika=p.id 
     LEFT JOIN stanowiska s 
     oN p.id_stanowiska=s.id 
-    WHERE NOT u.uidUsers='root'
+    WHERE NOT u.uidUsers='root' AND u.id_pracownika IS NULL;
     ";
     $stmt=mysqli_stmt_init($conn);
     mysqli_stmt_prepare($stmt,$sql);
@@ -22,15 +22,13 @@ if(isset($_SESSION['uID']) && $_SESSION['isRoot']==1){
     <thead>
         <tr>
             <th>
-            Pracownik
+            Dodaj
             </th>
             <th>Imię</th>
             <th>Nazwisko</th>
             <th>Pesel</th>
             <th>Data urodzenia</th>
             <th>Numer telefonu</th>
-            <th>Data zatrudnienia</th>
-            <th>Stanowisko</th>
         </tr>
     </thead> ';
     foreach ($users as $row) {
@@ -59,8 +57,6 @@ if(isset($_SESSION['uID']) && $_SESSION['isRoot']==1){
             <td>'.$pesel.'</td>
             <td><input type="text" class="pracownik" name="'.$data_ur.'" disabled value="'.$data_ur.'"></td>
             <td>'.$nr_tel.'</td>
-            <td>'.$data_zatr.'</td>
-            <td>'.$stanowisko.'</td>
         </tr>
         </tbody>';
     }    

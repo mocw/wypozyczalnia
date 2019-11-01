@@ -23,7 +23,7 @@ if(isset($_SESSION['uID']) && $isDataFilled==0) {
       <input placeholder="Numer mieszkania" name="numer_mieszkania" type="number" tabindex="1" required autofocus>
 </fieldset>
 <fieldset>
-      <input placeholder="Numer domu" name="numer_domu" type="text" tabindex="1" required autofocus>
+      <input placeholder="Numer domu" name="numer_domu" type="number" tabindex="1" required autofocus>
 </fieldset>
 <fieldset>
       <button name="fillData-submit" type="submit" id="contact-submit" data-submit="...Sending">Zatwierdź</button>
