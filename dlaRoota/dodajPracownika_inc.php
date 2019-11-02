@@ -11,13 +11,15 @@ if(isset($_POST['customer-submit'])||isset($fillError)){
     }
 
     if($cnt==0){
-        echo '<div class="alert alert-danger" role="alert">Nikogo nie zaznaczyłeś!</div>';
         require 'dodajPracownika.php';
+        echo '<script language="javascript">alert("Nikogo nie zaznaczyłeś!")</script>';        
     }
     else {
     require 'zarzadzaniekontem.php';
     require 'includes/dbh.inc.php';     
-        echo '<form id="dodajPrac" method="POST" action="index.php?action=dodajPracownika_inc_cd">
+        echo '
+        <center><p>Uzypełnij dane</p></center>
+        <form id="dodajPrac" method="POST" action="index.php?action=dodajPracownika_inc_cd">
         <table class="table">
         <thead>
         <tr>

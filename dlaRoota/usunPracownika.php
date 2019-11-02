@@ -1,7 +1,7 @@
 <?php
-require 'zarzadzaniekontem.php';
 if(isset($_SESSION['uID']) && $_SESSION['isRoot']==1){
-    require 'includes/dbh.inc.php';
+require 'zarzadzaniekontem.php';
+require 'includes/dbh.inc.php';
     $sql="
     SELECT u.userID,u.uidUsers,u.imie,u.nazwisko,u.pesel,u.data_ur,u.nr_tel,IFNULL(u.id_pracownika,'') id_pracownika,IFNULL(p.data_zatr,'') data_zatr,IFNULL(s.nazwa,'') stanowisko 
     FROM users u 
@@ -9,7 +9,7 @@ if(isset($_SESSION['uID']) && $_SESSION['isRoot']==1){
     ON u.id_pracownika=p.id 
     LEFT JOIN stanowiska s 
     oN p.id_stanowiska=s.id 
-    WHERE NOT u.uidUsers='root' AND u.id_pracownika IS NULL;
+    WHERE NOT u.uidUsers='root' AND u.id_pracownika IS NOT NULL;
     ";
     $stmt=mysqli_stmt_init($conn);
     mysqli_stmt_prepare($stmt,$sql);
@@ -17,19 +17,21 @@ if(isset($_SESSION['uID']) && $_SESSION['isRoot']==1){
     $users=mysqli_stmt_get_result($stmt);
     mysqli_fetch_all($users,MYSQLI_ASSOC);
     echo '
-    <center><p>Z listy użytkowników wybierz tych, których chcesz dodać</p></center>
-    <form method="POST" action="index.php?action=dodajPracownika_inc">
+    <center><p>Z listy pracowników wybierz tych, których chcesz usunąć</p></center>
+    <form method="POST" action="index.php?action=usunPracownika_inc">
     <table class="table">
     <thead>
         <tr>
             <th>
-            Dodaj
+            Usuń
             </th>
             <th>Imię</th>
             <th>Nazwisko</th>
             <th>Pesel</th>
             <th>Data urodzenia</th>
             <th>Numer telefonu</th>
+            <th>Data zatrudnienia</th>
+            <th>Stanowisko</th>
         </tr>
     </thead> ';
     foreach ($users as $row) {
@@ -48,9 +50,7 @@ if(isset($_SESSION['uID']) && $_SESSION['isRoot']==1){
         <tr>';
         if($row['userID']!=$_SESSION['uID'])
         {
-            if($id_pracownika!=NULL) {
-                echo '<td><input type="checkbox" name="'.$id.'" value="'.$id.'" checked></td>';
-            } else echo '<td><input type="checkbox" name="'.$id.'" value="'.$id.'"></td>';
+           echo '<td><input type="checkbox" name="'.$id.'" value="'.$id.'"></td>';
         } else echo '<td></td>';     
             echo'
             <td><input type="text" class="pracownik" name="'.$imie.'" disabled value="'.$imie.'"></td>
@@ -58,11 +58,14 @@ if(isset($_SESSION['uID']) && $_SESSION['isRoot']==1){
             <td>'.$pesel.'</td>
             <td><input type="text" class="pracownik" name="'.$data_ur.'" disabled value="'.$data_ur.'"></td>
             <td>'.$nr_tel.'</td>
+            <td>'.$data_zatr.'</td>
+            <td>'.$stanowisko.'</td>
         </tr>
         </tbody>';
     }    
 echo '</table>
-</br><center><input type="submit" VALUE="Zatwierdź" NAME="customer-submit"></center>
+</br><center><input type="submit" VALUE="Zatwierdź" NAME="customer-delete-submit"></center>
 </form>';
+
 } else header('Location: index.php?action=home');
 ?>

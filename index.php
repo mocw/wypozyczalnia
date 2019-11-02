@@ -86,6 +86,8 @@ switch($site) {
   case 'dodajPracownika' : include 'dlaRoota/dodajPracownika.php'; break;
   case 'dodajPracownika_inc' : include 'dlaRoota/dodajPracownika_inc.php'; break;
   case 'dodajPracownika_inc_cd' : include 'dlaRoota/dodajPracownika_inc_2.php'; break;
+  case 'usunPracownika' : include 'dlaRoota/usunPracownika.php'; break;
+  case 'usunPracownika_inc' : include 'dlaRoota/usunPracownika_inc.php'; break;
 }
 
 ?>
