@@ -3,7 +3,23 @@ require 'includes/dbh.inc.php';
 if(!isset($_SESSION['uID'])) echo '<div class="alert alert-warning" role="alert">Aby móc zarezerwować pojazd, 
 musisz być zalogowany! <a href="index.php?action=logowanie">Zaloguj się</a></li></div>';
 
+if(!isset($_POST['page'])){
+  $page=1;
+} else {
+$page=$_POST['page'];
+}
+$results_per_page=6;
+$this_page_first_result=($page-1)*$results_per_page;
+
 $sql="SELECT * FROM pojazdy";
+$stmt=mysqli_stmt_init($conn);
+mysqli_stmt_prepare($stmt,$sql);
+mysqli_stmt_execute($stmt);
+$cars=mysqli_stmt_get_result($stmt);
+$number_of_results=mysqli_num_rows($cars); 
+$number_of_pages=ceil($number_of_results/$results_per_page);
+
+$sql="SELECT * FROM pojazdy LIMIT ".$this_page_first_result.','.$results_per_page;
 $stmt=mysqli_stmt_init($conn);
 mysqli_stmt_prepare($stmt,$sql);
 mysqli_stmt_execute($stmt);
@@ -13,7 +29,6 @@ echo '  <div class="box">
 <div class="demo">
 <form method="POST" action="index.php?action=carreserv">
 <ul class="list">';
-
 foreach ($cars as $row) {
   $id=$row["id"];
   $marka=$row["marka"];
@@ -40,4 +55,19 @@ echo '</ul>
 </form>
 </div>
 </div>';
+echo '
+<div id="pcontainer">
+<div class="pagination">';
+echo '<center><form name="page" method="POST" action="index.php?action=oferta">';
+$currPage=$page;
+$previus=$currPage-1;
+if ($currPage!=1) echo'<input type="submit" class="prevnext" name="page" value="'.$previus.'" color="red">';
+for($page=1;$page<=$number_of_pages;$page++)
+{
+  if($page!=0) echo'<input type="submit" name="page" value="'.$page.'">';
+}
+$next=$currPage+1;
+if ($currPage!=$number_of_pages) echo'<input type="submit" class="prevnext" name="page" value="'.$next.'" color="red">';
+echo '</div></form></center>';
+echo '<center>'.$currPage.'</center>';
 ?>

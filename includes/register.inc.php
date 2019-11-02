@@ -15,15 +15,14 @@ $data_ur = date("Y-m-d", strtotime($data_ur));
 
 $rejestracjaSite='rejestracja.php';
 
-if(empty($username) || empty($password) || empty($password_rpt) || empty($email) || empty($imie) || empty($nazwisko)){
-    echo '<div class="alert alert-danger" role="alert">Uzypełnij wszystkie pola!</div>';
-    require $rejestracjaSite;   
- } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    echo '<div class="alert alert-danger" role="alert">Nieprawidłowy adres e-mail!</div>';
-    require 'rejestracja.php'; 
-} else if(strcmp($password,$password_rpt))
+if(strcmp($password,$password_rpt))
  {
     echo '<div class="alert alert-danger" role="alert">Hasła nie są zgodne!</div>';
+    require 'rejestracja.php'; 
+ }
+ else if(checkPESEL($pesel)==false)
+ {
+    echo '<div class="alert alert-danger" role="alert">Numer PESEL jest nieprawidłowy!</div>';
     require 'rejestracja.php'; 
  }
  else {
@@ -97,4 +96,27 @@ if(empty($username) || empty($password) || empty($password_rpt) || empty($email)
 else{
     header("Location: index.php?action=rejestracja");
 }
+
+function CheckPESEL($str)
+{
+	if (!preg_match('/^[0-9]{11}$/',$str)) //sprawdzamy czy ciąg ma 11 cyfr
+	{
+		return false;
+	}
+ 
+	$arrSteps = array(1, 3, 7, 9, 1, 3, 7, 9, 1, 3); // tablica z odpowiednimi wagami
+	$intSum = 0;
+	for ($i = 0; $i < 10; $i++)
+	{
+		$intSum += $arrSteps[$i] * $str[$i]; //mnożymy każdy ze znaków przez wagć i sumujemy wszystko
+	}
+	$int = 10 - $intSum % 10; //obliczamy sumć kontrolną
+	$intControlNr = ($int == 10)?0:$int;
+	if ($intControlNr == $str[10]) //sprawdzamy czy taka sama suma kontrolna jest w ciągu
+	{
+		return true;
+	}
+	return false;
+}
+
 ?>
