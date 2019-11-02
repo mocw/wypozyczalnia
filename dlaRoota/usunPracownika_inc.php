@@ -22,7 +22,6 @@ if(isset($_POST['customer-delete-submit'])){
         $result=mysqli_stmt_get_result($stmt);
         $row=mysqli_fetch_row($result);
         $id_pracownika=$row[0];
-        echo $id_pracownika;
         $sql="UPDATE users
         SET id_pracownika=NULL
         WHERE userID=?";
@@ -38,6 +37,7 @@ if(isset($_POST['customer-delete-submit'])){
         mysqli_stmt_execute($stmt);
         mysqli_stmt_store_result($stmt);
         echo '<div class="alert alert-success" role="alert">Sukces!</div>';
+        require 'dlaRoota/usunPracownika.php';  
         }
     }
 } else header('Location: index.php?action=home');
