@@ -1,6 +1,6 @@
 <?php
-if(isset($_POST['add-car-submit']) && $_SESSION['czyPracownik']==1 ){
-    error_reporting(0);
+if(isset($_POST['add-car-submit'])){
+
     if(isset($dodajZdj)) unset($dodajZdj);
     if(isset($success)) unset($success);
     require 'dbh.inc.php';
@@ -26,10 +26,8 @@ if(isset($_POST['add-car-submit']) && $_SESSION['czyPracownik']==1 ){
                 else {
                     $success=1;                    
                     require 'carOperations/addCar.php';              
-                } 
-            //mysqli_stmt_close($stmt);
-            //mysqli_close($conn);       
+                }    
         }
-error_reporting(1);
+
 } else header('Location: index.php?action=home');
 ?>

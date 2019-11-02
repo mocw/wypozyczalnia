@@ -18,7 +18,7 @@ if(isset($success)) echo '<div class="alert alert-success" role="alert">Pojazd z
       <input placeholder="Pojemność silnika" name="poj_silnika" type="number" tabindex="4" required>
     </fieldset>
     <fieldset>
-    <p>Wybierz zdjęcie </br></br><input type="file" id="carImg" name="image" accept="image/png, image/jpeg"></p>
+    <p>Wybierz zdjęcie </br></br><input type="file" id="carImg" name="image" accept="image/*"></p>
   <button name="add-car-submit" type="submit" id="contact-submit" data-submit="...Sending">Zatwierdź</button>
     </fieldset>
   </form>
