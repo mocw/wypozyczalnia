@@ -9,7 +9,13 @@ if(empty($username) or empty($password)){
    require 'logowanie.php';   
 }
 else{
-    $sql="SELECT * FROM users WHERE uidUsers=?";
+    $sql="SELECT * 
+    FROM users  
+    LEFT JOIN pracownicy
+    ON users.id_pracownika=pracownicy.id
+    LEFT JOIN stanowiska
+    ON pracownicy.id_stanowiska=stanowiska.id
+    WHERE uidUsers=?";
     $stmt=mysqli_stmt_init($conn);
      if(!mysqli_stmt_prepare($stmt,$sql))
      {
@@ -37,7 +43,8 @@ else{
               $_SESSION['czyPracownik'] = $row['czyPracownik']; 
               $_SESSION['id_klienta'] = $row['id_klienta'];   
               $_SESSION['id_pracownika'] = $row['id_pracownika'];
-              $_SESSION['isRoot'] = $row['isRoot'];                  
+              $_SESSION['isRoot'] = $row['isRoot'];    
+              $_SESSION['stanowisko'] = $row['nazwa'];               
               if(isset($_SESSION['doZalogowania'])) header('Location: index.php?action=oferta');
               else header('Location: index.php?action=home');
           }

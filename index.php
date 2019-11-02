@@ -18,6 +18,7 @@ session_start();
  <link rel="stylesheet" type="text/css" href="css/menuRoot.css" />
  <link rel="stylesheet" type="text/css" href="css/tabela.css" />
  <link rel="stylesheet" type="text/css" href="css/menu2.css" />
+ <link rel="stylesheet" type="text/css" href="css/banner.css" />
 </head>
 <body>
   <div id="wrapper">
@@ -27,7 +28,15 @@ session_start();
     <div id="top">
     
     <div id="logo">
-
+    <?php 
+    if(isset($_SESSION['uID'])){
+      echo '
+      <center></br></br><b>'.$_SESSION['imie'].' '.$_SESSION['nazwisko'].'</center></b>
+      ';
+    if($_SESSION['id_klienta']!=NULL && $_SESSION['id_pracownika']==NULL) echo 'Klient';
+    if($_SESSION['id_pracownika']!=NULL) echo 'Pracownik</br>Stanowisko: '.$_SESSION['stanowisko'].'';
+    }
+    ?>
     </div>
     <div id="menu">
         <ul>        

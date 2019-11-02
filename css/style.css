@@ -40,6 +40,8 @@ a:hover {
 
 #logo {
 	float: left;
+	text-align: center;
+	text-justify: auto;
 }
 
 #logo a, #logo img {
