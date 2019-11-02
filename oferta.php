@@ -61,13 +61,13 @@ echo '
 echo '<center><form name="page" method="POST" action="index.php?action=oferta">';
 $currPage=$page;
 $previus=$currPage-1;
-if ($currPage!=1) echo'<input type="submit" class="prevnext" name="page" value="'.$previus.'" color="red">';
+//if ($currPage!=1) echo'<input type="submit" class="prevnext" name="page" value="'.$previus.'" color="red">';
 for($page=1;$page<=$number_of_pages;$page++)
 {
-  if($page!=0) echo'<input type="submit" name="page" value="'.$page.'">';
+  if($page==$currPage) echo'<input type="submit" name="page" value="'.$page.'" disabled>';
+  else echo'<input type="submit" name="page" value="'.$page.'">';
 }
 $next=$currPage+1;
-if ($currPage!=$number_of_pages) echo'<input type="submit" class="prevnext" name="page" value="'.$next.'" color="red">';
+//if ($currPage!=$number_of_pages) echo'<input type="submit" class="prevnext" name="page" value="'.$next.'" color="red">';
 echo '</div></form></center>';
-echo '<center>'.$currPage.'</center>';
 ?>
