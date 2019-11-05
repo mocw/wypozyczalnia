@@ -16,7 +16,7 @@ if(isset($_POST['carID'])) {
             else
             {
                 echo '<center>ID Pojazdu: ',$_POST['carID'],'</center>';
-                echo '<center>Tu będzie będzie wniosek z egzemplarzami pojazdów o podanym ID</center>';    
+                echo '<center>Tu będzie będzie wniosek</center>';    
             }
 
         }
