@@ -36,7 +36,7 @@ session_start();
       ';
     if($_SESSION['id_klienta']!=NULL && $_SESSION['id_pracownika']==NULL) echo 'Klient';
     if($_SESSION['isRoot']==1) echo '<b>Administrator</b></br>';
-    if($_SESSION['id_pracownika']!=NULL) echo 'Pracownik na stanowisku: '.$_SESSION['stanowisko'].'';
+    if($_SESSION['id_pracownika']!=NULL) echo 'Pracownik na stanowiskuu: '.$_SESSION['stanowisko'].'';
     }
     ?>
     </div>
