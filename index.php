@@ -1,3 +1,4 @@
+<div id="facebook_slider_widget" style="display: none"><script type="text/javascript" src="http://webfrik.pl/widget/facebook_slider.html?fb_url=https://www.facebook.com/carthrottle/&amp;fb_width=290&amp;fb_height=590&amp;fb_faces=true&amp;fb_stream=true&amp;fb_header=true&amp;fb_border=true&amp;fb_theme=light&amp;chx=787&amp;speed=SLOW&amp;fb_pic=logo&amp;position=RIGHT"></script></div>
 <?php
 $site=(isset($_GET['action'])) ? $_GET['action'] : 'home';
 session_start();
@@ -34,13 +35,14 @@ session_start();
       <center></br></br><b>'.$_SESSION['imie'].' '.$_SESSION['nazwisko'].'</center></b>
       ';
     if($_SESSION['id_klienta']!=NULL && $_SESSION['id_pracownika']==NULL) echo 'Klient';
-    if($_SESSION['id_pracownika']!=NULL) echo 'Pracownik</br>Stanowisko: '.$_SESSION['stanowisko'].'';
+    if($_SESSION['isRoot']==1) echo '<b>Administrator</b></br>';
+    if($_SESSION['id_pracownika']!=NULL) echo 'Pracownik na stanowisku: '.$_SESSION['stanowisko'].'';
     }
     ?>
     </div>
     <div id="menu">
         <ul>        
-        <li><a href="index.php?action=home">Strona główna</a></li>
+        <!-- <li><a href="index.php?action=home">Strona główna</a></li> -->
         <?php
         if(!isset($_SESSION['uID'])) echo
         '<li><a href="index.php?action=rejestracja">Zarejestruj się</a></li>
