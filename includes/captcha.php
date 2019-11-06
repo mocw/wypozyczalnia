@@ -33,5 +33,4 @@ for($a=0; $a < 7; $a++){
 header("Content-type: image/gif");
 imagegif($im);
 imagedestroy($im);
-//probny push
 ?>
