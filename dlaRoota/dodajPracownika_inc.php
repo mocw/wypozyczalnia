@@ -75,4 +75,5 @@ if(isset($_POST['customer-submit'])||isset($fillError)){
     </form>';
 }
 } else header('Location: index.php?action=home');
+//prob commit
 ?>
