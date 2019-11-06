@@ -69,5 +69,5 @@ for($page=1;$page<=$number_of_pages;$page++)
 }
 $next=$currPage+1;
 if ($currPage!=$number_of_pages) echo'<button class="prevnext" name="page" value="'.$next.'">></button>';
-echo '</div></form></center>';
+echo '</div></div></form></center>';
 ?>

@@ -20,6 +20,7 @@ session_start();
  <link rel="stylesheet" type="text/css" href="css/tabela.css" />
  <link rel="stylesheet" type="text/css" href="css/menu2.css" />
  <link rel="stylesheet" type="text/css" href="css/banner.css" />
+ <link rel="stylesheet" type="text/css" href="css/kontakt.css">
 </head>
 <body>
   <div id="wrapper">
@@ -70,6 +71,7 @@ switch($site) {
   case 'logowanie': include 'logowanie.php'; break;
   case 'login' : include 'includes/login.inc.php'; break;
   case 'kontakt' : include 'kontakt.php'; break;
+  case 'kontakt.inc' : include 'includes/kontakt.inc.php'; break;
   case 'register' : include 'includes/register.inc.php'; break;
   case 'logout' : include 'includes/logout.inc.php'; break;
   case 'employeepanel' : include 'includes/employeepanel.php'; break;
