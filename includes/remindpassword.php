@@ -1,9 +1,24 @@
 <?php
+    function incrementalHash($len = 5){
+        $charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        $base = strlen($charset);
+        $result = '';
+      
+        $now = explode(' ', microtime())[1];
+        while ($now >= $base){
+          $i = $now % $base;
+          $result = $charset[$i] . $result;
+          $now /= $base;
+        }
+        return substr($result, -5);
+      }
+
+
 if(isset($_POST['remind-submit'])){
     $email=$_POST['email'];
     require 'dbh.inc.php';
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo '<p class="alert">Nieprawidłowy adres e-mail!</p>';
+        echo '<div class="alert alert-danger" role="alert">Nieprawidłowy adres e-mail!</div>';
         require 'forgottenpassword.php'; 
     }
     else {
@@ -19,22 +34,52 @@ if(isset($_POST['remind-submit'])){
             $resultCheck=mysqli_stmt_num_rows($stmt);
             if($resultCheck!=1)
             {
-            echo '<p class="alert">Na podany adres nie jest zarejestorwany żaden użytkowik!</p>';
+            echo '<div class="alert alert-danger" role="alert">Na podany adres nie jest zarejestorwany żaden użytkowik!</div>';
             require 'forgottenpassword.php';  
             }
             else{
-                $subject = "Sukces";
-                $messages= "Wiadomość została pomyślnie wysłana z serwera lokalnego.";
+                $sql="SELECT userID FROM users WHERE email='$email'"; //POBIERAMY ID
+                $query = mysqli_query($conn, $sql);
+                $row=mysqli_fetch_row($query);
+                $id=$row[0];
+
+                $sql="SELECT code FROM passwordcodes WHERE userID=$id"; //SPRAWDZAMY CZY JUZ NIE WYSLANO KODU
+                    $stmt=mysqli_stmt_init($conn);
+                    mysqli_stmt_prepare($stmt,$sql);
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_store_result($stmt);
+                    $resultCheck=mysqli_stmt_num_rows($stmt);
+                 if($resultCheck > 0 ){
+                    echo '<div class="alert alert-danger" role="alert">Kod już został wysłany!</div>';
+                    require 'forgottenpassword.php';   
+                }
+                else {
+                $code=incrementalHash(5);
+
+                $subject = "Przypomnienie hasła"; //MAIL
+                $messages= "Jeżeli nie spodziewałeś się tej wiadomości, zignoruj ją.
+                Kliknij w poniższy link, a następnie wpisz podany kod.
+                http://localhost/wypozyczalnia/index.php?action=remindpasswordCode 
+                Kod: $code
+                "; //!!! JEŚLI MACIE INNĄ NAZWE KATALOGU ZMIEŃCIE TREŚĆ LINKA !!!
                 if( mail($email, $subject, $messages) ) {
-                echo '<center>Wiadomość wysłana!<center>';
-                require 'forgottenpassword.php';  
-                } else {
-                echo '<center><Niepowodzenie!</center>';
-                require 'forgottenpassword.php';  
+                    $sql="INSERT INTO passwordcodes(code,userID) VALUES(?,?)";
+                    $stmt=mysqli_stmt_init($conn);
+                    mysqli_stmt_prepare($stmt,$sql);
+                    mysqli_stmt_bind_param($stmt,"si",$code,$id);
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_store_result($stmt);
+                    echo '<div class="alert alert-success" role="alert">Wiadomość wysłana!</div>';
+                    require 'forgottenpassword.php';                                      
+                } 
+                else {
+                echo '<div class="alert alert-success" role="alert"><Niepowodzenie!</div>';
+                require 'forgottenpassword.php';   //MAIL-KONIEC
                 }                        
             }
-
         }
     }
-}else header('Location: index.php?action=home');
+}
+}
+else header('Location: index.php?action=home');
 ?>
