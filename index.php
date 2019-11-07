@@ -21,6 +21,7 @@ session_start();
  <link rel="stylesheet" type="text/css" href="css/menu2.css" />
  <link rel="stylesheet" type="text/css" href="css/banner.css" />
  <link rel="stylesheet" type="text/css" href="css/kontakt.css">
+ <link rel="icon" type="image/ico" href="images/favicon.gif" >
 </head>
 <body>
   <div id="wrapper">
@@ -79,6 +80,9 @@ switch($site) {
   case 'accountmgm' : include 'zarzadzaniekontem.php'; break;
   case 'forgottenpassword' : include 'includes/forgottenpassword.php'; break;
   case 'remindpassword' : include 'includes/remindpassword.php'; break;
+  case 'remindpasswordCode' : include 'includes/remindpasswordCode.php'; break;
+  case 'remindpasswordCode_inc' : include 'includes/remindpasswordCode_inc.php'; break; 
+  case 'setNewPassword' : include 'includes/setNewPassword.php'; break;
   case 'carreserv' : include 'rezerwacje/carreservation.php'; break;
   case 'addCarForm' : include 'carOperations/addCar.php'; break;
   case 'addCar' : include 'includes/add.car.inc.php'; break;
