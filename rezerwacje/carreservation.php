@@ -3,7 +3,7 @@ if(isset($_POST['carID'])) {
     if(!isset($_SESSION['uID']))
     {
         $_SESSION['doZalogowania'] = 1;
-        echo '<p class="alert">Musisz się zalogować!</p>';
+        echo '<div class="alert alert-danger" role="alert">Musisz się zalogować!</div>';
         require 'logowanie.php';   
     }
         else
