@@ -11,7 +11,7 @@ if(isset($_POST['passwordCode-submit'])){
     $resultCheck=mysqli_stmt_num_rows($stmt);
     if($resultCheck!=1)
     {
-    echo '<div class="alert alert-danger" role="alert">Kod jest błędny!</div>';
+    echo '<div class="alert alert-danger" role="alert">Kod jest błędny lub został już wykorzystany!</div>';
     require 'remindPasswordCode.php';  
     }
     else {
