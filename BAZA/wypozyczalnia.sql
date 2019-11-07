@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 01 Lis 2019, 03:25
+-- Czas generowania: 07 Lis 2019, 02:11
 -- Wersja serwera: 10.4.8-MariaDB
 -- Wersja PHP: 7.3.10
 
@@ -37,6 +37,18 @@ CREATE TABLE `klienci` (
   `kod_pocztowy` char(6) NOT NULL,
   `nr_mieszkania` varchar(3) DEFAULT NULL,
   `nr_domu` varchar(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin2;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `passwordcodes`
+--
+
+CREATE TABLE `passwordcodes` (
+  `id` int(11) NOT NULL,
+  `code` varchar(5) NOT NULL,
+  `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2;
 
 -- --------------------------------------------------------
@@ -134,7 +146,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userID`, `uidUsers`, `pwdUsers`, `email`, `imie`, `nazwisko`, `pesel`, `nr_tel`, `data_ur`, `id_klienta`, `id_pracownika`, `isRoot`) VALUES
-(17, 'root', '$2y$10$blce71/wA4rY/U61GaKo.eJQLpO7lzFIk7L6fJSlE.ucXrMf7wwXm', 'root@wp.pl', 'Łukasz', 'Zgliński', '', '', '0000-00-00', NULL, NULL, 1);
+(17, 'root', '$2y$10$blce71/wA4rY/U61GaKo.eJQLpO7lzFIk7L6fJSlE.ucXrMf7wwXm', 'root@wp.pl', 'Root', '', '', '', '0000-00-00', NULL, NULL, 1);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -145,6 +157,14 @@ INSERT INTO `users` (`userID`, `uidUsers`, `pwdUsers`, `email`, `imie`, `nazwisk
 --
 ALTER TABLE `klienci`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indeksy dla tabeli `passwordcodes`
+--
+ALTER TABLE `passwordcodes`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `code` (`code`),
+  ADD KEY `userID` (`userID`);
 
 --
 -- Indeksy dla tabeli `pojazdy`
@@ -181,19 +201,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `klienci`
 --
 ALTER TABLE `klienci`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT dla tabeli `passwordcodes`
+--
+ALTER TABLE `passwordcodes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT dla tabeli `pojazdy`
 --
 ALTER TABLE `pojazdy`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT dla tabeli `pracownicy`
 --
 ALTER TABLE `pracownicy`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT dla tabeli `stanowiska`
@@ -205,11 +231,17 @@ ALTER TABLE `stanowiska`
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `userID` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- Ograniczenia dla zrzutów tabel
 --
+
+--
+-- Ograniczenia dla tabeli `passwordcodes`
+--
+ALTER TABLE `passwordcodes`
+  ADD CONSTRAINT `passwordcodes_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`);
 
 --
 -- Ograniczenia dla tabeli `pracownicy`
