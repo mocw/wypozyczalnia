@@ -43,7 +43,7 @@ if(isset($_POST['customer-submit-data'])){
         mysqli_stmt_store_result($stmt); 
     }
 
-    echo '<div class="alert alert-success" role="alert">Sukces!</div>';
+    echo '<div class="disappear"><div class="alert alert-success" role="alert">Sukces!</div></div>';
     require 'dodajPracownika.php';
 
 } else header('Location: index.php?action=home');

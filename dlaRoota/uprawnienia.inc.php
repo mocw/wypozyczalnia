@@ -27,7 +27,7 @@ if(isset($_POST['permiss-submit'])){
                 $_SESSION['isRoot']=1;
             }
         }
-        echo '<div class="alert alert-success" role="alert">Sukces!</div>';
+        echo '<div class="disappear"><div class="alert alert-success" role="alert">Sukces!</div></div>';
         require 'uprawnienia.php';
     } 
 } else header('Location: index.php?action=home');

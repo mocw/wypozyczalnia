@@ -29,11 +29,12 @@
                     mysqli_stmt_bind_param($stmt,"si",$code,$id);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_store_result($stmt);
-                    echo '<div class="alert alert-success" role="alert">Wiadomość wysłana!</div>';
+                    echo '<div class="disappear"><div class="alert alert-success" role="alert">
+                    Wiadomość wysłana!</div></div>';
                     require 'forgottenpassword.php';                                      
                 } 
                 else {
-                echo '<div class="alert alert-success" role="alert"><Niepowodzenie!</div>';
+                echo '<div class="alert alert-danger" role="alert"><Niepowodzenie!</div>';
                 require 'forgottenpassword.php';   //MAIL-KONIEC
                 }  
     }

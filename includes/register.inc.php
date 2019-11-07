@@ -82,7 +82,8 @@ if(strcmp($password,$password_rpt))
                      $pesel,$nr_tel,$data_ur);
                         mysqli_stmt_execute($stmt);
                         mysqli_stmt_store_result($stmt);
-                        echo '<div class="alert alert-success" role="alert">Zarejestorwano!</div>';
+                        echo '<div class="disappear"><div class="alert alert-success" role="alert">Zarejestorwano!
+                        Teraz możesz się zalogować!</div></div>';
                         require $rejestracjaSite;  
                     }
                 }

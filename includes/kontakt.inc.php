@@ -29,7 +29,7 @@ if(!empty($_POST['name']) and !empty($_POST['email']) and !empty($_POST['message
 		$subject = '=?utf-8?B?'.base64_encode($subject).'?=';
 	
 		if(mail($email_odbiorcy, $subject, $message, $header)){
-			echo '<div class="alert alert-success" role="alert">Wiadomość została wysłana!</div>';
+			echo '<div class="disappear"><div class="alert alert-success" role="alert">Wiadomość została wysłana!</div></div>';
             require 'kontakt.php';
 		}else{
 			echo '<div class="alert alert-danger" role="alert">Wiadomość nie została wysłana</div>';

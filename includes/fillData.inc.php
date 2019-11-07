@@ -36,7 +36,7 @@ else {
         mysqli_stmt_store_result($stmt);
         $_SESSION['id_klienta']=$id;
         $isDataFilled=1;
-        echo '<div class="alert alert-success" role="alert">Dane wypełnione!</div>';
+        echo '<div class="disappear"><div class="alert alert-success" role="alert">Dane wypełnione!</div></div>';
         header('Location: index.php?action=accountmgm');
     }
 }

@@ -36,7 +36,7 @@ if(isset($_POST['customer-delete-submit'])){
         mysqli_stmt_prepare($stmt,$sql);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_store_result($stmt);
-        echo '<div class="alert alert-success" role="alert">Sukces!</div>';
+        echo '<div class="disappear"><div class="alert alert-success" role="alert">Sukces!</div></div>';
         require 'dlaRoota/usunPracownika.php';  
         }
     }
