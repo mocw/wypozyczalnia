@@ -136,3 +136,19 @@ fieldset {
 button.prevnext{
   
 }
+
+#resend{
+    display: inline-block; //Or display: inline; 
+}
+
+#resend input[type="submit"]
+{
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  padding: 0px;
+  margin: -10px;
+  font-size: 16px;
+}

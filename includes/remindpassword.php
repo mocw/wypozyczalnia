@@ -13,8 +13,37 @@
         return substr($result, -5);
       }
 
+    function sendMail($email,$id){
+                require 'dbh.inc.php';
+                $code=incrementalHash(5);    
+                $subject = "Przypomnienie hasła"; //MAIL
+                $messages= "Jeżeli nie spodziewałeś się tej wiadomości, zignoruj ją.
+                Kliknij w poniższy link, a następnie wpisz podany kod.
+                http://localhost/wypozyczalnia/index.php?action=remindpasswordCode 
+                Kod: $code
+                "; //!!! JEŚLI MACIE INNĄ NAZWE KATALOGU ZMIEŃCIE TREŚĆ LINKA !!!
+                if( mail($email, $subject, $messages) ) {
+                    $sql="INSERT INTO passwordcodes(code,userID) VALUES(?,?)";
+                    $stmt=mysqli_stmt_init($conn);
+                    mysqli_stmt_prepare($stmt,$sql);
+                    mysqli_stmt_bind_param($stmt,"si",$code,$id);
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_store_result($stmt);
+                    echo '<div class="alert alert-success" role="alert">Wiadomość wysłana!</div>';
+                    require 'forgottenpassword.php';                                      
+                } 
+                else {
+                echo '<div class="alert alert-success" role="alert"><Niepowodzenie!</div>';
+                require 'forgottenpassword.php';   //MAIL-KONIEC
+                }  
+    }
 
-if(isset($_POST['remind-submit'])){
+if(isset($_POST['reSend'])){
+        $id=$_POST['userID'];
+        $email=$_POST['email'];
+        sendMail($email,$id);
+    }    
+else if(isset($_POST['remind-submit'])){
     $email=$_POST['email'];
     require 'dbh.inc.php';
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -50,32 +79,18 @@ if(isset($_POST['remind-submit'])){
                     mysqli_stmt_store_result($stmt);
                     $resultCheck=mysqli_stmt_num_rows($stmt);
                  if($resultCheck > 0 ){
-                    echo '<div class="alert alert-danger" role="alert">Kod już został wysłany!</div>';
+                    echo '<div class="alert alert-danger" role="alert">Kod już został wysłany!
+                    Jeśli chcesz wysłać ponownie, kliknij 
+                    <form id="resend" name="page" method="POST" action="index.php?action=remindpassword">
+                    <input type="submit" name="reSend" value="tutaj">
+                    <input type="hidden" name="userID" value="'.$id.'">
+                    <input type="hidden" name="email" value="'.$email.'">
+                    </form>
+                    </div>';
                     require 'forgottenpassword.php';   
                 }
                 else {
-                $code=incrementalHash(5);
-
-                $subject = "Przypomnienie hasła"; //MAIL
-                $messages= "Jeżeli nie spodziewałeś się tej wiadomości, zignoruj ją.
-                Kliknij w poniższy link, a następnie wpisz podany kod.
-                http://localhost/wypozyczalnia/index.php?action=remindpasswordCode 
-                Kod: $code
-                "; //!!! JEŚLI MACIE INNĄ NAZWE KATALOGU ZMIEŃCIE TREŚĆ LINKA !!!
-                if( mail($email, $subject, $messages) ) {
-                    $sql="INSERT INTO passwordcodes(code,userID) VALUES(?,?)";
-                    $stmt=mysqli_stmt_init($conn);
-                    mysqli_stmt_prepare($stmt,$sql);
-                    mysqli_stmt_bind_param($stmt,"si",$code,$id);
-                    mysqli_stmt_execute($stmt);
-                    mysqli_stmt_store_result($stmt);
-                    echo '<div class="alert alert-success" role="alert">Wiadomość wysłana!</div>';
-                    require 'forgottenpassword.php';                                      
-                } 
-                else {
-                echo '<div class="alert alert-success" role="alert"><Niepowodzenie!</div>';
-                require 'forgottenpassword.php';   //MAIL-KONIEC
-                }                        
+                sendMail($email,$id);                                     
             }
         }
     }
