@@ -37,5 +37,5 @@ if(!empty($_POST['name']) and !empty($_POST['email']) and !empty($_POST['message
 		}
 	}
 }
-} else header("Location: index.php?action=rejestracja");
+} else header("Location: index.php?action=home");
 ?>
