@@ -7,11 +7,13 @@ $_SESSION['isRoot']==1)
     <nav class="menu2">
         <ul>
             <li><a href="#">Wypożyczenia</a></li>';
-            if($_GET['action']=='addCarForm') echo'<u><b><li><a>Pojazdy+</a></b></u>';
+            if($_GET['action']=='addCarForm'  
+            || $_GET['action']=='addCar') echo'<u><b><li><a>Pojazdy+</a></b></u>';
             else echo'<li><a>Pojazdy</a>';
             //<!-- Pierwszy Drop Down -->
            echo '<ul>';
-             if($_GET['action']=='addCarForm'){
+             if($_GET['action']=='addCarForm' 
+             || $_GET['action']=='addCar'){
                 echo '<u><li><b><a href="index.php?action=addCarForm" name="addCar">Dodaj</a></b></li></u>';
              } else echo '<li><a href="index.php?action=addCarForm" name="addCar">Dodaj</a></li>';
              echo '<li><a href="#">Usuń</a></li>

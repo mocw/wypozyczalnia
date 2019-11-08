@@ -15,10 +15,11 @@ if(isset($_SESSION['uID']))
         }
            echo'<li><a href="#">Twoje wypożyczenia</a>
             <!-- Pierwszy Drop Down -->    
-            </li>
-            <li><a href="#" >Dane</a>
-            <!-- First Tier Drop Down -->  
-            <ul>';
+            </li>';
+            if($_GET['action']=='fillData') echo '<u><b><li><a href="#" >Dane+</a></u></b>';
+            else echo '<li><a href="#" >Dane</a>';
+           // <!-- First Tier Drop Down -->  
+           echo '<ul>';
             if($isDataFilled==0){
                 if($_GET['action']=='fillData') echo '<u><b><li><a href="index.php?action=fillData" style="color:red">Uzupełij</a></li></b></u>';
                 else echo '<li><a href="index.php?action=fillData" style="color:red">Uzupełij</a></li>';

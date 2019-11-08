@@ -46,9 +46,11 @@ session_start();
         <ul>        
         <!-- <li><a href="index.php?action=home">Strona główna</a></li> -->
         <?php
-        if(!isset($_SESSION['uID'])) echo
+        if(!isset($_SESSION['uID'])){
+          echo
         '<li><a href="index.php?action=rejestracja">Zarejestruj się</a></li>
         <li><a href="index.php?action=logowanie">Zaloguj się</a></li>';
+        } 
         else 
         {
         if($_SESSION['id_pracownika']!=NULL || $_SESSION['isRoot']==1) { 
