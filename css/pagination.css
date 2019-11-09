@@ -23,5 +23,5 @@
   }
 
   .pagination input[type="submit"]:hover, .prevnext:hover{
-    transform:scale(1.5);
+    transform:scale(1.3);
   }

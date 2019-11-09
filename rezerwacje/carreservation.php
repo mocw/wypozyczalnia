@@ -28,6 +28,7 @@ echo 'ID samochodu: '.$carID.' </br>Tu będzie wniosek';
             else
             {
                 require 'includes/dbh.inc.php';
+                $page=$_POST['page'];
                 $id=$_POST['carID'];
                 $sql="SELECT * FROM pojazdy WHERE id=$id";
                 $query = mysqli_query($conn, $sql);
@@ -49,7 +50,10 @@ echo 'ID samochodu: '.$carID.' </br>Tu będzie wniosek';
                 echo '
                 <center>
 <div class="caRcard">
-  <span id="green-arrow"><a href="index.php?action=oferta">&#8592;</a></span>
+  <form method="POST" action="index.php?action=oferta">
+  <input type="hidden" name="page" value='.$page.'>
+  <button class="green-arrow" type="submit">&#8592;</button>
+  </form>
   <div class="item">
     <div class="text">
       <h1 class="car">'.$marka.'</h1>

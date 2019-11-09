@@ -68,7 +68,10 @@
     font-weight: bold;
   }
   
-  #green-arrow a {
+  button.green-arrow {
+    padding: 0;
+    border: none;
+    background: none;
     text-decoration: none;
     display: block;
     font-size: 2rem;
@@ -77,7 +80,7 @@
   }
 
 
-  #green-arrow a:hover {
+  button.green-arrow:hover {
     transform:scale(1.8);
   }
   

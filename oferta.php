@@ -52,6 +52,7 @@ foreach ($cars as $row) {
   ';
 }
 echo '</ul>
+<input type="hidden" name="page" value='.$page.'>
 </form>
 </div>
 </div>';
@@ -61,13 +62,13 @@ echo '
 echo '<center><form name="page" method="POST" action="index.php?action=oferta">';
 $currPage=$page;
 $previus=$currPage-1;
-if ($currPage!=1) echo'<button class="prevnext" name="page" value="'.$previus.'"><</button>';
+if ($currPage!=1) echo'<button class="prevnext" name="page" value="'.$previus.'">&laquo;</button>';
 for($page=1;$page<=$number_of_pages;$page++)
 {
   if($page==$currPage) echo'<input type="submit" name="page" class="active" value="'.$page.'" disabled>';
   else echo'<input type="submit" name="page" value="'.$page.'">';
 }
 $next=$currPage+1;
-if ($currPage!=$number_of_pages) echo'<button class="prevnext" name="page" value="'.$next.'">></button>';
+if ($currPage!=$number_of_pages) echo'<button class="prevnext" name="page" value="'.$next.'">&raquo;</button>';
 echo '</div></div></form></center>';
 ?>
