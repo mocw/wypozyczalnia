@@ -1,3 +1,28 @@
+<script>
+window.onload = toggleSelect(); // to disable select on load if needed
+
+function toggleSelect()
+{
+  var checkedValues = [];
+  $("input:checkbox[class=messageCheckbox]:checked").each(function(){
+    checkedValues.push($(this).val());
+});
+
+var chklength = checkedValues.length; 
+checkedValues.forEach(function(entry) {
+    if(document.getElementById("Diesel").checked==true){
+       document.getElementById("Benzyna").disabled = true;
+       document.getElementById("Benzyna").checked = false;
+    } else document.getElementById("Benzyna").disabled = false;
+
+    if(document.getElementById("Benzyna").checked==true){
+       document.getElementById("Diesel").disabled = true;
+       document.getElementById("Diesel").checked = false;
+    } else document.getElementById("Diesel").disabled = false;
+});
+}
+</script>
+
 <?php
 require 'includes/employeepanel.php';
 require 'includes/dbh.inc.php';
@@ -31,7 +56,8 @@ if(isset($success)) echo '<div class="disappear"><div class="alert alert-success
     foreach ($wyposazenia as $row) {
     $nazwa=$row['nazwa'];
     $id=$row['id'];
-    echo'<input type="checkbox" name="'.$id.'">'.$nazwa.''.'</br>';
+    echo'<input type="checkbox" class="messageCheckbox" name="'.$id.'" id="'.$nazwa.'" value="'.$nazwa.'" 
+    onclick="toggleSelect()">'.$nazwa.''.'</br>';
     }
     ?>
   </br></br><button name="add-car-submit" type="submit" id="contact-submit" data-submit="...Sending">Zatwierdź</button>
