@@ -24,9 +24,18 @@ if(isset($_POST['add-car-submit'])){
                 require 'carOperations/addCar.php'; 
                 }
                 else {
+                    $car_id = mysqli_insert_id($conn);
+                    foreach($_POST as $key => $name){
+                        if($key=="marka" || $key=="model" || $key=="rok_produkcji"
+                        || $key=="poj_silnika") continue;
+                        if($key=="add-car-submit") break;
+                        $sql="INSERT INTO samochody_wyposazenie(id_wyposazenia,id_samochodu) 
+                        VALUES('$key','$car_id')";
+                        mysqli_query($conn,$sql);
+                    }    
                     $success=1;                    
                     require 'carOperations/addCar.php';              
-                }    
+                }
         }
 
 } else header('Location: index.php?action=home');
