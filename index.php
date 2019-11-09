@@ -61,9 +61,10 @@ session_start();
         echo '<li><a class="logout" href="index.php?action=logout">Wyloguj się</a></li>';
         echo '<li><a href="index.php?action=accountmgm">Zarządzaj kontem</a></li>';
         }
+        if($_GET['action']=='oferta' || $_GET['action']=='carreserv') echo '<b><li><a href="index.php?action=oferta">Oferta</a></li></b>';
+        else echo '<li><a href="index.php?action=oferta">Oferta</a></li>';
         ?>
         <li><a href="index.php?action=kontakt">Kontakt</a></li>
-        <li><a href="index.php?action=oferta">Oferta</a></li>
         </ul>
     </div>
     </div>

@@ -34,7 +34,7 @@ if(isset($success)) echo '<div class="disappear"><div class="alert alert-success
     echo'<input type="checkbox" name="'.$id.'">'.$nazwa.''.'</br>';
     }
     ?>
-  <button name="add-car-submit" type="submit" id="contact-submit" data-submit="...Sending">Zatwierdź</button>
+  </br></br><button name="add-car-submit" type="submit" id="contact-submit" data-submit="...Sending">Zatwierdź</button>
     </fieldset>
   </form>
 </div>

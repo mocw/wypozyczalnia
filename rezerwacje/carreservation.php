@@ -1,8 +1,17 @@
 <link href="https://fonts.googleapis.com/css?family=Coda:800|Lato:300|Open+Sans" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-<div class="toClose">
+<script>
+function myFunction() {
+  document.getElementById("toClose").style.display = "none";
+}
+</script>
+
+<div id="toClose">
 <?php
-if(isset($_POST['carID'])) {
+if(isset($_POST['wniosek'])){  //WNIOSEK
+$carID=$_POST['carID'];
+echo 'ID samochodu: '.$carID.' </br>Tu będzie wniosek';
+} else if(isset($_POST['carID'])) {  //INFO O AUCIE
     if(!isset($_SESSION['uID']))
     {
         $_SESSION['doZalogowania'] = 1;
@@ -72,7 +81,10 @@ if(isset($_POST['carID'])) {
     </div><br>
     <div id="quantity">
     </div><br>
-    <div><button id="cart">ZŁÓŻ WNIOSEK</button></div>
+    <form method="POST" action="index.php?action=carreserv">
+    <input type="hidden" name="carID" value="'.$id.'">
+    <div><button id="cart" onclick="myFunction()" name="wniosek">ZŁÓŻ WNIOSEK</button></div>
+    </form>
   </div>
 
 </div></center>
