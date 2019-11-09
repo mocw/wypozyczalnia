@@ -1,6 +1,7 @@
 .pagination {
     display: center;
     background: none;
+    font: medium;
   }
 
   .pagination input[type="submit"].active {
@@ -19,4 +20,8 @@
     border-radius: 5px;
     text-decoration: none;
     color: black;
+  }
+
+  .pagination input[type="submit"]:hover, .prevnext:hover{
+    transform:scale(1.5);
   }
