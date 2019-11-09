@@ -7,11 +7,11 @@
     padding: 0;
     list-style: none;
   }
-  img {
+  img.offer {
     width: 50%;
   }
 
-  img:hover {
+  img.offer:hover {
     transform:scale(1.8);
   }
 

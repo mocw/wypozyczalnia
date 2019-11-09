@@ -44,7 +44,7 @@ foreach ($cars as $row) {
     <div class="list-content">
       <center>
         <button data-html="true" data-tooltip='.$toBox.' name="carID" class="offerbtn" value='.$id.'>
-        <img src="data:image/png;base64,'.$imgContent.'"/>
+        <img class="offer" src="data:image/png;base64,'.$imgContent.'"/>
       </button>
     </center>
     </div>
