@@ -64,7 +64,7 @@ $previus=$currPage-1;
 if ($currPage!=1) echo'<button class="prevnext" name="page" value="'.$previus.'"><</button>';
 for($page=1;$page<=$number_of_pages;$page++)
 {
-  if($page==$currPage) echo'<input type="submit" name="page" value="'.$page.'" disabled>';
+  if($page==$currPage) echo'<input type="submit" name="page" class="active" value="'.$page.'" disabled>';
   else echo'<input type="submit" name="page" value="'.$page.'">';
 }
 $next=$currPage+1;

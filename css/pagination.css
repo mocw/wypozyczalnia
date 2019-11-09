@@ -1,0 +1,22 @@
+.pagination {
+    display: center;
+    background: none;
+  }
+
+  .pagination input[type="submit"].active {
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+  }
+
+  .pagination input[type="submit"] {
+    color: black;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+
+  .pagination .prevnext{
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+  }

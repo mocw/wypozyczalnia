@@ -23,6 +23,7 @@ session_start();
  <link rel="stylesheet" type="text/css" href="css/banner.css" />
  <link rel="stylesheet" type="text/css" href="css/kontakt.css">
  <link rel="stylesheet" type="text/css" href="css/carDetail.css">
+ <link rel="stylesheet" type="text/css" href="css/pagination.css">
  <link rel="icon" type="image/ico" href="images/favicon.gif" >
 </head>
 <body>
