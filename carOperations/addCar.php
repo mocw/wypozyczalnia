@@ -1,8 +1,7 @@
 <script>
 window.onload = toggleSelect(); // to disable select on load if needed
 
-function toggleSelect()
-{
+function toggleSelect(){
   var checkedValues = [];
   $("input:checkbox[class=messageCheckbox]:checked").each(function(){
     checkedValues.push($(this).val());
@@ -10,15 +9,30 @@ function toggleSelect()
 
 var chklength = checkedValues.length; 
 checkedValues.forEach(function(entry) {
-    if(document.getElementById("Diesel").checked==true){
+    if(document.getElementById("Diesel").checked==true){  //JESLI ZAZNACZONY DIESEL ODZNACZA BENZYNA
        document.getElementById("Benzyna").disabled = true;
        document.getElementById("Benzyna").checked = false;
     } else document.getElementById("Benzyna").disabled = false;
 
-    if(document.getElementById("Benzyna").checked==true){
+    if(document.getElementById("Benzyna").checked==true){ //JESLI PB TO ODZNACZA DIESLA
        document.getElementById("Diesel").disabled = true;
        document.getElementById("Diesel").checked = false;
     } else document.getElementById("Diesel").disabled = false;
+
+    if(document.getElementById("Benzyna").checked==true){ //JESLI PB TO ODZNACZA DIESLA
+       document.getElementById("Diesel").disabled = true;
+       document.getElementById("Diesel").checked = false;
+    } else document.getElementById("Diesel").disabled = false;
+
+    if(document.getElementById("Skrzynia manualna").checked==true){ //JESLI MANUAL TO ODZNACZA AUTOMAT
+       document.getElementById("Skrzynia automatyczna").disabled = true;
+       document.getElementById("Skrzynia automatyczna").checked = false;
+    } else document.getElementById("Skrzynia automatyczna").disabled = false;
+
+    if(document.getElementById("Skrzynia automatyczna").checked==true){ //JESLI AUTOMAT TO ODZNACZA MANUAL
+       document.getElementById("Skrzynia manualna").disabled = true;
+       document.getElementById("Skrzynia manualna").checked = false;
+    } else document.getElementById("Skrzynia manualna").disabled = false;
 });
 }
 </script>
