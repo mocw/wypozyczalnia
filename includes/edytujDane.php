@@ -3,10 +3,6 @@ window.onload = function(){
   document.forms['sukces'].submit();
 }
 
-function myFunction() {
-  document.getElementById("toClose").style.display = "none";
-}
-
 </script>
 
 <?php
@@ -130,7 +126,7 @@ if($_SESSION['id_klienta']!=NULL){
 echo'
 <p style="color:red">* - pola obowiązkowe</p>
 <fieldset>
-      <button name="editData-submit" type="submit" id="contact-submit" data-submit="...Sending" onclick="myFunction()">Zatwierdź</button>
+      <button name="editData-submit" type="submit" id="contact-submit" data-submit="...Sending">Zatwierdź</button>
 </fieldset>
 </div>
 </form>
