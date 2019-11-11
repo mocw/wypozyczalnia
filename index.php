@@ -39,7 +39,7 @@ session_start();
       echo '
       <center></br></br><b>'.$_SESSION['imie'].' '.$_SESSION['nazwisko'].'</center></b>
       ';
-    if($_SESSION['id_klienta']!=NULL && $_SESSION['id_pracownika']==NULL) echo 'Klient';
+    if($_SESSION['id_klienta']!=NULL && $_SESSION['id_pracownika']==NULL) echo 'Klient</br>';
     if($_SESSION['isRoot']==1) echo '<b>Administrator</b></br>';
     if($_SESSION['id_pracownika']!=NULL) echo 'Pracownik na stanowisku: '.$_SESSION['stanowisko'].'';
     }
@@ -84,7 +84,9 @@ switch($site) {
   case 'employeepanel' : include 'includes/employeepanel.php'; break;
   case 'oferta' : include 'oferta.php'; break;
   case 'accountmgm' : include 'zarzadzaniekontem.php'; break;
+  case 'editData' : include 'includes/edytujDane.php'; break;
   case 'forgottenpassword' : include 'includes/forgottenpassword.php'; break;
+  case 'changePassword' : include 'includes/changePassword.php'; break;
   case 'remindpassword' : include 'includes/remindpassword.php'; break;
   case 'remindpasswordCode' : include 'includes/remindpasswordCode.php'; break;
   case 'remindpasswordCode_inc' : include 'includes/remindpasswordCode_inc.php'; break; 

@@ -4,7 +4,6 @@ function openPage(url) {
   }
 
   
-  
   window.setTimeout(function() {
     $("div.disappear").fadeTo(500, 0).slideUp(500, function(){
         $(this).remove(); 

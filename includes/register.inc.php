@@ -100,6 +100,7 @@ else{
 
 function CheckPESEL($str)
 {
+    if(strlen($str)==0) return true;
 	if (!preg_match('/^[0-9]{11}$/',$str)) //sprawdzamy czy ciąg ma 11 cyfr
 	{
 		return false;

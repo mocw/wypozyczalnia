@@ -22,7 +22,7 @@ echo '
       <input placeholder="Nazwisko*" name="nazwisko" type="text" tabindex="1" required autofocus>
 </fieldset>
 <fieldset>
-      <input placeholder="Pesel*" name="pesel" type="text" tabindex="1" required autofocus>
+      <input placeholder="Pesel" name="pesel" type="text" tabindex="1">
 </fieldset>
 <fieldset>
       <input placeholder="Numer telefonu*" name="nr_tel" type="text" tabindex="1" required autofocus>

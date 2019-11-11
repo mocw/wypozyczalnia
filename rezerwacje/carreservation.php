@@ -11,6 +11,7 @@ function myFunction() {
 if(isset($_POST['wniosek'])){  //WNIOSEK
 $carID=$_POST['carID'];
 echo 'ID samochodu: '.$carID.' </br>Tu będzie wniosek';
+
 } else if(isset($_POST['carID'])) {  //INFO O AUCIE
     if(!isset($_SESSION['uID']))
     {
