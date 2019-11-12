@@ -116,50 +116,59 @@ echo '
 <div id="toClose">
 <div class="container">  
 <form id="contact" method="POST" action="index.php?action=editData" accept-charset="character_set">
-<center><b>Dane podstawowe</b></center></br>
+<center><b>E-mail</b></center></br>
 <fieldset>
       <input placeholder="Adres e-mail*" name="email" type="text" tabindex="1" required autofocus
       value="'.$email.'">
 </fieldset>
+<center><b>Imie</b></center></br>
 <fieldset>
       <input placeholder="Imie*" name="imie" type="text" tabindex="1" required autofocus
       value="'.$imie.'">
 </fieldset>
+<center><b>Nazwisko</b></center></br>
 <fieldset>
       <input placeholder="Nazwisko*" name="nazwisko" type="text" tabindex="1" required autofocus
       value="'.$nazwisko.'">
 </fieldset>
+<center><b>Numer telefonu</b></center></br>
 <fieldset>
       <input placeholder="Numer telefonu*" name="nr_tel" type="text" tabindex="1" required autofocus
       value="'.$nr_tel.'">
 </fieldset>';
 if($_SESSION['id_klienta']!=NULL){
     echo '
-    <center><b>Dane kontaktowe</b></center></br>
+    <center><b>Numer dowodu osobistego</b></center></br>
     <fieldset>
           <input placeholder="Numer dowodu osobistego*" name="nr_dowodu" type="text" tabindex="1" required autofocus
           value="'.$nr_dowodu.'">
     </fieldset>
+    <center><b>Numer karty kredytowej</b></center></br>
     <fieldset>
           <input placeholder="Numer karty kredytowej*" name="nr_karty" type="text" tabindex="1" required autofocus
           value="'.$nr_karty_kredytowej.'">
     </fieldset>
+    <center><b>Ulica</b></center></br>
     <fieldset>
           <input placeholder="Ulica*" name="ulica" type="text" tabindex="1" required autofocus
           value="'.$ulica.'">
     </fieldset>
+    <center><b>Miejscowość</b></center></br>
     <fieldset>
           <input placeholder="Miejscowość*" name="miejscowosc" type="text" tabindex="1" required autofocus
           value="'.$miejscowosc.'">
     </fieldset>
+    <center><b>Kod pocztowy</b></center></br>
     <fieldset>
           <input placeholder="Kod pocztowy*" name="kod_pocztowy" type="text" tabindex="1" required autofocus
           value="'.$kod_pocztowy.'">
     </fieldset>
+    <center><b>Numer mieszkania</b></center></br>
     <fieldset>
           <input placeholder="Numer mieszkania" name="numer_mieszkania" type="number" tabindex="1"
           value="'.$nr_mieszkania.'">
     </fieldset>
+    <center><b>Numer domu</b></center></br>
     <fieldset>
           <input placeholder="Numer domu*" name="numer_domu" type="number" tabindex="1" required autofocus
           value="'.$nr_domu.'">
