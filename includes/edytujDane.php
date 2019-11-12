@@ -37,36 +37,79 @@ $kod_pocztowy=$row[5];
 $nr_mieszkania=$row[6];
 $nr_domu=$row[7];
 
-if(isset($_POST['editData-submit'])) {
-$sql="UPDATE users
-SET email='$_POST[email]',imie='$_POST[imie]',nazwisko='$_POST[nazwisko]',nr_tel='$_POST[nr_tel]'
-WHERE userID='$_SESSION[uID]'";
-$stmt=mysqli_stmt_init($conn);
-if(!mysqli_stmt_prepare($stmt,$sql)){
-    echo '<div class="alert alert-danger" role="alert">Błąd SQL!</div>';
-} else {
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_store_result($stmt);
-    updateData();
-
-    if($_SESSION['id_klienta']!=NULL) {
-        $sql="UPDATE klienci
-        SET nr_dowodu='$_POST[nr_dowodu]',nr_karty_kredytowej='$_POST[nr_karty]',ulica='$_POST[ulica]',
-        miejscowosc='$_POST[miejscowosc]',kod_pocztowy='$_POST[kod_pocztowy]',nr_mieszkania='$_POST[numer_mieszkania]',
-        nr_domu='$_POST[numer_domu]'
-        WHERE id=(SELECT id_klienta
-        FROM users
-        WHERE userID='$_SESSION[uID]')";
-        $stmt=mysqli_stmt_init($conn);
-        mysqli_stmt_prepare($stmt,$sql);
-        mysqli_stmt_execute($stmt);
-        mysqli_stmt_store_result($stmt);
-
-    }
-    echo '<form name="sukces" method="POST" action="index.php?action=editData">
-    <input type="hidden" name="updateSuccess" value="1">
-    </form>';
+if(isset($_POST['passwordValidation-submit'])){
+      $password=$_POST['password'];
+      $sql="SELECT * FROM users
+      WHERE userID='$_SESSION[uID]'";
+      $stmt=mysqli_stmt_init($conn);
+      mysqli_stmt_prepare($stmt,$sql);
+      mysqli_stmt_execute($stmt);
+      $result=mysqli_stmt_get_result($stmt);
+      $row = mysqli_fetch_assoc($result);
+      $pwdCheck=password_verify($password,$row['pwdUsers']);
+      if($pwdCheck==false) {
+            echo '<div class="alert alert-danger" role="alert">Błędne hasło!</div>';
+      }
+      else{
+            $sql="UPDATE users
+            SET email='$_POST[email]',imie='$_POST[imie]',nazwisko='$_POST[nazwisko]',nr_tel='$_POST[nr_tel]'
+            WHERE userID='$_SESSION[uID]'";
+            $stmt=mysqli_stmt_init($conn);
+            if(!mysqli_stmt_prepare($stmt,$sql)){
+                echo '<div class="alert alert-danger" role="alert">Błąd SQL!</div>';
+            } else {
+                mysqli_stmt_execute($stmt);
+                mysqli_stmt_store_result($stmt);
+                updateData();
+            
+                if($_SESSION['id_klienta']!=NULL) {
+                    $sql="UPDATE klienci
+                    SET nr_dowodu='$_POST[nr_dowodu]',nr_karty_kredytowej='$_POST[nr_karty]',ulica='$_POST[ulica]',
+                    miejscowosc='$_POST[miejscowosc]',kod_pocztowy='$_POST[kod_pocztowy]',nr_mieszkania='$_POST[numer_mieszkania]',
+                    nr_domu='$_POST[numer_domu]'
+                    WHERE id=(SELECT id_klienta
+                    FROM users
+                    WHERE userID='$_SESSION[uID]')";
+                    $stmt=mysqli_stmt_init($conn);
+                    mysqli_stmt_prepare($stmt,$sql);
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_store_result($stmt);
+            
+                }
+                echo '<form name="sukces" method="POST" action="index.php?action=editData">
+                <input type="hidden" name="updateSuccess" value="1">
+                </form>';
+            }
+      }
 }
+
+if(isset($_POST['editData-submit'])) {
+echo '
+<div id="toClose">
+<div class="container">  
+<form id="contact" method="POST" action="index.php?action=editData" accept-charset="character_set">
+<center><b>Podaj hasło</b></center></br>
+<fieldset>
+      <input placeholder="Hasło" name="password" type="password" tabindex="1" required autofocus>
+</fieldset>
+<input type="hidden" name="email" value="'.$_POST['email'].'">
+<input type="hidden" name="imie" value="'.$_POST['imie'].'">
+<input type="hidden" name="nazwisko" value="'.$_POST['nazwisko'].'">
+<input type="hidden" name="nr_tel" value="'.$_POST['nr_tel'].'">
+<input type="hidden" name="nr_dowodu" value="'.$_POST['nr_dowodu'].'">
+<input type="hidden" name="nr_karty" value="'.$_POST['nr_karty'].'">
+<input type="hidden" name="ulica" value="'.$_POST['ulica'].'">
+<input type="hidden" name="miejscowosc" value="'.$_POST['miejscowosc'].'">
+<input type="hidden" name="kod_pocztowy" value="'.$_POST['kod_pocztowy'].'">
+<input type="hidden" name="numer_mieszkania" value="'.$_POST['numer_mieszkania'].'">
+<input type="hidden" name="numer_domu" value="'.$_POST['numer_domu'].'">
+<fieldset>
+      <button name="passwordValidation-submit" type="submit" id="contact-submit" data-submit="...Sending">Zatwierdź</button>
+</fieldset>
+</div>
+</form>
+</div>
+';
 }
 else {
 echo '

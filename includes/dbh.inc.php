@@ -11,10 +11,10 @@ if(!$conn)
 }
 else $conn->query("SET NAMES 'utf8'");
 
-// $servername="sql7.freemysqlhosting.net:3306";
-// $dbUsername="sql7311201";
-// $password="EfWZXB4NBF";
-// $dbName="sql7311201";
+// $servername="db4free.net";
+// $dbUsername="wypozyhost";
+// $password="wypozyczalnia";
+// $dbName="wypozyczalniadb";
 
 // $conn=mysqli_connect($servername,$dbUsername,$password,$dbName);
 // if(!$conn)

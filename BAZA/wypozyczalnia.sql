@@ -97,7 +97,7 @@ INSERT INTO `pojazdy` (`id`, `marka`, `model`, `rok_produkcji`, `poj_silnika`, `
 
 CREATE TABLE `pracownicy` (
   `id` int(11) NOT NULL,
-  `data_zatr` date NOT NULL DEFAULT current_timestamp(),
+  `data_zatr` date NOT NULL,
   `id_stanowiska` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2;
 
