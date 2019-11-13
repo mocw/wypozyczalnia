@@ -87,7 +87,6 @@ switch($site) {
   case 'editData' : include 'includes/edytujDane.php'; break;
   case 'forgottenpassword' : include 'includes/forgottenpassword.php'; break;
   case 'changePassword' : include 'includes/changePassword.php'; break;
-  case 'remindpassword' : include 'includes/remindpassword.php'; break;
   case 'remindpasswordCode' : include 'includes/remindpasswordCode.php'; break;
   case 'remindpasswordCode_inc' : include 'includes/remindpasswordCode_inc.php'; break; 
   case 'setNewPassword' : include 'includes/setNewPassword.php'; break;
