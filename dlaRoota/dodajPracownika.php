@@ -1,6 +1,5 @@
 <?php
-require 'zarzadzaniekontem.php';
-if(isset($_SESSION['uID']) && $_SESSION['isRoot']==1){
+function loadTable(){
     require 'includes/dbh.inc.php';
     $sql="
     SELECT u.userID,u.uidUsers,u.imie,u.nazwisko,u.pesel,u.data_ur,u.nr_tel,IFNULL(u.id_pracownika,'') id_pracownika,IFNULL(p.data_zatr,'') data_zatr,IFNULL(s.nazwa,'') stanowisko 
@@ -17,8 +16,9 @@ if(isset($_SESSION['uID']) && $_SESSION['isRoot']==1){
     $users=mysqli_stmt_get_result($stmt);
     mysqli_fetch_all($users,MYSQLI_ASSOC);
     echo '
+    <div id="toClose">
     <center><p>Z listy użytkowników wybierz tych, których chcesz dodać</p></center>
-    <form method="POST" action="index.php?action=dodajPracownika_inc">
+    <form method="POST" action="index.php?action=dodajPracownika">
     <table class="table">
     <thead>
         <tr>
@@ -63,6 +63,134 @@ if(isset($_SESSION['uID']) && $_SESSION['isRoot']==1){
     }    
 echo '</table>
 </br><center><input type="submit" VALUE="Zatwierdź" NAME="customer-submit"></center>
-</form>';
+</form></div>';
+}
+
+if(isset($_SESSION['uID']) && $_SESSION['isRoot']==1) {
+require 'zarzadzaniekontem.php';
+if(isset($_POST['customer-submit-data'])){
+    require 'includes/dbh.inc.php';
+    $i=0;
+
+    foreach($_POST['names'] as $item){
+        $names[$i]=$item;
+        $i++;
+    }
+    
+    $i=0;
+    foreach($_POST['daty_zatrudnienia'] as $item){
+        $daty_zatr[$i]=$item;
+        $i++;
+    }
+
+    $i=0;
+    foreach($_POST['stanowiska'] as $item){
+        $stanowiska[$i]=$item;
+        $i++;
+    }
+
+    for($l=0;$l<$i;$l++){
+       $stanowisko=trim($stanowiska[$l]);
+        $sql="SELECT id FROM stanowiska WHERE nazwa='$stanowisko'";
+        $stmt=mysqli_stmt_init($conn);
+        mysqli_stmt_prepare($stmt,$sql);
+        mysqli_stmt_execute($stmt);
+        $id=mysqli_stmt_get_result($stmt);
+        $row=mysqli_fetch_row($id);
+        $id=$row[0];
+        $sql="INSERT INTO pracownicy(data_zatr,id_stanowiska) VALUES(?,?)";
+        $stmt=mysqli_stmt_init($conn);
+        mysqli_stmt_prepare($stmt,$sql);
+        mysqli_stmt_bind_param($stmt,"si",$daty_zatr[$l],$id);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_store_result($stmt);
+        $last_id = mysqli_insert_id($conn);
+        $sql="UPDATE users SET id_pracownika='$last_id' WHERE uidUsers='$names[$l]'";
+        $stmt=mysqli_stmt_init($conn);
+        mysqli_stmt_prepare($stmt,$sql);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_store_result($stmt); 
+    }
+
+    echo '<div class="disappear"><div class="alert alert-success" role="alert">Sukces!</div></div>';
+
+}
+if(isset($_POST['customer-submit'])||isset($fillError)){
+    $month = date('m');
+    $day = date('d');
+    $year = date('Y');
+    $today = $year . '-' . $month . '-' . $day;
+    $cnt=0;
+    foreach($_POST as $key => $name){
+        if($key=='customer-submit') break;
+        $cnt++;
+    }
+
+    if($cnt==0){
+            echo '<div class="alert alert-danger" role="alert">Nikogo nie zaznaczyłeś!</div>';
+            loadTable();
+    }
+    else {
+    require 'includes/dbh.inc.php';     
+        echo '
+        <center><p>Uzypełnij dane</p></center>
+        <form id="dodajPrac" method="POST" action="index.php?action=dodajPracownika">
+        <table class="table">
+        <thead>
+        <tr>
+            <th>Nazwa użytkownika</th>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Data urodzenia</th>    
+            <th>Data zatrudnienia</th>
+            <th>Stanowisko</th>        
+        </tr>
+    </thead>';
+        foreach($_POST as $key => $name){
+        if($key=='customer-submit') break;
+        $sql="SELECT uidUsers,imie,nazwisko,data_ur FROM users WHERE userID=?";
+        $stmt=mysqli_stmt_init($conn);
+        mysqli_stmt_prepare($stmt,$sql);
+        mysqli_stmt_bind_param($stmt,"i",$key);
+        mysqli_stmt_execute($stmt);
+        $result=mysqli_stmt_get_result($stmt);
+        $row=mysqli_fetch_row($result);
+        $nick=$row[0];
+        $imie=$row[1];
+        $nazwisko=$row[2];
+        $data_ur=$row[3];
+        echo '<tbody></tr>
+        <td><input type="text" class="pracownik" name="names[]" value="'.$nick.'" readonly></td>
+        <td>'.$imie.'</td>
+        <td>'.$nazwisko.'</td>
+        <td>'.$data_ur.'</td>
+        <td><input type="date" id="data_zatr" name="daty_zatrudnienia[]" value="'.$today.'"></td>
+        <td>
+        <select name="stanowiska[]">';
+        $sql="SELECT nazwa FROM stanowiska";
+        $stmt=mysqli_stmt_init($conn);
+        mysqli_stmt_prepare($stmt,$sql);
+        mysqli_stmt_bind_param($stmt,"i",$key);
+        mysqli_stmt_execute($stmt);
+        $stanowiska=mysqli_stmt_get_result($stmt);
+        mysqli_fetch_all($stanowiska,MYSQLI_ASSOC);
+        foreach ($stanowiska as $row) {
+        $nazwa=$row['nazwa'];
+        echo'<option value="'.$nazwa.'">'.$nazwa.'</option>';
+        }
+        echo'    
+        </select>
+        </td>
+        </tr>
+        </tbody>';
+    }
+    echo'
+    </table>
+    </br><center><input type="submit" VALUE="Zatwierdź" NAME="customer-submit-data"></center>
+    </form>';
+}
+} else {
+    loadTable();
+    }
 } else header('Location: index.php?action=home');
 ?>

@@ -98,12 +98,8 @@ switch($site) {
   case 'fillData_send' : include 'includes/fillData.inc.php'; break;
   case 'panelAdmin' : include 'dlaRoota/panelAdmina.php'; break;
   case 'uprawnienia' : include 'dlaRoota/uprawnienia.php'; break;
-  case 'setPermissions' : include 'dlaRoota/uprawnienia.inc.php'; break;
   case 'dodajPracownika' : include 'dlaRoota/dodajPracownika.php'; break;
-  case 'dodajPracownika_inc' : include 'dlaRoota/dodajPracownika_inc.php'; break;
-  case 'dodajPracownika_inc_cd' : include 'dlaRoota/dodajPracownika_inc_2.php'; break;
   case 'usunPracownika' : include 'dlaRoota/usunPracownika.php'; break;
-  case 'usunPracownika_inc' : include 'dlaRoota/usunPracownika_inc.php'; break;
 }
 
 ?>
