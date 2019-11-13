@@ -24,9 +24,9 @@ if(isset($_SESSION['uID']))
                 if($_GET['action']=='fillData') echo '<u><b><li><a href="index.php?action=fillData" style="color:red">Uzupełij</a></li></b></u>';
                 else echo '<li><a href="index.php?action=fillData" style="color:red">Uzupełij</a></li>';
             } 
-            echo '<li><a href="index.php?action=editData">Edytuj</a></li>
-            <li><a href="index.php?action=changePassword">Zmień hasło</a></li>
-            </ul>  
+            if($isDataFilled==1) echo '<li><a href="index.php?action=editData">Edytuj</a></li>
+            <li><a href="index.php?action=changePassword">Zmień hasło</a></li>';
+            echo '</ul>  
         </ul>
         </li>
     </nav>
