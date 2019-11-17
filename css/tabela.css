@@ -18,6 +18,26 @@
     background-color: #f2f2f2;
   }
   
+  .table .adress{
+    font-size:11px;
+    word-break: keep-all;
+  }
+
+  .table tr.awaiting{
+    background-color: white;
+  }
+ .table tr.accept{
+  background-color: #00ff99;
+  color: black;
+ } 
+
+ table tr.decline{
+  background-color: #ff0033;
+  color: black;
+ } 
+ 
+
+
   .table tr:hover {
     background-color: #ddd !important;
   }
@@ -41,3 +61,12 @@
   }
 
   
+  button.wniosek{
+    padding: 5;
+    border: none;
+    background: none;
+  }
+
+  button.wniosek:hover{
+    transform:scale(1.5);
+  }

@@ -7,6 +7,7 @@ if(isset($_POST['add-car-submit'])){
     $marka=$_POST['marka'];
     $model=$_POST['model'];
     $rok_produkcji=$_POST['rok_produkcji'];
+    $cena=$_POST['cena'];
     $poj_silnika=$_POST['poj_silnika'];
     $check = getimagesize($_FILES['image']['tmp_name']);
     if($check === false){
@@ -17,8 +18,8 @@ if(isset($_POST['add-car-submit'])){
             $image = $_FILES['image']['tmp_name'];
             $imgContent = base64_encode(file_get_contents($image));
             $stmt=mysqli_stmt_init($conn);
-            $sql="INSERT INTO pojazdy(marka,model,rok_produkcji,poj_silnika,zdjecie) VALUES('$marka','$model',
-            '$rok_produkcji','$poj_silnika','$imgContent')";            
+            $sql="INSERT INTO pojazdy(marka,model,rok_produkcji,poj_silnika,Cena,zdjecie) VALUES('$marka','$model',
+            '$rok_produkcji','$poj_silnika','$cena','$imgContent')";            
             if(!mysqli_query($conn,$sql)) {
                 echo '<p class="alert">Błąd SQL!</p>';
                 require 'carOperations/addCar.php'; 

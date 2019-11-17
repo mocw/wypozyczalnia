@@ -201,3 +201,7 @@ input.pracownik[type="text"]
     border: none;
 }
 
+select.egzemplarze{
+	width: 100%;
+	text-align:center;
+}

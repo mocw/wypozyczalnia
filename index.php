@@ -99,6 +99,10 @@ switch($site) {
   case 'uprawnienia' : include 'dlaRoota/uprawnienia.php'; break;
   case 'dodajPracownika' : include 'dlaRoota/dodajPracownika.php'; break;
   case 'usunPracownika' : include 'dlaRoota/usunPracownika.php'; break;
+  case 'dodajEgzemplarz' : include 'carOperations/dodajEgzemplarz.php'; break;
+  case 'flota' : include 'carOperations/flota.php'; break;
+  case 'wnioskiKlienta' : include 'rezerwacje/wnioskiKlienta.php'; break;
+  case 'wnioskiDlaObslugi' : include 'rezerwacje/wnioskiDlaObslugi.php'; break;
 }
 
 ?>

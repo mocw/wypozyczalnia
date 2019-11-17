@@ -3,7 +3,8 @@ ul.root
 margin:0px;
 padding:50px;
 list-style-type:none;
--webkit-backface-visibility: hidden; backface-visibility: hidden;  
+-webkit-backface-visibility: hidden; backface-visibility: hidden; 
+z-index:1; 
 }
 .var_nav
 {
@@ -12,6 +13,7 @@ background:#ccc;
 width:300px;
 height:70px;
 margin-bottom:5px;
+z-index:1;
 }
 .link_bg
 {
@@ -19,7 +21,7 @@ margin-bottom:5px;
  height:70px;
  position:absolute;
  color:#fff;
- z-index:2;
+ z-index:1;
 }
 .link_bg i
 {
@@ -29,7 +31,7 @@ margin-bottom:5px;
 {
 position:absolute;
 width:100%;
-z-index:3;
+z-index:1;
 color:#fff;
 }
 .link_title:hover .icon
@@ -39,6 +41,7 @@ color:#fff;
 -o-transform:rotate(360deg);
 -ms-transform:rotate(360deg);
 transform:rotate(360deg);  
+z-index:1;
 }
 .var_nav:hover .link_bg
 {
@@ -49,6 +52,7 @@ background:gray;
 -o-transition: all 0.3s ease-in-out;
 -ms-transition: all 0.3s ease-in-out;
 transition: all 0.3s ease-in-out;  
+z-index:1;
 }
 .var_nav:hover a
 {
@@ -58,6 +62,7 @@ font-weight:bold;
 -o-transition:all .5s ease-in-out; 
 -ms-transition:all .5s ease-in-out;
  transition:all .5s ease-in-out;  
+ z-index:1;
 }
 .icon
 {
@@ -73,6 +78,7 @@ color:#fff;
 float:left;
 transition:all .5s ease-in-out;   
 float:left;  
+z-index:1;
 }
 .icon i{top:22px;position:relative;}
 a.root{
@@ -85,9 +91,11 @@ text-decoration:none;
 width:100%;
 height:70px;
 text-align:center;
+z-index:1;
 }
 span.root
 {
 margin-top:25px;
 display:block;
+z-index:1;
 }

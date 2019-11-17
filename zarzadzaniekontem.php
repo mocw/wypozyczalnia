@@ -16,6 +16,7 @@ if(isset($_SESSION['uID']))
            echo'<li><a href="#">Twoje wypożyczenia</a>
             <!-- Pierwszy Drop Down -->    
             </li>';
+            if($isDataFilled==1) echo '<li><a href="index.php?action=wnioskiKlienta">Twoje wnioski</a></li>';
             if($_GET['action']=='fillData') echo '<u><b><li><a>Dane+</a></u></b>';
             else echo '<li><a>Dane</a>';
            // <!-- First Tier Drop Down -->  

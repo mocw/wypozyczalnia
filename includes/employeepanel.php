@@ -6,7 +6,9 @@ $_SESSION['isRoot']==1)
     <div id="menu2" >
     <nav class="menu2">
         <ul>
-            <li><a href="#">Wypożyczenia</a></li>';
+            <li><a href="index.php?action=flota">Flota</a></li>
+            <li><a href="#">Wypożyczenia</a></li>
+            <li><a href="index.php?action=wnioskiDlaObslugi">Wnioski</a></li>';
             if($_GET['action']=='addCarForm'  
             || $_GET['action']=='addCar') echo'<u><b><li><a>Pojazdy+</a></b></u>';
             else echo'<li><a>Pojazdy</a>';
@@ -19,15 +21,12 @@ $_SESSION['isRoot']==1)
              echo '<li><a href="#">Usuń</a></li>
                 <li><a href="#">Egzemplarze</a>
                 <ul>
-                    <li><a href="#">Dodaj</a></li>
-                    <li><a href="#">Usuń</a>
+                    <li><a href="index.php?action=dodajEgzemplarz">Dodaj</a></li>
                </li>
             </ul>  
 </ul>      
             </li>
-            <li><a href="#">Wnioski</a>
             <!-- First Tier Drop Down -->  
-            </li>
         </ul>
     </nav>
 </div>
