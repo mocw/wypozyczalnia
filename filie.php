@@ -70,4 +70,4 @@ function initialize() {
 </ul>
 </nav>
 </div>
-<div id="googleMap" class="mapping" style="height:656px;"></div>
+<div id="googleMap" class="mapping" style="height:550px;"></div>
