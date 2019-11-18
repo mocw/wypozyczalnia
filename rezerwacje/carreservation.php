@@ -16,11 +16,12 @@ if(isset($_POST['wniosek-submit'])){
   $idPojazdu=$_POST['carID'];
   $data_odbioru = date("Y-m-d", strtotime($dataodbioru));
   $data_zwrotu = date("Y-m-d", strtotime($dataZwrotu));
-  $month = date('m');
-  $day = date('d');
-  $year = date('Y');
-  $today = $year . '-' . $month . '-' . $day;   
-  $dzis=date("Y-m-d", strtotime($today));
+  // $month = date('m');
+  // $day = date('d');
+  // $year = date('Y');
+  // $today = $year . '-' . $month . '-' . $day;
+  // $dzis=date("Y-m-d", strtotime($today));
+  $dzis = date('Y-m-d H:i:s');
   
   $sql="SELECT COUNT(ss.id_pojazdu)
   FROM samochody_siedziby ss 
