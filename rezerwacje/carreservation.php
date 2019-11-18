@@ -60,7 +60,7 @@ FROM siedziby s
 JOIN samochody_siedziby ss ON ss.id_siedziby=s.id
 JOIN samochody sm ON ss.id_pojazdu=sm.id
 JOIN pojazdy p ON sm.id_samochodu=p.id
-WHERE sm.id_samochodu='$carID'
+WHERE sm.id_samochodu='$carID' AND sm.czyDostepny=1
 GROUP BY 4";
 $result = mysqli_query($conn, $sql);
 echo ' <div class="container"><form id="contact" action="index.php?action=carreserv" method="post" enctype="multipart/form-data">
