@@ -31,7 +31,7 @@ function wczytajTabele(){
         </tr>
     </thead>';
     while ($row = mysqli_fetch_row($result)){
-        echo '<tr><td  class="adress"><a href="./profile.php?id='.$_SESSION['uID'].'">'.$row[1].'</td>
+        echo '<tr><td  class="adress"><a href="./profile.php?id='.$_SESSION['uID'].'&p=0">'.$row[1].'</td>
         <td  class="adress">'.$row[2].'</td>
         <td>'.$row[3].'</td>
         <td>'.$row[4].'</td>

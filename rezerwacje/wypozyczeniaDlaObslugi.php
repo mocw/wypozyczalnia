@@ -34,7 +34,7 @@ function wczytajTabele(){
 
     while ($row = mysqli_fetch_row($result)){
         echo' <tr>
-            <td><a href="./profile.php?id='.$row[8].'">'.$row[0].'</a></td>
+            <td><a href="./profile.php?id='.$row[8].'&p=0">'.$row[0].'</a></td>
             <td>'.$row[1].'</td>
             <td>'.$row[2].'</td>
             <td>'.$row[3].'</td>

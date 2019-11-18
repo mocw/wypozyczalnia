@@ -72,6 +72,7 @@ if(!(isset($_SESSION['uID']))) header('Location: index.php?action=home');
     </div>
     <div id="container">
     <?php
+    if($_GET["p"]==0) require 'includes/employeepanel.php';
     $id = $_GET["id"];
     include 'includes/dbh.inc.php';
     $sql="SELECT uidUsers,email,imie,nazwisko,data_ur,id_klienta,nr_tel
