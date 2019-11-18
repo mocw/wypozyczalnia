@@ -63,10 +63,14 @@ function initialize() {
 <div id="menu2" >
 <nav class="menu2">
 <ul class="nav nav-pills">
-    <li class="contact-link active"><a data-toggle="pill" data-wonder="Lodz ul. Piotrkowska 137" href="#lodz">Łódź</a></li>
-    <li class="contact-link"><a data-toggle="pill" data-wonder="Warszawa ul. Marszalkowska 66" href="#warszawa">Warszawa</a></li>
-    <li class="contact-link"><a data-toggle="pill" data-wonder="Poznan ul. Dluga 15" href="#poznan">Poznań</a></li>
-    <li class="contact-link"><a data-toggle="pill" data-wonder="Krakow ul. 29 listopada 155" href="#krakow">Kraków</a></li>    
+    <li  class="contact-link active"><a>Łódź</a>
+    <ul><li class="contact-link active"><a data-toggle="pill" data-wonder="Lodz ul. Piotrkowska 137" href="#lodz">Piotrkowska 137</a></li></ul>
+    <li  class="contact-link active"><a>Warszawa</a>
+    <ul><li class="contact-link"><a data-toggle="pill" data-wonder="Warszawa ul. Marszalkowska 66" href="#warszawa">Marszałkowska 66</a></li></ul>
+    <li  class="contact-link active"><a>Poznań</a>
+    <ul><li class="contact-link"><a data-toggle="pill" data-wonder="Poznan ul. Dluga 15" href="#poznan">Długa 15</a></li></ul>
+    <li  class="contact-link active"><a>Kraków</a>
+    <ul><li class="contact-link"><a data-toggle="pill" data-wonder="Krakow ul. 29 listopada 155" href="#krakow">29 listopada 155</a></li></ul>    
 </ul>
 </nav>
 </div>
