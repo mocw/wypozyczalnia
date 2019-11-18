@@ -15,10 +15,16 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
             <th>Rok Produkcji</th>
             <th>Pojemność silnika</th>
             <th>Cena za dobę</th>
+            <th>Status</th>
             <th>Usuń</th>
         </tr>
     </thead>';
-    $sql="SELECT miejscowosc,CONCAT(ulica, ' ',nr_posesji),vin,marka,model,rok_produkcji,poj_silnika,cena
+    $sql="SELECT miejscowosc,CONCAT(ulica, ' ',nr_posesji),vin,marka,model,rok_produkcji,poj_silnika,cena,czyDostepny,
+    CASE 
+    WHEN czyDostepny=0 THEN 'wypożyczony'
+    WHEN czyDostepny=1 THEN 'dostępny'
+    ELSE 'Brak informacji'
+    END 
     FROM samochody_siedziby ss
     JOIN samochody sm ON ss.id_pojazdu=sm.id
     JOIN siedziby s ON ss.id_siedziby=s.id
@@ -27,8 +33,11 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
     $result = mysqli_query($conn, $sql);
     $l=0;
     while ($row = mysqli_fetch_row($result)) {
+        if($row[9]=="wypożyczony"){
+            echo '<tr class="decline">';
+        }
+        else echo '<tr>';
         echo '
-        <tr>
         <td>'.$row[0].'</td>
         <td>'.$row[1].'</td>
         <td>'.$row[2].'</td>
@@ -37,6 +46,7 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
         <td>'.$row[5].'</td>
         <td>'.$row[6].'</td>
         <td>'.$row[7].'</td>
+        <td>'.$row[9].'</td>
         <td><input type="checkbox">
         </tr>
         ';

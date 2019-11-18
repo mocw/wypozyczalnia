@@ -72,7 +72,7 @@ function przydzielPojazd($id){
     FROM samochody_siedziby ss
     JOIN samochody s ON ss.id_pojazdu=s.id
     JOIN pojazdy p ON s.id_samochodu=p.id
-    WHERE s.id_samochodu='$carID' AND ss.id_siedziby='$idODbior'";  
+    WHERE s.id_samochodu='$carID' AND ss.id_siedziby='$idODbior' AND s.czyDostepny=1";  
     $result = mysqli_query($conn, $sql);
 
 
@@ -94,9 +94,39 @@ function przydzielPojazd($id){
     ';
 }
 
+function odrzucWniosek($id){
+    echo ' <div class="container">
+    <form id="contact" action="index.php?action=wnioskiDlaObslugi" method="post" enctype="multipart/form-data">
+    <center><b>Podaj powód:</b></br></br></center>
+    <fieldset>
+    <input placeholder="Powód" name="powod" type="text" tabindex="1" required autofocus>
+    </fieldset>
+    <input type="hidden" name="idWniosku" value="'.$id.'">
+    </br></br><button name="odrzuc-submit" type="submit" id="contact-submit" data-submit="...Sending">Zatwierdź</button>
+    </form>
+    </div>
+    ';
+}
+
 if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) || 
 (isset($_SESSION['uID']) && $_SESSION['isRoot']==1)) {
     require 'includes/employeepanel.php';
+    if(isset($_POST['odrzuc-submit'])){
+        $wniosekID=$_POST['idWniosku'];
+        $powod=$_POST['powod'];
+        $sql="INSERT INTO odrzucone_wnioski(id_wniosku,powod)
+        VALUES('$wniosekID','$powod')";
+        mysqli_query($conn,$sql);
+
+        $sql="UPDATE wnioski SET status='odrzucony'
+        WHERE id='$wniosekID'";
+        $stmt=mysqli_stmt_init($conn);
+        mysqli_stmt_prepare($stmt,$sql);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_store_result($stmt); 
+        echo '<div class="disappear"><div class="alert alert-success" role="alert">Wniosek odrzucony!</div></div>';
+    }
+
     if(isset($_POST['przydzial-submit'])){
         require 'includes/dbh.inc.php';
         $sql="INSERT INTO wypozyczenia(id_wniosku,id_egzemplarza) VALUES('$_POST[idWniosku]',
@@ -119,13 +149,8 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
         przydzielPojazd($id);
     } else if(isset($_POST['decline'])) {
         $id=$_POST['decline'];
-        $sql="UPDATE wnioski SET status='odrzucony'
-        WHERE id='$id'";
-        $stmt=mysqli_stmt_init($conn);
-        mysqli_stmt_prepare($stmt,$sql);
-        mysqli_stmt_execute($stmt);
-        mysqli_stmt_store_result($stmt); 
-        echo '<div class="disappear"><div class="alert alert-success" role="alert">Wniosek odrzucony!</div></div>';
+        odrzucWniosek($id);
+       
     }
    wczytajTabele();
 } else {

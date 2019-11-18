@@ -7,11 +7,12 @@ if(isset($_SESSION['uID']))
     $sql="SELECT CONCAT(so.miejscowosc, ' ul.',so.ulica,' ',so.nr_posesji),
     CONCAT(sz.miejscowosc, ' ul.',sz.ulica,' ',sz.nr_posesji),
     CONCAT(p.rok_produkcji,' ',p.marka,' ',p.model,' ',p.poj_silnika),
-    w.data_odbioru,w.data_zwrotu,w.data_zlozenia,w.status
+    w.data_odbioru,w.data_zwrotu,w.data_zlozenia,w.status,coalesce(ow.powod,' ')
     FROM wnioski w 
     JOIN siedziby so ON w.id_miejsca_odbioru=so.id
     JOIN siedziby sz ON w.id_miejsca_zwrotu=sz.id
     JOIN pojazdy p ON w.id_samochodu=p.id
+    LEFT JOIN odrzucone_wnioski ow ON ow.id_wniosku=w.id
     WHERE w.id_uzytkownika='$userID'
     ORDER BY 6,7";
     $result = mysqli_query($conn, $sql);
@@ -28,6 +29,7 @@ if(isset($_SESSION['uID']))
             <th>Data zwrotu</th>
             <th>Data złożenia</th>
             <th>Status</th>
+            <th>Dodatkowe informacje</th>
         </tr>
     </thead>';
     while ($row = mysqli_fetch_row($result)){
@@ -47,6 +49,7 @@ if(isset($_SESSION['uID']))
         <td>'.$row[4].'</td>
         <td>'.$row[5].'</td>
         <td>'.$row[6].'</td>
+        <td>'.$row[7].'</td>
         </tr>
         ';       
     }

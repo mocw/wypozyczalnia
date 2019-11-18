@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 18 Lis 2019, 02:43
+-- Czas generowania: 18 Lis 2019, 17:11
 -- Wersja serwera: 10.4.8-MariaDB
 -- Wersja PHP: 7.3.10
 
@@ -45,6 +45,25 @@ CREATE TABLE `klienci` (
 
 INSERT INTO `klienci` (`id`, `nr_dowodu`, `nr_karty_kredytowej`, `ulica`, `miejscowosc`, `kod_pocztowy`, `nr_mieszkania`, `nr_domu`) VALUES
 (37, '99888', '99982', 'Piotrkowska', 'Łódź', '98-030', '15', '127');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `odrzucone_wnioski`
+--
+
+CREATE TABLE `odrzucone_wnioski` (
+  `id` int(11) NOT NULL,
+  `id_wniosku` int(11) NOT NULL,
+  `powod` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin2;
+
+--
+-- Zrzut danych tabeli `odrzucone_wnioski`
+--
+
+INSERT INTO `odrzucone_wnioski` (`id`, `id_wniosku`, `powod`) VALUES
+(2, 26, 'brak egzemplarzy ');
 
 -- --------------------------------------------------------
 
@@ -134,7 +153,7 @@ INSERT INTO `samochody` (`id`, `vin`, `id_samochodu`, `czyDostepny`) VALUES
 (25, '1MEHM55S93A614248', 21, 1),
 (26, '5TFLU4EN2FX118791', 21, 1),
 (27, 'JHLRE48767C055775', 21, 1),
-(28, '1C3CCCCB2FN534877', 21, 1),
+(28, '1C3CCCCB2FN534877', 21, 0),
 (29, '1GCHC23648F163359', 24, 1),
 (30, 'SAJGX2044XC041363', 21, 1),
 (31, 'WMWRC33483TC42598', 23, 1),
@@ -289,7 +308,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userID`, `uidUsers`, `pwdUsers`, `email`, `imie`, `nazwisko`, `pesel`, `nr_tel`, `data_ur`, `id_klienta`, `id_pracownika`, `isRoot`) VALUES
-(17, 'root', '$2y$10$blce71/wA4rY/U61GaKo.eJQLpO7lzFIk7L6fJSlE.ucXrMf7wwXm', '', 'Root', '', '', '', '0000-00-00', NULL, NULL, 1),
+(17, 'root', '$2y$10$Uiya.i5OSI2qgKPHNRYGYeeVsKZmr9cNFP7j487MFc/L6l2s8Utse', '', 'Root', '', '', '', '0000-00-00', NULL, NULL, 1),
 (88, 'test', '$2y$10$HIxxDGqv0jEkYkvfgQhvlumkDb7eDx40aXaEEYUrAPOTU/.AtDm7G', 'test@wp.pl', 'Test', 'Test', '96042307317', '777888777', '1996-04-23', 37, NULL, 0);
 
 -- --------------------------------------------------------
@@ -315,7 +334,8 @@ CREATE TABLE `wnioski` (
 --
 
 INSERT INTO `wnioski` (`id`, `id_miejsca_odbioru`, `id_miejsca_zwrotu`, `data_odbioru`, `data_zwrotu`, `id_samochodu`, `id_uzytkownika`, `data_zlozenia`, `status`) VALUES
-(22, 4, 1, '2019-11-18', '2019-11-18', 23, 17, '2019-11-18', 'zaakceptowany');
+(24, 4, 4, '2019-11-18', '2019-11-26', 21, 88, '2019-11-18', 'zaakceptowany'),
+(26, 4, 4, '2019-11-18', '2019-11-26', 21, 88, '2019-11-18', 'odrzucony');
 
 -- --------------------------------------------------------
 
@@ -363,7 +383,7 @@ CREATE TABLE `wypozyczenia` (
 --
 
 INSERT INTO `wypozyczenia` (`id`, `id_wniosku`, `id_egzemplarza`) VALUES
-(7, 22, 33);
+(8, 24, 28);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -374,6 +394,13 @@ INSERT INTO `wypozyczenia` (`id`, `id_wniosku`, `id_egzemplarza`) VALUES
 --
 ALTER TABLE `klienci`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indeksy dla tabeli `odrzucone_wnioski`
+--
+ALTER TABLE `odrzucone_wnioski`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_wniosku` (`id_wniosku`);
 
 --
 -- Indeksy dla tabeli `passwordcodes`
@@ -474,6 +501,12 @@ ALTER TABLE `klienci`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
+-- AUTO_INCREMENT dla tabeli `odrzucone_wnioski`
+--
+ALTER TABLE `odrzucone_wnioski`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT dla tabeli `passwordcodes`
 --
 ALTER TABLE `passwordcodes`
@@ -531,7 +564,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `wnioski`
 --
 ALTER TABLE `wnioski`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT dla tabeli `wyposazenie`
@@ -543,11 +576,17 @@ ALTER TABLE `wyposazenie`
 -- AUTO_INCREMENT dla tabeli `wypozyczenia`
 --
 ALTER TABLE `wypozyczenia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Ograniczenia dla zrzutów tabel
 --
+
+--
+-- Ograniczenia dla tabeli `odrzucone_wnioski`
+--
+ALTER TABLE `odrzucone_wnioski`
+  ADD CONSTRAINT `odrzucone_wnioski_ibfk_1` FOREIGN KEY (`id_wniosku`) REFERENCES `wnioski` (`id`);
 
 --
 -- Ograniczenia dla tabeli `passwordcodes`
