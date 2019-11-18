@@ -7,7 +7,7 @@ $_SESSION['isRoot']==1)
     <nav class="menu2">
         <ul>
             <li><a href="index.php?action=flota">Flota</a></li>
-            <li><a href="#">Wypożyczenia</a></li>
+            <li><a href="index.php?action=wypozyczeniaDlaObslugi">Wypożyczenia</a></li>
             <li><a href="index.php?action=wnioskiDlaObslugi">Wnioski</a></li>';
             if($_GET['action']=='addCarForm'  
             || $_GET['action']=='addCar') echo'<u><b><li><a>Pojazdy+</a></b></u>';

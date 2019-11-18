@@ -104,6 +104,7 @@ switch($site) {
   case 'flota' : include 'carOperations/flota.php'; break;
   case 'wnioskiKlienta' : include 'rezerwacje/wnioskiKlienta.php'; break;
   case 'wnioskiDlaObslugi' : include 'rezerwacje/wnioskiDlaObslugi.php'; break;
+  case 'wypozyczeniaDlaObslugi' : include 'rezerwacje/wypozyczeniaDlaObslugi.php'; break;
   case 'filie' : include 'filie.php'; break;
 }
 
