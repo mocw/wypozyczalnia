@@ -1,7 +1,7 @@
 <div id="facebook_slider_widget" style="display: none"><script type="text/javascript" src="http://webfrik.pl/widget/facebook_slider.html?fb_url=https://www.facebook.com/carthrottle/&amp;fb_width=290&amp;fb_height=590&amp;fb_faces=true&amp;fb_stream=true&amp;fb_header=true&amp;fb_border=true&amp;fb_theme=light&amp;chx=787&amp;speed=SLOW&amp;fb_pic=logo&amp;position=RIGHT"></script></div>
 <?php
-$site=(isset($_GET['action'])) ? $_GET['action'] : 'home';
 session_start();
+if(!(isset($_SESSION['uID']))) header('Location: index.php?action=home'); 
 ?>
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -63,8 +63,7 @@ session_start();
         echo '<li><a class="logout" href="index.php?action=logout">Wyloguj się</a></li>';
         echo '<li><a href="index.php?action=accountmgm">Zarządzaj kontem</a></li>';
         }
-        if(isset($_SESSION['uID']) && ($_GET['action']=='oferta' || $_GET['action']=='carreserv')) echo '<b><li><a href="index.php?action=oferta">Oferta</a></li></b>';
-        else echo '<li><a href="index.php?action=oferta">Oferta</a></li>';
+        echo '<li><a href="index.php?action=oferta">Oferta</a></li>';
         ?>
         <li><a href="index.php?action=kontakt">Kontakt</a></li>
         <li><a href="index.php?action=filie">Filie</a></li>
@@ -73,42 +72,65 @@ session_start();
     </div>
     <div id="container">
     <?php
-    if(isset($_SESSION['uID'])) require 'includes/check_user_inc.php';
-switch($site) {
-  case 'home': include 'home.php'; break;
-  case 'rejestracja': include 'rejestracja.php'; break;
-  case 'logowanie': include 'logowanie.php'; break;
-  case 'login' : include 'includes/login.inc.php'; break;
-  case 'kontakt' : include 'kontakt.php'; break;
-  case 'kontakt.inc' : include 'includes/kontakt.inc.php'; break;
-  case 'register' : include 'includes/register.inc.php'; break;
-  case 'logout' : include 'includes/logout.inc.php'; break;
-  case 'employeepanel' : include 'includes/employeepanel.php'; break;
-  case 'oferta' : include 'oferta.php'; break;
-  case 'accountmgm' : include 'zarzadzaniekontem.php'; break;
-  case 'editData' : include 'includes/edytujDane.php'; break;
-  case 'forgottenpassword' : include 'includes/forgottenpassword.php'; break;
-  case 'changePassword' : include 'includes/changePassword.php'; break;
-  case 'remindpasswordCode' : include 'includes/remindpasswordCode.php'; break;
-  case 'remindpasswordCode_inc' : include 'includes/remindpasswordCode_inc.php'; break; 
-  case 'setNewPassword' : include 'includes/setNewPassword.php'; break;
-  case 'carreserv' : include 'rezerwacje/carreservation.php'; break;
-  case 'addCarForm' : include 'carOperations/addCar.php'; break;
-  case 'addCar' : include 'includes/add.car.inc.php'; break;
-  case 'fillData' : include 'includes/fillData.php'; break;
-  case 'fillData_send' : include 'includes/fillData.inc.php'; break;
-  case 'panelAdmin' : include 'dlaRoota/panelAdmina.php'; break;
-  case 'uprawnienia' : include 'dlaRoota/uprawnienia.php'; break;
-  case 'dodajPracownika' : include 'dlaRoota/dodajPracownika.php'; break;
-  case 'usunPracownika' : include 'dlaRoota/usunPracownika.php'; break;
-  case 'dodajEgzemplarz' : include 'carOperations/dodajEgzemplarz.php'; break;
-  case 'flota' : include 'carOperations/flota.php'; break;
-  case 'wnioskiKlienta' : include 'rezerwacje/wnioskiKlienta.php'; break;
-  case 'wnioskiDlaObslugi' : include 'rezerwacje/wnioskiDlaObslugi.php'; break;
-  case 'wypozyczeniaDlaObslugi' : include 'rezerwacje/wypozyczeniaDlaObslugi.php'; break;
-  case 'filie' : include 'filie.php'; break;
-}
+    $id = $_GET["id"];
+    include 'includes/dbh.inc.php';
+    $sql="SELECT uidUsers,email,imie,nazwisko,data_ur,id_klienta,nr_tel
+    FROM users
+    WHERE userID='$id'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_row($result);
+    echo '
+        <div class="profile">
+            <div class="info">
+                <h2 id="info-title">'.$row[0].'</h2>
+                <div class="fact">
+                    <div class="title">Imie</div>
+                    <div class="value">'.$row[2].'</div>
+                </div>
+                <div class="fact">
+                    <div class="title">Nazwisko</div>
+                    <div class="value">'.$row[3].'</div>
+                </div>
+                <div class="fact">
+                    <div class="title">Adres e-mail</div>
+                    <div class="value">'.$row[1].'</div>
+                </div>
+                <div class="fact">
+                    <div class="title">Data urodzenia</div>
+                    <div class="value">'.$row[4].'</div></div>';
+                    if($row[5]!=0 && ($_SESSION['id_pracownika']!=NULL || $_SESSION['isRoot']==1)){
+                        echo '
+                        <div class="fact">
+                        <div class="title">Numer telefonu</div>
+                         <div class="value">'.$row[6].'</div></div>
+                        ';
 
+                        $sql="SELECT nr_dowodu,nr_karty_kredytowej,CONCAT(miejscowosc,' ul.',ulica,' ',nr_domu,
+                        CONCAT(' mieszkania nr. ',CASE WHEN nr_mieszkania IS NOT NULL
+                                         THEN nr_mieszkania 
+                                         ELSE ' brak '
+                                         END)
+                     )
+                     FROM klienci
+                     WHERE id='$row[5]'";
+                    }
+                    $result = mysqli_query($conn, $sql);
+                    $row = mysqli_fetch_row($result);
+                    echo '
+                    <div class="fact">
+                    <div class="title">Numer dowodu osobistego</div>
+                    <div class="value">'.$row[0].'</div></div>
+                    <div class="fact">
+                        <div class="title">Numer karty kredytowej</div>
+                         <div class="value">'.$row[1].'</div></div>
+                         <div class="fact">
+                        <div class="title">Adres</div>
+                         <div class="value">'.$row[2].'</div></div>
+                    ';
+                echo '</div>
+            </div>
+        </div>
+    ';
 ?>
     </div>
     <div id="footer">

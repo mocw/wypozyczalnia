@@ -1,0 +1,78 @@
+
+.profile{
+    padding:1% 35%;
+}
+.profile img{
+    display:block;
+    padding:10px;
+    border: 2px solid #34495e;
+    border-radius:8px;
+}
+.profile .photo{
+    float:left;
+    width:152px;
+}
+.profile .info{
+    float:left;
+    width:368px;
+    margin-left:10px;
+}
+.info h2, .info #info-title{ /* добавлен селектор по id */
+    margin:0 !important; /* переопределение двух свойств в... */
+    padding:10px !important; /* ...инлайн-стилях последнего <h2> */
+    font-size:12px;
+    font-weight:normal;
+    background:#34495e;
+    color:#fff;
+    border-radius:4px;
+}
+.profile .info .fact{ /* добавлено .profile .info */
+    padding:10px;
+    background:white;
+}
+.profile .fact:nth-child(odd){ /* добавлено .profile */
+    background:#ecf0f1;
+}
+.fact:after{
+    content:"";
+    clear:both;
+    display:table;
+}
+.profile .fact .title{ /* добавлено .profile */
+   float:left;
+   width:120px;
+   text-align:right;
+   color:#7f8c8d;
+}
+.profile .fact .value{ /* добавлено .profile */
+   margin-left:140px;
+   color:#34495e;
+}
+.albums{
+    margin-top:5px;    
+}
+.albums img, .albums #miska{ /* добавлен селектор по id */
+    float:left;
+    margin-right:5px;
+}
+.albums img:last-child{
+    margin-right:0;
+}
+.profile .button{ /* добавлено .profile */
+    display:block;
+    height:30px;
+    margin:5px 0;
+    text-align:center;
+    line-height:30px;
+    color:#fff;
+    border-radius:4px;
+}
+.profile .photo .stroke{ /* добавлено .profile .photo */
+    background:#3498db;
+}
+.profile .photo .feed{ /* добавлено .profile .photo */
+    background:#2ecc71;
+}
+.profile .photo .startle{ /* добавлено .profile .photo */
+    background:#e74c3c;
+}

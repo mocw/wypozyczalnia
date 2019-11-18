@@ -4,7 +4,7 @@ function wczytajTabele(){
     $sql="SELECT u.uidUSers,CONCAT(p.marka,' ',p.model),sm.vin,
     CONCAT(so.miejscowosc,' ul.',so.ulica,' ',so.nr_posesji),
     CONCAT(sz.miejscowosc,' ul.',sz.ulica,' ',sz.nr_posesji),
-    w.data_odbioru,w.data_zwrotu,wp.id
+    w.data_odbioru,w.data_zwrotu,wp.id,u.userID
     FROM wypozyczenia wp 
     JOIN wnioski w ON wp.id_wniosku=w.id
     JOIN siedziby so ON w.id_miejsca_odbioru=so.id
@@ -34,7 +34,7 @@ function wczytajTabele(){
 
     while ($row = mysqli_fetch_row($result)){
         echo' <tr>
-            <td>'.$row[0].'</td>
+            <td><a href="./profile.php?id='.$row[8].'">'.$row[0].'</a></td>
             <td>'.$row[1].'</td>
             <td>'.$row[2].'</td>
             <td>'.$row[3].'</td>
@@ -43,8 +43,8 @@ function wczytajTabele(){
             <td>'.$row[6].'</td>
             <td>
             <input type="hidden" name="vin" value="'.$row[2].'">
-            <button class="wniosek" name="przyjmij" value="'.$row[7].'" type="submit">
-            <img src="images/positive_tick.gif" width="30px" height="25px"></img></button>
+            <center><button class="wniosek" name="przyjmij" value="'.$row[7].'" type="submit">
+            <img src="images/positive_tick.gif" width="30px" height="25px"></img></button></center>
             </td>
         ';
     }
