@@ -26,21 +26,28 @@
   .table tr.awaiting{
     background-color: white;
   }
+
  .table tr.accept{
-  background-color: #00ff99;
+  background-color:green;
   color: black;
+ } 
+
+ .table tr.accept:hover{
+  background-color:green;
  } 
 
  table tr.decline{
-  background-color: #ff0033;
+  background-color: red;
   color: black;
  } 
  
+ .table tr.decline:hover{
+  background-color:red;
+ } 
 
-
-  .table tr:hover {
+  /* .table tr:hover {
     background-color: #ddd !important;
-  }
+  } */
   
   .table th {
     padding-top: 12px;

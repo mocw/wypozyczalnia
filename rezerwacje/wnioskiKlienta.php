@@ -56,5 +56,5 @@ if(isset($_SESSION['uID']))
     else {
         echo '<div class="alert alert-warning" role="alert">Nie złożyłeś jeszcze żadnego wniosku!</div>';
     }
-}
+} else header('Location: index.php?action=home'); 
 ?>

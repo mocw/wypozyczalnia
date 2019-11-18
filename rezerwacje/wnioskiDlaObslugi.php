@@ -102,6 +102,10 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
         $sql="INSERT INTO wypozyczenia(id_wniosku,id_egzemplarza) VALUES('$_POST[idWniosku]',
         '$_POST[idEgzemplarza]')";
         mysqli_query($conn,$sql);
+        $sql="UPDATE samochody SET czyDostepny=0
+        WHERE id='$_POST[idEgzemplarza]'";
+        mysqli_query($conn,$sql);
+        
         $sql="UPDATE wnioski SET status='zaakceptowany'
         WHERE id='$_POST[idWniosku]'";
         $stmt=mysqli_stmt_init($conn);

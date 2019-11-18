@@ -66,6 +66,7 @@ session_start();
         else echo '<li><a href="index.php?action=oferta">Oferta</a></li>';
         ?>
         <li><a href="index.php?action=kontakt">Kontakt</a></li>
+        <li><a href="index.php?action=filie">Filie</a></li>
         </ul>
     </div>
     </div>
@@ -103,6 +104,7 @@ switch($site) {
   case 'flota' : include 'carOperations/flota.php'; break;
   case 'wnioskiKlienta' : include 'rezerwacje/wnioskiKlienta.php'; break;
   case 'wnioskiDlaObslugi' : include 'rezerwacje/wnioskiDlaObslugi.php'; break;
+  case 'filie' : include 'filie.php'; break;
 }
 
 ?>
