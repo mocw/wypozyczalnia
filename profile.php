@@ -82,7 +82,7 @@ if(!(isset($_SESSION['uID']))) header('Location: index.php?action=home');
     echo '
         <div class="profile">
             <div class="info">
-                <h2 id="info-title">'.$row[0].'</h2>
+                <h2 id="info-title">Profil użytkownika '.$row[0].'</h2>
                 <div class="fact">
                     <div class="title">Imie</div>
                     <div class="value">'.$row[2].'</div>
