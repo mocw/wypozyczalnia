@@ -18,9 +18,8 @@ function sendMail($email,$id){
             $code=incrementalHash(5);    
             $subject = "Przypomnienie hasła"; //MAIL
             $messages= "Jeżeli nie spodziewałeś się tej wiadomości, zignoruj ją.
-            Kliknij w poniższy link, a następnie wpisz podany kod.
-            http://localhost/wypozyczalnia/index.php?action=remindpasswordCode 
-            Kod: $code
+            Kliknij w poniższy link aby ustawić nowe hasło:
+            http://localhost/wypozyczalnia/resetPassword.php?passwordCode=$code
             "; //!!! JEŚLI MACIE INNĄ NAZWE KATALOGU ZMIEŃCIE TREŚĆ LINKA !!!
             if( mail($email, $subject, $messages) ) {
                 $sql="INSERT INTO passwordcodes(code,userID) VALUES(?,?)";
