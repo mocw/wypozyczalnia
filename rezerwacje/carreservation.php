@@ -64,7 +64,7 @@ JOIN pojazdy p ON sm.id_samochodu=p.id
 WHERE sm.id_samochodu='$carID' AND sm.czyDostepny=1
 GROUP BY 4";
 $result = mysqli_query($conn, $sql);
-echo ' <div class="container"><form id="contact" action="index.php?action=carreserv" method="post" enctype="multipart/form-data">
+echo '<div class="container"><form id="contact" action="index.php?action=carreserv" method="post" enctype="multipart/form-data">
 <center><p>Miejsce odbioru</center></p>    
 <fieldset>
       <select class="egzemplarze" name="siedzibaOdbior" required autofocus>';
@@ -99,7 +99,8 @@ echo ' <div class="container"><form id="contact" action="index.php?action=carres
     <input type="hidden" name="carID" value="'.$carID.'">
     </br></br><button name="wniosek-submit" type="submit" id="contact-submit" data-submit="...Sending">Zatwierdź</button>
     </form>
-    </div>'
+    </div>
+    '
     ;
 } else if(isset($_POST['carID'])) {  //INFO O AUCIE
     if(!isset($_SESSION['uID']))

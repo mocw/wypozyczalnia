@@ -57,46 +57,69 @@ function wczytajTabele(){
 
 function przydzielPojazd($id){
     require 'includes/dbh.inc.php';
-    $sql="SELECT id_miejsca_odbioru,id_miejsca_zwrotu,id_uzytkownika,id_samochodu,data_odbioru,data_zwrotu
-    FROM wnioski 
-    WHERE id='$id'";
-    $result = mysqli_query($conn, $sql);
-    $rowD = mysqli_fetch_row($result);
-    $idODbior=$rowD[0];
-    $idZwrot=$rowD[1];
-    $userID=$rowD[2];
-    $carID=$rowD[3];
-    $dataOdbioru=$rowD[4];
-    $dataZwrotu=$rowD[5];
+    echo '<div class="modal" id="modal-one" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-header">
+        <b><center>Przydział</center></b>
+ <a href="" class="btn-close" aria-hidden="true">×</a>
 
-    $sql="SELECT s.id,CONCAT('VIN: ',s.vin)
-    FROM samochody_siedziby ss
-    JOIN samochody s ON ss.id_pojazdu=s.id
-    JOIN pojazdy p ON s.id_samochodu=p.id
-    WHERE s.id_samochodu='$carID' AND ss.id_siedziby='$idODbior' AND s.czyDostepny=1";  
-    $result = mysqli_query($conn, $sql);
+        </div>
+        <div class="modal-body">';
+        $sql="SELECT id_miejsca_odbioru,id_miejsca_zwrotu,id_uzytkownika,id_samochodu,data_odbioru,data_zwrotu
+        FROM wnioski 
+        WHERE id='$id'";
+        $result = mysqli_query($conn, $sql);
+        $rowD = mysqli_fetch_row($result);
+        $idODbior=$rowD[0];
+        $idZwrot=$rowD[1];
+        $userID=$rowD[2];
+        $carID=$rowD[3];
+        $dataOdbioru=$rowD[4];
+        $dataZwrotu=$rowD[5];
+    
+        $sql="SELECT s.id,CONCAT('VIN: ',s.vin)
+        FROM samochody_siedziby ss
+        JOIN samochody s ON ss.id_pojazdu=s.id
+        JOIN pojazdy p ON s.id_samochodu=p.id
+        WHERE s.id_samochodu='$carID' AND ss.id_siedziby='$idODbior' AND s.czyDostepny=1";  
+        $result = mysqli_query($conn, $sql);
 
-
-    echo ' <div class="container">
-    <form id="contact" action="index.php?action=wnioskiDlaObslugi" method="post" enctype="multipart/form-data">
-    <center><b>Przydziel egzemplarz:</b></br></br></center>
-    <fieldset>
-    <select class="egzemplarze" name="idEgzemplarza" required autofocus>';
-      while ($row = mysqli_fetch_row($result)) {
         echo '
-        <option value="'.$row[0].'">'.$row[1].'</option>';
-      }      
-    echo '</select>
-    </fieldset>
-    <input type="hidden" name="idWniosku" value="'.$id.'">
-    </br></br><button name="przydzial-submit" type="submit" id="contact-submit" data-submit="...Sending">Zatwierdź</button>
-    </form>
+        <div class="container">
+        <form id="contact" action="index.php?action=wnioskiDlaObslugi" method="post" enctype="multipart/form-data">
+        <center><b>Przydziel egzemplarz:</b></br></br></center>
+        <fieldset>
+        <select class="egzemplarze" name="idEgzemplarza" required autofocus>';
+          while ($row = mysqli_fetch_row($result)) {
+            echo '
+            <option value="'.$row[0].'">'.$row[1].'</option>';
+          }      
+        echo '</select>
+        </fieldset>
+        <input type="hidden" name="idWniosku" value="'.$id.'">
+        </br></br><button name="przydzial-submit" type="submit" id="contact-submit" data-submit="...Sending">Zatwierdź</button>
+        </form>
+        </div>
+        ';
+        echo '
     </div>
-    ';
+</div>
+</div>';
+
+
+
 }
 
 function odrzucWniosek($id){
-    echo ' <div class="container">
+    echo ' 
+    <div class="modal" id="modal-one" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-header">
+        <b><center>Przydział</center></b>
+ <a href="" class="btn-close" aria-hidden="true">×</a>
+        </div>
+        <div class="modal-body">
+    <div class="container">
     <form id="contact" action="index.php?action=wnioskiDlaObslugi" method="post" enctype="multipart/form-data">
     <center><b>Podaj powód:</b></br></br></center>
     <fieldset>
@@ -105,6 +128,8 @@ function odrzucWniosek($id){
     <input type="hidden" name="idWniosku" value="'.$id.'">
     </br></br><button name="odrzuc-submit" type="submit" id="contact-submit" data-submit="...Sending">Zatwierdź</button>
     </form>
+    </div></div>
+    </div>
     </div>
     ';
 }

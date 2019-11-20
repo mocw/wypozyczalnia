@@ -25,6 +25,7 @@ session_start();
  <link rel="stylesheet" type="text/css" href="css/carDetail.css">
  <link rel="stylesheet" type="text/css" href="css/pagination.css">
  <link rel="stylesheet" type="text/css" href="css/profile.css">
+ <link rel="stylesheet" type="text/css" href="css/modalpopup.css">
  <link rel="icon" type="image/ico" href="images/favicon.gif" >
 </head>
 <body>
@@ -104,6 +105,7 @@ switch($site) {
   case 'wnioskiDlaObslugi' : include 'rezerwacje/wnioskiDlaObslugi.php'; break;
   case 'wypozyczeniaDlaObslugi' : include 'rezerwacje/wypozyczeniaDlaObslugi.php'; break;
   case 'filie' : include 'filie.php'; break;
+  case 'test' : include 'test.php'; break;
 }
 
 ?>
