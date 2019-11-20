@@ -59,11 +59,7 @@ function przydzielPojazd($id){
     require 'includes/dbh.inc.php';
     echo '<div class="modal" id="modal-one" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-header">
-        <b><center>Przydział</center></b>
  <a href="" class="btn-close" aria-hidden="true">×</a>
-
-        </div>
         <div class="modal-body">';
         $sql="SELECT id_miejsca_odbioru,id_miejsca_zwrotu,id_uzytkownika,id_samochodu,data_odbioru,data_zwrotu
         FROM wnioski 
@@ -105,19 +101,13 @@ function przydzielPojazd($id){
     </div>
 </div>
 </div>';
-
-
-
 }
 
 function odrzucWniosek($id){
     echo ' 
     <div class="modal" id="modal-one" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-header">
-        <b><center>Przydział</center></b>
  <a href="" class="btn-close" aria-hidden="true">×</a>
-        </div>
         <div class="modal-body">
     <div class="container">
     <form id="contact" action="index.php?action=wnioskiDlaObslugi" method="post" enctype="multipart/form-data">
