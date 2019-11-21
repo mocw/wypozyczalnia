@@ -51,8 +51,8 @@ p {
     z-index: 10;
 }
 .modal .modal-dialog {
-    background: #fefefe;
-    border: #333333 solid 1px;
+    background: #F9F9F9;
+    border: #F9F9F9 solid 1px;
     border-radius: 5px;
     margin-left: -200px;
     position: fixed;
