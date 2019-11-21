@@ -74,6 +74,15 @@
     background: none;
   }
 
+  button.wniosek2{
+    padding: 5;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: lightslategrey;
+  }
+
+
   button.wniosek:hover{
     transform:scale(1.5);
   }

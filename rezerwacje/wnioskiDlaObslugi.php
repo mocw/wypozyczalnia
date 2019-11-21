@@ -32,7 +32,12 @@ function wczytajTabele(){
         </tr>
     </thead>';
     while ($row = mysqli_fetch_row($result)){
-        echo '<tr><td  class="adress"><a href="./profile.php?id='.$row[8].'&p=0">'.$row[1].'</td>
+        echo '<tr>
+        <form method="POST" action="index.php?action=wnioskiDlaObslugi">
+        <td  class="adress">
+        <input type="hidden" name="userID" value="'.$row[8].'">
+        <button type="submit" class="wniosek2" name="showProfile">'.$row[1].'</button>
+        </td></form>
         <td  class="adress">'.$row[2].'</td>
         <td>'.$row[3].'</td>
         <td>'.$row[4].'</td>
@@ -168,6 +173,72 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
         odrzucWniosek($id);
        
     }
+
+    if(isset($_POST['showProfile'])){ //POKAZ PROFIL
+        $id = $_POST["userID"];
+    include 'includes/dbh.inc.php';
+    $sql="SELECT uidUsers,email,imie,nazwisko,data_ur,id_klienta,nr_tel
+    FROM users
+    WHERE userID='$id'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_row($result);
+    echo '
+    <div class="modal" id="modal-one" aria-hidden="true">
+    <div class="modal-dialog">
+ <a href="" class="btn-close" aria-hidden="true">×</a>
+        <div class="modal-body">
+        <div class="profile">
+            <div class="info">
+                <h2 id="info-title">Profil użytkownika '.$row[0].'</h2>
+                <div class="fact">
+                    <div class="title">Imie</div>
+                    <div class="value">'.$row[2].'</div>
+                </div>
+                <div class="fact">
+                    <div class="title">Nazwisko</div>
+                    <div class="value">'.$row[3].'</div>
+                </div>
+                <div class="fact">
+                    <div class="title">Adres e-mail</div>
+                    <div class="value">'.$row[1].'</div>
+                </div>
+                <div class="fact">
+                    <div class="title">Data urodzenia</div>
+                    <div class="value">'.$row[4].'</div></div>';
+                    if($row[5]!=0 && ($_SESSION['id_pracownika']!=NULL || $_SESSION['isRoot']==1)){
+                        echo '
+                        <div class="fact">
+                        <div class="title">Numer telefonu</div>
+                         <div class="value">'.$row[6].'</div></div>
+                        ';
+
+                        $sql="SELECT nr_dowodu,nr_karty_kredytowej,CONCAT(miejscowosc,' ul.',ulica,' ',nr_domu,
+                        CONCAT(' mieszkania nr. ',CASE WHEN nr_mieszkania IS NOT NULL
+                                         THEN nr_mieszkania 
+                                         ELSE ' brak '
+                                         END)
+                     )
+                     FROM klienci
+                     WHERE id='$row[5]'";
+                    }
+                    $result = mysqli_query($conn, $sql);
+                    $row = mysqli_fetch_row($result);
+                    echo '
+                    <div class="fact">
+                    <div class="title">Numer dowodu osobistego</div>
+                    <div class="value">'.$row[0].'</div></div>
+                    <div class="fact">
+                        <div class="title">Numer karty kredytowej</div>
+                         <div class="value">'.$row[1].'</div></div>
+                         <div class="fact">
+                        <div class="title">Adres</div>
+                         <div class="value">'.$row[2].'</div></div>
+                    ';
+                echo '</div>
+            </div>
+        </div></div</div></div>
+    ';
+    } //POKAZ PROFIL-END
    wczytajTabele();
 } else {
     header('Location: index.php?action=home'); 
