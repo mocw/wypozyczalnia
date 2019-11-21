@@ -207,7 +207,9 @@ select.egzemplarze{
 }
 
 
-
+*:focus {
+    outline: none;
+}
 
 
 
