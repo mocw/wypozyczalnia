@@ -26,6 +26,7 @@ session_start();
  <link rel="stylesheet" type="text/css" href="css/pagination.css">
  <link rel="stylesheet" type="text/css" href="css/profile.css">
  <link rel="stylesheet" type="text/css" href="css/modalpopup.css">
+ <link rel="stylesheet" type="text/css" href="css/login.css">
  <link rel="icon" type="image/ico" href="images/favicon.gif" >
 </head>
 <body>

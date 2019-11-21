@@ -14,7 +14,7 @@ if(isset($_SESSION['uID']))
     JOIN pojazdy p ON w.id_samochodu=p.id
     LEFT JOIN odrzucone_wnioski ow ON ow.id_wniosku=w.id
     WHERE w.id_uzytkownika='$userID'
-    ORDER BY 6,7";
+    ORDER BY 6 desc";
     $result = mysqli_query($conn, $sql);
     $row_cnt = mysqli_num_rows($result);
     if($row_cnt>0){

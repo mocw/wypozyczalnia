@@ -1,7 +1,9 @@
 <?php
 require 'includes/dbh.inc.php';
-if(!isset($_SESSION['uID'])) echo '<div class="alert alert-warning" role="alert">Aby móc zarezerwować pojazd, 
+if(!isset($_SESSION['uID'])){
+  echo '<div class="alert alert-warning" role="alert">Aby móc zarezerwować pojazd, 
 musisz być zalogowany! <a href="index.php?action=logowanie">Zaloguj się</a></li></div>';
+} 
 
 if(!isset($_POST['page'])){
   $page=1;
