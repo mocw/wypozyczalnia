@@ -3,7 +3,7 @@ if(isset($_SESSION['uID']) && $isDataFilled==0) {
       require 'zarzadzaniekontem.php';
     echo '
     <div class="container">  
-<form id="contact" method="POST" action="index.php?action=fillData_send" accept-charset="character_set">
+<form id="contact"  class="exceptModal" method="POST" action="index.php?action=fillData_send" accept-charset="character_set">
 <fieldset>
       <input placeholder="Numer dowodu osobistego*" name="nr_dowodu" type="text" tabindex="1" required autofocus>
 </fieldset>
