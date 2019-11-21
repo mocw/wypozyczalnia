@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 18 Lis 2019, 17:11
+-- Czas generowania: 21 Lis 2019, 03:57
 -- Wersja serwera: 10.4.8-MariaDB
 -- Wersja PHP: 7.3.10
 
@@ -39,13 +39,6 @@ CREATE TABLE `klienci` (
   `nr_domu` varchar(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2;
 
---
--- Zrzut danych tabeli `klienci`
---
-
-INSERT INTO `klienci` (`id`, `nr_dowodu`, `nr_karty_kredytowej`, `ulica`, `miejscowosc`, `kod_pocztowy`, `nr_mieszkania`, `nr_domu`) VALUES
-(37, '99888', '99982', 'Piotrkowska', 'Łódź', '98-030', '15', '127');
-
 -- --------------------------------------------------------
 
 --
@@ -57,13 +50,6 @@ CREATE TABLE `odrzucone_wnioski` (
   `id_wniosku` int(11) NOT NULL,
   `powod` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2;
-
---
--- Zrzut danych tabeli `odrzucone_wnioski`
---
-
-INSERT INTO `odrzucone_wnioski` (`id`, `id_wniosku`, `powod`) VALUES
-(2, 26, 'brak egzemplarzy ');
 
 -- --------------------------------------------------------
 
@@ -89,7 +75,7 @@ CREATE TABLE `pojazdy` (
   `model` varchar(25) NOT NULL,
   `rok_produkcji` int(11) NOT NULL,
   `poj_silnika` int(11) NOT NULL,
-  `Cena` decimal(4,2) NOT NULL,
+  `Cena` decimal(6,2) NOT NULL,
   `zdjecie` mediumblob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2;
 
@@ -153,12 +139,13 @@ INSERT INTO `samochody` (`id`, `vin`, `id_samochodu`, `czyDostepny`) VALUES
 (25, '1MEHM55S93A614248', 21, 1),
 (26, '5TFLU4EN2FX118791', 21, 1),
 (27, 'JHLRE48767C055775', 21, 1),
-(28, '1C3CCCCB2FN534877', 21, 0),
+(28, '1C3CCCCB2FN534877', 21, 1),
 (29, '1GCHC23648F163359', 24, 1),
 (30, 'SAJGX2044XC041363', 21, 1),
 (31, 'WMWRC33483TC42598', 23, 1),
 (32, 'WBAHN83507DT72223', 23, 1),
-(33, '2GCEC13J271557112', 23, 1);
+(33, '2GCEC13J271557112', 23, 1),
+(34, '4S3BK6354S6355265', 21, 1);
 
 -- --------------------------------------------------------
 
@@ -185,7 +172,8 @@ INSERT INTO `samochody_siedziby` (`id`, `id_pojazdu`, `id_siedziby`) VALUES
 (29, 30, 2),
 (30, 31, 2),
 (31, 32, 3),
-(32, 33, 4);
+(32, 33, 4),
+(33, 34, 1);
 
 -- --------------------------------------------------------
 
@@ -225,13 +213,7 @@ INSERT INTO `samochody_wyposazenie` (`id`, `id_wyposazenia`, `id_samochodu`) VAL
 (19, 6, 59),
 (20, 8, 59),
 (21, 10, 59),
-(22, 2, 60),
-(23, 3, 60),
-(24, 5, 60),
-(25, 7, 60),
-(26, 8, 60),
-(27, 10, 60),
-(28, 11, 60);
+(22, 2, 60);
 
 -- --------------------------------------------------------
 
@@ -308,8 +290,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userID`, `uidUsers`, `pwdUsers`, `email`, `imie`, `nazwisko`, `pesel`, `nr_tel`, `data_ur`, `id_klienta`, `id_pracownika`, `isRoot`) VALUES
-(17, 'root', '$2y$10$Uiya.i5OSI2qgKPHNRYGYeeVsKZmr9cNFP7j487MFc/L6l2s8Utse', '', 'Root', '', '', '', '0000-00-00', NULL, NULL, 1),
-(88, 'test', '$2y$10$HIxxDGqv0jEkYkvfgQhvlumkDb7eDx40aXaEEYUrAPOTU/.AtDm7G', 'test@wp.pl', 'Test', 'Test', '96042307317', '777888777', '1996-04-23', 37, NULL, 0);
+(17, 'root', '$2y$10$Uiya.i5OSI2qgKPHNRYGYeeVsKZmr9cNFP7j487MFc/L6l2s8Utse', '', 'Root', '', '', '', '0000-00-00', NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -325,17 +306,9 @@ CREATE TABLE `wnioski` (
   `data_zwrotu` date NOT NULL,
   `id_samochodu` int(11) NOT NULL,
   `id_uzytkownika` int(11) NOT NULL,
-  `data_zlozenia` date NOT NULL,
+  `data_zlozenia` datetime NOT NULL,
   `status` varchar(15) NOT NULL DEFAULT 'oczekujacy'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2;
-
---
--- Zrzut danych tabeli `wnioski`
---
-
-INSERT INTO `wnioski` (`id`, `id_miejsca_odbioru`, `id_miejsca_zwrotu`, `data_odbioru`, `data_zwrotu`, `id_samochodu`, `id_uzytkownika`, `data_zlozenia`, `status`) VALUES
-(24, 4, 4, '2019-11-18', '2019-11-26', 21, 88, '2019-11-18', 'zaakceptowany'),
-(26, 4, 4, '2019-11-18', '2019-11-26', 21, 88, '2019-11-18', 'odrzucony');
 
 -- --------------------------------------------------------
 
@@ -377,13 +350,6 @@ CREATE TABLE `wypozyczenia` (
   `id_wniosku` int(11) NOT NULL,
   `id_egzemplarza` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2;
-
---
--- Zrzut danych tabeli `wypozyczenia`
---
-
-INSERT INTO `wypozyczenia` (`id`, `id_wniosku`, `id_egzemplarza`) VALUES
-(8, 24, 28);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -498,49 +464,49 @@ ALTER TABLE `wypozyczenia`
 -- AUTO_INCREMENT dla tabeli `klienci`
 --
 ALTER TABLE `klienci`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT dla tabeli `odrzucone_wnioski`
 --
 ALTER TABLE `odrzucone_wnioski`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT dla tabeli `passwordcodes`
 --
 ALTER TABLE `passwordcodes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT dla tabeli `pojazdy`
 --
 ALTER TABLE `pojazdy`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT dla tabeli `pracownicy`
 --
 ALTER TABLE `pracownicy`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT dla tabeli `samochody`
 --
 ALTER TABLE `samochody`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT dla tabeli `samochody_siedziby`
 --
 ALTER TABLE `samochody_siedziby`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT dla tabeli `samochody_wyposazenie`
 --
 ALTER TABLE `samochody_wyposazenie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT dla tabeli `siedziby`
@@ -558,13 +524,13 @@ ALTER TABLE `stanowiska`
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `userID` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT dla tabeli `wnioski`
 --
 ALTER TABLE `wnioski`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT dla tabeli `wyposazenie`
@@ -576,7 +542,7 @@ ALTER TABLE `wyposazenie`
 -- AUTO_INCREMENT dla tabeli `wypozyczenia`
 --
 ALTER TABLE `wypozyczenia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Ograniczenia dla zrzutów tabel

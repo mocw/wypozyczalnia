@@ -1,6 +1,6 @@
 <?php
 if(isset($_POST['add-car-submit'])){
-
+error_reporting(0);
     if(isset($dodajZdj)) unset($dodajZdj);
     if(isset($success)) unset($success);
     require 'dbh.inc.php';
