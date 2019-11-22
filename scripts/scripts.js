@@ -9,5 +9,3 @@ function openPage(url) {
     });
 }, 2000);
 
-
-

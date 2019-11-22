@@ -197,8 +197,12 @@ X
 <fieldset>
       <select class="egzemplarze" name="siedzibaOdbior" required autofocus>';
       while ($row = mysqli_fetch_row($result)) {
+        $saEgzemplarze=1;
         echo '
         <option value="'.$row[0].'">'.$row[3].'</option>';
+      }
+      if(!isset($saEgzemplarze)){
+       echo '<option style="color:red;">Brak egemplarzy w tej chwili!</option>';
       }      
     echo '</select>
     </fieldset>';
@@ -230,6 +234,11 @@ X
     </div></div></div></div>
     '
     ;
+    if(!isset($saEgzemplarze)){
+      echo '<script>
+      document.getElementById("contact-submit").disabled = true;
+      </script>';
+     } 
 } else if(isset($_POST['carID'])) {  //INFO O AUCIE
       $page=$_POST["page"];
     if(!isset($_SESSION['uID']))
