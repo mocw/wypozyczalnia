@@ -202,7 +202,7 @@ X
         <option value="'.$row[0].'">'.$row[3].'</option>';
       }
       if(!isset($saEgzemplarze)){
-       echo '<option style="color:red;">Brak egemplarzy w tej chwili!</option>';
+       echo '<option>Brak egemplarzy w tej chwili!</option>';
       }      
     echo '</select>
     </fieldset>';
@@ -237,6 +237,7 @@ X
     if(!isset($saEgzemplarze)){
       echo '<script>
       document.getElementById("contact-submit").disabled = true;
+      document.getElementById("contact-submit").style.cursor = "not-allowed";
       </script>';
      } 
 } else if(isset($_POST['carID'])) {  //INFO O AUCIE

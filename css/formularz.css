@@ -159,3 +159,9 @@ button.prevnext{
   margin: -10px;
   font-size: 16px;
 }
+
+.not-allowed     { cursor: not-allowed; }
+
+option.brakEgzemplarzy{
+  cursor: move;
+}

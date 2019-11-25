@@ -53,7 +53,12 @@ function wczytajTabele(){
         ';
     }
     echo '</table></form>';
-    } else echo '<div class="alert alert-warning" role="alert">Brak wypożyczeń!</div>'; 
+    } else {
+        $sql="UPDATE samochody 
+        SET czyDostepny=1";
+        mysqli_query($conn,$sql);
+        echo '<div class="alert alert-warning" role="alert">Brak wypożyczeń!</div>'; 
+    }
 }
 if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) || 
 (isset($_SESSION['uID']) && $_SESSION['isRoot']==1)){
