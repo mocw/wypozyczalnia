@@ -66,7 +66,7 @@ session_start();
         echo '<li><a href="index.php?action=accountmgm">Zarządzaj kontem</a></li>';
         }
         if(isset($_SESSION['uID'])){
-           if($_GET['action']=='oferta' || $_GET['action']=='carreserv') echo '<b><li><a href="index.php?action=oferta">Oferta</a></li></b>';
+           if($site=='oferta' || $site=='carreserv') echo '<b><li><a href="index.php?action=oferta">Oferta</a></li></b>';
             else echo '<li><a href="index.php?action=oferta">Oferta</a></li>';
         } 
         else echo '<li><a href="index.php?action=oferta">Oferta</a></li>';
