@@ -34,7 +34,7 @@ function wczytajTabele(){
 
     while ($row = mysqli_fetch_row($result)){
         echo' <tr>
-            <form method="POST" action="index.php?action=wnioskiDlaObslugi">
+            <form method="POST" action="index.php?action=wypozyczeniaDlaObslugi">
              <td  class="adress">
              <input type="hidden" name="userID" value="'.$row[8].'">
             <button type="submit" class="wniosek2" name="showProfile">'.$row[0].'</button>
@@ -99,7 +99,7 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
                     <div class="fact">
                         <div class="title">Data urodzenia</div>
                         <div class="value">'.$row[4].'</div></div>';
-                        if($row[5]!=0 && ($_SESSION['id_pracownika']!=NULL || $_SESSION['isRoot']==1)){
+                        if($row[5]!=0){
                             echo '
                             <div class="fact">
                             <div class="title">Numer telefonu</div>
@@ -114,9 +114,9 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
                          )
                          FROM klienci
                          WHERE id='$row[5]'";
-                        }
                         $result = mysqli_query($conn, $sql);
                         $row = mysqli_fetch_row($result);
+                        }
                         echo '
                         <div class="fact">
                         <div class="title">Numer dowodu osobistego</div>
