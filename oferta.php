@@ -72,19 +72,6 @@ $page=$_POST['page'];
 }
 
 if(isset($_POST['carID'])){
-  if(!isset($_SESSION['uID']))
-    {
-        echo '
-        <div class="alert alert-danger" role="alert">Musisz się zalogować!</div>'; 
-        showCars($page);
-    }
-    else{
-      if($isDataFilled==0)
-      {                
-          echo '<p class="alert alert-danger">Musisz wypełnić dane!</p>';
-          showCars($page);
-      }
-      else {
         echo '<form method="POST" id="reservForm" action="index.php?action=carreserv">
         <input type="hidden" name="carID" value="'.$_POST['carID'].'">
         <input type="hidden" name="page" value="'.$_POST['page'].'">
@@ -93,10 +80,6 @@ if(isset($_POST['carID'])){
         document.getElementById("reservForm").submit();
         </script>
         ';
-      }
-
-
-    }
 } else {
   if(!isset($_SESSION['uID'])){
     echo '<div class="alert alert-warning" role="alert">Aby móc zarezerwować pojazd, 

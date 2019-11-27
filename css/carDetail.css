@@ -71,6 +71,7 @@
   button.green-arrow {
     padding: 0;
     border: none;
+    outline: none;
     background: none;
     text-decoration: none;
     display: block;
@@ -124,8 +125,12 @@
     background-color: #38e4ae;
     border: 0;
     color: white;
+    width: 150px;
+    height:40px;
     padding: 6px;
     margin-top: 25px;
+    font-size: 15px;
+    font-style: initial;
   }
   #cart:hover {
     transform:scale(1.2);

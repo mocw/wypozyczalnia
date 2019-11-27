@@ -1,15 +1,13 @@
 <link href="https://fonts.googleapis.com/css?family=Coda:800|Lato:300|Open+Sans" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 <script>
-function myFunction() {
-  //document.getElementById("toClose").style.display = "none";
-}
+
 </script>
 
 <div id="toClose">
 <?php
 
-function pokazInfoSamochod($id,$page){
+function pokazInfoSamochod($id,$page,$niezalogowany){
   require 'includes/dbh.inc.php';
                 $sql="SELECT * FROM pojazdy WHERE id=$id";
                 $query = mysqli_query($conn, $sql);
@@ -70,11 +68,17 @@ function pokazInfoSamochod($id,$page){
     <form method="POST" action="index.php?action=carreserv">
     <input type="hidden" name="carID" value="'.$id.'">
     <input type="hidden" name="page" value='.$page.'>
-    <div><button id="cart" onclick="myFunction()" name="wniosek" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">ZAREZERWUJ</button></div>
+    <div><button id="cart" name="wniosek" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">ZAREZERWUJ</button></div>
     </form>
   </div>
 </div></center>                
                 '; 
+if($niezalogowany==1){
+  echo '<script>
+  document.getElementById("cart").disabled = true;
+  document.getElementById("cart").style.cursor = "not-allowed";
+</script>';
+}                
 }
 
 if(isset($_POST['wniosek-submit'])){
@@ -127,7 +131,8 @@ else if(isset($_POST['wniosek'])){
     //WNIOSEK
 $carID=$_POST['carID'];
 $page=$_POST['page'];
-pokazInfoSamochod($carID,$page);
+if(!isset($niezalogowany)) $niezalogowany=0;
+pokazInfoSamochod($carID,$page,$niezalogowany);
 $sql="SELECT s.id,sm.id,sm.vin,CONCAT(miejscowosc,' ul.',ulica, ' ',nr_posesji) 
 FROM siedziby s
 JOIN samochody_siedziby ss ON ss.id_siedziby=s.id
@@ -210,16 +215,26 @@ echo '
      </script>
      ';     
 } else if(isset($_POST['carID'])) {  //INFO O AUCIE
-      $page=$_POST["page"];
+  if(isset($_SESSION['uID']) && $isDataFilled==0)
+  {             
+        $niezalogowany=1;
+  }
+  else if(!isset($_SESSION['uID'])){
+    echo '<div class="alert alert-warning" role="alert">Aby móc zarezerwować pojazd, 
+  musisz być zalogowany! <a href="index.php?action=logowanie">Zaloguj się</a></li></div>';
+  $niezalogowany=1;
+  }
+                $page=$_POST["page"];
                 $page=$_POST['page'];
                 $id=$_POST['carID'];
-                pokazInfoSamochod($id,$page);
+                if(!isset($niezalogowany)) $niezalogowany=0;
+                pokazInfoSamochod($id,$page,$niezalogowany);
     }
-    else if(isset($_POST['closeModal'])) {
-      $carID=$_POST['carID'];
-      $page=$_POST['page'];
-      pokazInfoSamochod($carID,$page);
-    } 
+    // else if(isset($_POST['closeModal'])) {
+    //   $carID=$_POST['carID'];
+    //   $page=$_POST['page'];
+    //   pokazInfoSamochod($carID,$page);
+    // } 
 else header('Location: index.php?action=home');
 
 ?>
