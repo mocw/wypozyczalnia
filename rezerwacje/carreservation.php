@@ -62,15 +62,12 @@ function pokazInfoSamochod($id,$page,$niezalogowany){
     echo '</div></div><br>
     <div>
       
-    </div><br>
-    <div id="quantity">
-    </div><br>
+
     <form method="POST" action="index.php?action=carreserv">
     <input type="hidden" name="carID" value="'.$id.'">
     <input type="hidden" name="page" value='.$page.'>
     <div><button id="cart" name="wniosek" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">ZAREZERWUJ</button></div>
     </form>
-  </div>
 </div></center>                
                 '; 
 if($niezalogowany==1){
