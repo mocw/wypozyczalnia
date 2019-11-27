@@ -62,10 +62,17 @@ function wczytajTabele(){
 
 function przydzielPojazd($id){
     require 'includes/dbh.inc.php';
-    echo '<div class="modal" id="modal-one" aria-hidden="true">
-    <div class="modal-dialog">
- <a href="" class="btn-close" aria-hidden="true">×</a>
-        <div class="modal-body">';
+    echo '
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+    ';
         $sql="SELECT id_miejsca_odbioru,id_miejsca_zwrotu,id_uzytkownika,id_samochodu,data_odbioru,data_zwrotu
         FROM wnioski 
         WHERE id='$id'";
@@ -105,15 +112,27 @@ function przydzielPojazd($id){
         echo '
     </div>
 </div>
-</div>';
+</div></div>';
+
+echo '<script>
+$(\'#exampleModalCenter\').modal({
+  show: true
+}); 
+</script>
+';  
 }
 
 function odrzucWniosek($id){
     echo ' 
-    <div class="modal" id="modal-one" aria-hidden="true">
-    <div class="modal-dialog">
- <a href="" class="btn-close" aria-hidden="true">×</a>
-        <div class="modal-body">
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
     <div class="container">
     <form id="contact" action="index.php?action=wnioskiDlaObslugi" method="post" enctype="multipart/form-data">
     <center><b>Podaj powód:</b></br></br></center>
@@ -125,8 +144,15 @@ function odrzucWniosek($id){
     </form>
     </div></div>
     </div>
-    </div>
+    </div></div>
     ';
+
+    echo '<script>
+     $(\'#exampleModalCenter\').modal({
+       show: true
+   }); 
+     </script>
+     ';  
 }
 
 if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) || 
@@ -183,10 +209,15 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_row($result);
     echo '
-    <div class="modal" id="modal-one" aria-hidden="true">
-    <div class="modal-dialog">
- <a href="" class="btn-close" aria-hidden="true">×</a>
-        <div class="modal-body">
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
         <div class="profile">
             <div class="info">
                 <h2 id="info-title">Profil użytkownika '.$row[0].'</h2>
@@ -236,9 +267,15 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
                     ';
                 echo '</div>
             </div>
-        </div></div</div></div>
+        </div></div</div></div></div></div>
     ';
     } //POKAZ PROFIL-END
+    echo '<script>
+    $(\'#exampleModalCenter\').modal({
+      show: true
+  }); 
+    </script>
+    '; 
    wczytajTabele();
 } else {
     header('Location: index.php?action=home'); 

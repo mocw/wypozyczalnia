@@ -6,7 +6,7 @@ if(!isset($_SESSION['uID'])) echo
 <label for="password">Hasło:</label>
 <input type="password" id="password" name="password" required autofocus>
 <div id="lower">
-<p><a href="index.php?action=forgottenpassword">Zapomniałeś hasła?</a></p>
+</br><p><a href="index.php?action=forgottenpassword">Zapomniałeś hasła?</a></p>
 <p>Nie masz konta? <a href="index.php?action=rejestracja">Zarejestruj się!</a></p>
 <input type="submit" name="login-submit" value="Zaloguj"></center>
 </div>

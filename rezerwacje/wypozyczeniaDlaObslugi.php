@@ -82,9 +82,14 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_row($result);
         echo '
-        <div class="modal" id="modal-one" aria-hidden="true">
-        <div class="modal-dialog">
-     <a href="" class="btn-close" aria-hidden="true">×</a>
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
             <div class="modal-body">
             <div class="profile">
                 <div class="info">
@@ -135,8 +140,14 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
                         ';
                     echo '</div>
                 </div>
-            </div></div</div></div>
+            </div></div></div></div>
         ';
+        echo '<script>
+        $(\'#exampleModalCenter\').modal({
+          show: true
+      }); 
+        </script>
+        '; 
     }
     wczytajTabele();
 

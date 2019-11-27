@@ -36,7 +36,7 @@ function showCars($page){
     <li class="list-item">
       <div class="list-content">
         <center>
-          <button id="btnRezerwacja" data-html="true" data-tooltip='.$toBox.' name="carID" class="offerbtn" value='.$id.'>
+          <button data-html="true" data-tooltip='.$toBox.' name="carID" class="offerbtn" value='.$id.'>
           <img class="offer" src="data:image/png;base64,'.$imgContent.'"/>
         </button>
       </center>
@@ -75,20 +75,9 @@ $page=$_POST['page'];
 if(isset($_POST['carID'])){
   if(!isset($_SESSION['uID']))
     {
-        showCars($page);
-        $_SESSION['doZalogowania'] = 1;
         echo '
-        <form method="POST" action="index.php?action=oferta">
-         <input type="hidden" name="page" value='.$page.'>
-        <div class="modal" id="modal-one" aria-hidden="true">
-        <div class="modal-dialog">
-        <a href="" class="btn-close" aria-hidden="true">
-        <button type="submit" class="wniosek" >
-        X
-        </button></a></form>
-        </br></br></br><div class="alert alert-danger" role="alert">Musisz się zalogować!</div>';
-        require 'logowanie.php';   
-        echo '</div></div>';
+        <div class="alert alert-danger" role="alert">Musisz się zalogować!</div>'; 
+        showCars($page);
     }
     else{
       if($isDataFilled==0)

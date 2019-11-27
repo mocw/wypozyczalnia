@@ -70,7 +70,7 @@ function pokazInfoSamochod($id,$page){
     <form method="POST" action="index.php?action=carreserv">
     <input type="hidden" name="carID" value="'.$id.'">
     <input type="hidden" name="page" value='.$page.'>
-    <div><button id="cart" onclick="myFunction()" name="wniosek">ZAREZERWUJ</button></div>
+    <div><button id="cart" onclick="myFunction()" name="wniosek" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">ZAREZERWUJ</button></div>
     </form>
   </div>
 </div></center>                
@@ -136,17 +136,22 @@ JOIN pojazdy p ON sm.id_samochodu=p.id
 WHERE sm.id_samochodu='$carID' AND sm.czyDostepny=1
 GROUP BY 4";
 $result = mysqli_query($conn, $sql);
-echo '<div class="modal" id="modal-one" aria-hidden="true">
-<div class="modal-dialog">
+echo '
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <center><h5 class="modal-title" id="exampleModalLongTitle">Rezerwacja</h5></center>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
 <form action="index.php?action=carreserv" method="post">
 <input type="hidden" name="page" value="'.$page.'">
 <input type="hidden" name="carID" value="'.$carID.'">
-<a href="" class="btn-close" aria-hidden="true">
-<button  class="wniosek" type="submit" name="closeModal">
-X
-</button></a>
 </form>
-    <div class="modal-body"><div class="container"><form id="contact" action="index.php?action=carreserv" method="post" enctype="multipart/form-data">
+    <div class="container"><form id="contact" action="index.php?action=carreserv" method="post" enctype="multipart/form-data">
 <center><p>Miejsce odbioru</center></p>    
 <fieldset>
       <select class="egzemplarze" name="siedzibaOdbior" required autofocus>';
@@ -185,7 +190,10 @@ X
     <input type="hidden" name="carID" value="'.$carID.'">
     </br></br><button name="wniosek-submit" type="submit" id="contact-submit" data-submit="...Sending">Zatwierdź</button>
     </form>
-    </div></div></div></div>
+    </div></div>
+  </div>
+</div>
+</div>
     '
     ;
     if(!isset($saEgzemplarze)){
@@ -194,6 +202,13 @@ X
       document.getElementById("contact-submit").style.cursor = "not-allowed";
       </script>';
      } 
+
+     echo '<script>
+     $(\'#exampleModalCenter\').modal({
+       show: true
+   }); 
+     </script>
+     ';     
 } else if(isset($_POST['carID'])) {  //INFO O AUCIE
       $page=$_POST["page"];
                 $page=$_POST['page'];
