@@ -1,4 +1,3 @@
-<div id="facebook_slider_widget" style="display: none"><script type="text/javascript" src="http://webfrik.pl/widget/facebook_slider.html?fb_url=https://www.facebook.com/carthrottle/&amp;fb_width=290&amp;fb_height=590&amp;fb_faces=true&amp;fb_stream=true&amp;fb_header=true&amp;fb_border=true&amp;fb_theme=light&amp;chx=787&amp;speed=SLOW&amp;fb_pic=logo&amp;position=RIGHT"></script></div>
 <?php
 $site=(isset($_GET['action'])) ? $_GET['action'] : 'home';
 session_start();
@@ -32,6 +31,7 @@ session_start();
  <link rel="stylesheet" type="text/css" href="css/login.css">
  <link rel="icon" type="image/ico" href="images/favicon.gif" >
 </head>
+<div id="facebook_slider_widget" style="display: none"><script type="text/javascript" src="http://webfrik.pl/widget/facebook_slider.html?fb_url=https://www.facebook.com/carthrottle/&amp;fb_width=290&amp;fb_height=590&amp;fb_faces=true&amp;fb_stream=true&amp;fb_header=true&amp;fb_border=true&amp;fb_theme=light&amp;chx=787&amp;speed=SLOW&amp;fb_pic=logo&amp;position=RIGHT"></script></div>
 <body>
   <div id="wrapper">
  
