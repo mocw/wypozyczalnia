@@ -50,20 +50,19 @@ function showCars($page){
   </div>
   </div>';
   echo '
-  <div id="pcontainer">
   <div class="pagination">';
   echo '<center><form name="page" method="POST" action="index.php?action=oferta">';
   $currPage=$page;
   $previus=$currPage-1;
-  if ($currPage!=1) echo'<button class="prevnext" name="page" value="'.$previus.'">&laquo;</button>';
+  if ($currPage!=1) echo'<button class="page gradient"  name="page" value="'.$previus.'">&laquo;</button>';
   for($page=1;$page<=$number_of_pages;$page++)
   {
-    if($page==$currPage) echo'<input type="submit" name="page" class="active" value="'.$page.'" disabled>';
-    else echo'<input type="submit" name="page" value="'.$page.'">';
+    if($page==$currPage) echo'<input type="submit" name="page" class="page active" value="'.$page.'" disabled>';
+    else echo'<input type="submit" class="page" name="page" value="'.$page.'">';
   }
   $next=$currPage+1;
-  if ($currPage!=$number_of_pages) echo'<button class="prevnext" name="page" value="'.$next.'">&raquo;</button>';
-  echo '</div></div></form></center>';
+  if ($currPage!=$number_of_pages) echo'<button class="page gradient"  name="page" value="'.$next.'">&raquo;</button>';
+  echo '</div></form></center>';
 }
 
 if(!isset($_POST['page'])){
