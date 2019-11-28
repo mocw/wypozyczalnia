@@ -21,7 +21,7 @@ if(isset($_SESSION['uID']))
         echo '
         <div class="tableContainer">
         <table id="dtOrderExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
-          <thead>
+          <thead class="table-dark">
           <tr>
             <th class="th-sm">Miejsce odbioru</th>
             <th class="th-sm">Miejsce zwrotu</th>
@@ -56,7 +56,7 @@ if(isset($_SESSION['uID']))
     }
     echo '
     </tbody>
-  <tfoot>
+  <tfoot class="table-dark">
   <th>Miejsce odbioru</th>
             <th>Miejsce zwrotu</th>
             <th>Samochód</th>

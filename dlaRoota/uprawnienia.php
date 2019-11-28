@@ -46,7 +46,7 @@ if(isset($_SESSION['uID']) && $_SESSION['isRoot']==1){
     <form method="POST" action="index.php?action=uprawnienia">
     <div class="tableContainer">
     <table id="dtOrderExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
-      <thead>
+      <thead class="table-dark">
         <tr>
           <th class="th-sm">Root
           </th>
@@ -80,7 +80,7 @@ if(isset($_SESSION['uID']) && $_SESSION['isRoot']==1){
     }    
 echo '
 </tbody>
-<tfoot>
+<tfoot class="table-dark">
 <tr>
           <th>Root
           </th>

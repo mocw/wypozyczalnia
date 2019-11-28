@@ -14,6 +14,7 @@ bottom: .5em;
 
 div.tableContainer{
 width: 100%;
+color: black;
 }
 
 button.wniosek2{
@@ -37,9 +38,14 @@ button.wniosek2{
   input[type="search"] {
     position: relative;
     float: right;
-    background-color:khaki;
+    background-color:lightblue;
     left: 10%;
     bottom: 5px;
+}
+
+input[type="search"]:focus{
+
+  outline: 2px solid slategrey;
 }
 
 div.tableContainer label{

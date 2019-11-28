@@ -20,7 +20,7 @@ function wczytajTabele(){
     <form method="POST" action="index.php?action=wypozyczeniaDlaObslugi">
     <div class="tableContainer">
         <table id="dtOrderExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
-          <thead>
+          <thead class="table-dark">
           <tr>
             <th class="th-sm">Użytkownik</th>
             <th class="th-sm">Samochód</th>
@@ -55,7 +55,7 @@ function wczytajTabele(){
     }
     echo '
     </tbody>
-  <tfoot>
+  <tfoot class="table-dark">
   <tr>
   <th>Użytkownik</th>
   <th>Samochód</th>

@@ -61,7 +61,7 @@ require 'includes/dbh.inc.php';
     <form method="POST" action="index.php?action=usunPracownika">
     <div class="tableContainer">
     <table id="dtOrderExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
-    <thead>
+    <thead class="table-dark">
         <tr>
             <th class="th-sm">
             Usuń
@@ -104,7 +104,7 @@ require 'includes/dbh.inc.php';
     }    
 echo '
 </tbody>
-<tfoot>
+<tfoot class="table-dark">
 <tr>
 <th>
 Usuń

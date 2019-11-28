@@ -6,7 +6,7 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
     echo '
     <div class="tableContainer">
         <table id="dtOrderExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
-          <thead>
+          <thead class="table-dark">
           <tr>
             <th class="th-sm">Miejscowość</th>
             <th class="th-sm">Ulica</th>
@@ -54,7 +54,7 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
     }
     echo '
     </tbody>
-    <tfoot>
+    <tfoot class="table-dark">
     <tr>
     <th>Miejscowość</th>
     <th>Ulica</th>

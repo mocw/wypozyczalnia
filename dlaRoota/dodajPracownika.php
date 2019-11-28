@@ -20,7 +20,7 @@ function loadTable(){
     <form method="POST" action="index.php?action=dodajPracownika">
     <div class="tableContainer">
     <table id="dtOrderExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
-    <thead>
+    <thead class="table-dark">
         <tr>
             <th class="th-sm">
             Dodaj
@@ -63,7 +63,7 @@ function loadTable(){
         ';
     }    
 echo '</tbody>
-<tfoot>
+<tfoot class="table-dark">
 <tr>
 <th>
             Dodaj
@@ -153,7 +153,7 @@ if(isset($_POST['customer-submit'])||isset($fillError)){
         <form id="dodajPrac" method="POST" action="index.php?action=dodajPracownika">
         <div class="tableContainer">
         <table id="dtOrderExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
-          <thead>
+          <thead class="table-dark">
           <tr>
             <th class="th-sm">Nazwa użytkownika</th>
             <th class="th-sm">Imię</th>
@@ -203,7 +203,7 @@ if(isset($_POST['customer-submit'])||isset($fillError)){
     }
     echo'
     </tbody>
-    <tfoot>
+    <tfoot class="table-dark">
     <tr>
     <th>Nazwa użytkownika</th>
     <th>Imię</th>
