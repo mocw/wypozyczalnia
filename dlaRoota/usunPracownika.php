@@ -59,21 +59,22 @@ require 'includes/dbh.inc.php';
     echo '
     <center><p>Z listy pracowników wybierz tych, których chcesz usunąć</p></center>
     <form method="POST" action="index.php?action=usunPracownika">
-    <table class="table">
+    <div class="tableContainer">
+    <table id="dtOrderExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
     <thead>
         <tr>
-            <th>
+            <th class="th-sm">
             Usuń
             </th>
-            <th>Imię</th>
-            <th>Nazwisko</th>
-            <th>Pesel</th>
-            <th>Data urodzenia</th>
-            <th>Numer telefonu</th>
-            <th>Data zatrudnienia</th>
-            <th>Stanowisko</th>
+            <th class="th-sm">Imię</th>
+            <th class="th-sm">Nazwisko</th>
+            <th class="th-sm">Pesel</th>
+            <th class="th-sm">Data urodzenia</th>
+            <th class="th-sm">Numer telefonu</th>
+            <th class="th-sm">Data zatrudnienia</th>
+            <th class="th-sm">Stanowisko</th>
         </tr>
-    </thead> ';
+    </thead><tbody>';
     foreach ($users as $row) {
         $id=$row['userID'];
         $username=$row['uidUsers'];
@@ -86,7 +87,6 @@ require 'includes/dbh.inc.php';
         $data_zatr=$row['data_zatr'];
         $stanowisko=$row['stanowisko'];
         echo '
-        <tbody>
         <tr>';
         if($row['userID']!=$_SESSION['uID'])
         {
@@ -100,10 +100,25 @@ require 'includes/dbh.inc.php';
             <td>'.$nr_tel.'</td>
             <td>'.$data_zatr.'</td>
             <td>'.$stanowisko.'</td>
-        </tr>
-        </tbody>';
+        </tr>';
     }    
-echo '</table>
+echo '
+</tbody>
+<tfoot>
+<tr>
+<th>
+Usuń
+</th>
+<th>Imię</th>
+<th>Nazwisko</th>
+<th>Pesel</th>
+<th>Data urodzenia</th>
+<th>Numer telefonu</th>
+<th>Data zatrudnienia</th>
+<th>Stanowisko</th>
+</tr>
+</tfoot>
+</table></div>
 </br><center><input type="submit" VALUE="Zatwierdź" NAME="customer-delete-submit"></center>
 </form>';
 

@@ -19,28 +19,29 @@ if(isset($_SESSION['uID']))
     $row_cnt = mysqli_num_rows($result);
     if($row_cnt>0){
         echo '
-    <table class="table">
-    <thead>
-        <tr>
-            <th>Miejsce odbioru</th>
-            <th>Miejsce zwrotu</th>
-            <th>Samochód</th>
-            <th>Data odbioru</th>
-            <th>Data zwrotu</th>
-            <th>Data złożenia</th>
-            <th>Status</th>
-            <th>Dodatkowe informacje</th>
+        <div class="tableContainer">
+        <table id="dtOrderExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+          <thead>
+          <tr>
+            <th class="th-sm">Miejsce odbioru</th>
+            <th class="th-sm">Miejsce zwrotu</th>
+            <th class="th-sm">Samochód</th>
+            <th class="th-sm">Data odbioru</th>
+            <th class="th-sm">Data zwrotu</th>
+            <th class="th-sm">Data złożenia</th>
+            <th class="th-sm">Status</th>
+            <th class="th-sm">Dodatkowe informacje</th>
         </tr>
-    </thead>';
+    </thead><tbody> ';
     while ($row = mysqli_fetch_row($result)){
         if($row[6]=="oczekujacy"){
-            echo '<tr class="awaiting">';
+            echo '<tr>';
         }
         if($row[6]=="zaakceptowany"){
-            echo '<tr class="accept">';
+            echo '<tr style="background-color:green;">';
         }
         if($row[6]=="odrzucony"){
-            echo '<tr class="decline">';
+            echo '<tr style="background-color:red;">';
         }
         echo '<td  class="adress">'.$row[0].'</td>
         <td  class="adress">'.$row[1].'</td>
@@ -53,7 +54,19 @@ if(isset($_SESSION['uID']))
         </tr>
         ';       
     }
-    echo '</table>
+    echo '
+    </tbody>
+  <tfoot>
+  <th>Miejsce odbioru</th>
+            <th>Miejsce zwrotu</th>
+            <th>Samochód</th>
+            <th>Data odbioru</th>
+            <th>Data zwrotu</th>
+            <th>Data złożenia</th>
+            <th>Status</th>
+            <th>Dodatkowe informacje</th>
+    </tfoot>
+    </table></div>
     ';
     }
     else {

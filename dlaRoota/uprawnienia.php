@@ -1,3 +1,6 @@
+
+
+
 <?php
 require 'zarzadzaniekontem.php';
 if(isset($_POST['permiss-submit'])){
@@ -41,17 +44,19 @@ if(isset($_SESSION['uID']) && $_SESSION['isRoot']==1){
     mysqli_fetch_all($users,MYSQLI_ASSOC);
     echo '
     <form method="POST" action="index.php?action=uprawnienia">
-    <table class="table">
-    <thead>
+    <div class="tableContainer">
+    <table id="dtOrderExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+      <thead>
         <tr>
-            <th>
-            Root
-            </th>
-            <th>Nazwa użytkownika</th>
-            <th>Imię</th>
-            <th>Nazwisko</th>
+          <th class="th-sm">Root
+          </th>
+          <th class="th-sm">Nazwa użytkownika
+          </th>
+          <th class="th-sm">Imię
+          </th>
+          <th class="th-sm">Nazwisko
         </tr>
-    </thead> ';
+      </thead><tbody>';
     foreach ($users as $row) {
         $id=$row['userID'];
         $username=$row['uidUsers'];
@@ -59,7 +64,6 @@ if(isset($_SESSION['uID']) && $_SESSION['isRoot']==1){
         $nazwisko=$row['nazwisko'];
         $isRoot=$row['isRoot'];
         echo '
-        <tbody>
         <tr>';
         if($row['userID']!=$_SESSION['uID'] && $row['uidUsers']!='root')
         {
@@ -72,9 +76,22 @@ if(isset($_SESSION['uID']) && $_SESSION['isRoot']==1){
             <td>'.$imie.'</td>
             <td>'.$nazwisko.'</td>
         </tr>
-        </tbody>';
+        ';
     }    
-echo '</table>
+echo '
+</tbody>
+<tfoot>
+<tr>
+          <th>Root
+          </th>
+          <th>Nazwa użytkownika
+          </th>
+          <th>Imię
+          </th>
+          <th>Nazwisko
+        </tr>
+        </tfoot>
+</table></div>
 </br><center><input type="submit" VALUE="Zatwierdź" NAME="permiss-submit"></center>
 </form>';
 } else header('Location: index.php?action=home');

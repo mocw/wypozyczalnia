@@ -4,21 +4,22 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
     require 'includes/employeepanel.php';
     require 'includes/dbh.inc.php';
     echo '
-    <table class="table">
-    <thead>
-        <tr>
-            <th>Miejscowość</th>
-            <th>Ulica</th>
-            <th>Numer VIN</th>
-            <th>Marka</th>
-            <th>Model</th>
-            <th>Rok Produkcji</th>
-            <th>Pojemność silnika</th>
-            <th>Cena za dobę</th>
-            <th>Status</th>
-            <th>Usuń</th>
+    <div class="tableContainer">
+        <table id="dtOrderExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+          <thead>
+          <tr>
+            <th class="th-sm">Miejscowość</th>
+            <th class="th-sm">Ulica</th>
+            <th class="th-sm">Numer VIN</th>
+            <th class="th-sm">Marka</th>
+            <th class="th-sm">Model</th>
+            <th class="th-sm">Rok Produkcji</th>
+            <th class="th-sm">Pojemność silnika</th>
+            <th class="th-sm">Cena za dobę</th>
+            <th class="th-sm">Status</th>
+            <th class="th-sm">Usuń</th>
         </tr>
-    </thead>';
+    </thead><tbody>';
     $sql="SELECT miejscowosc,CONCAT(ulica, ' ',nr_posesji),vin,marka,model,rok_produkcji,poj_silnika,cena,czyDostepny,
     CASE 
     WHEN czyDostepny=0 THEN 'wypożyczony'
@@ -34,7 +35,7 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
     $l=0;
     while ($row = mysqli_fetch_row($result)) {
         if($row[9]=="wypożyczony"){
-            echo '<tr class="decline">';
+            echo '<tr style="background-color:red;">';
         }
         else echo '<tr>';
         echo '
@@ -51,7 +52,23 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
         </tr>
         ';
     }
-    echo '</table>
+    echo '
+    </tbody>
+    <tfoot>
+    <tr>
+    <th>Miejscowość</th>
+    <th>Ulica</th>
+    <th>Numer VIN</th>
+    <th>Marka</th>
+    <th>Model</th>
+    <th>Rok Produkcji</th>
+    <th>Pojemność silnika</th>
+    <th>Cena za dobę</th>
+    <th>Status</th>
+    <th>Usuń</th>
+</tr>
+    </tfoot>
+    </table></div>
     ';
 } else header('Location: index.php?action=home'); 
 ?>

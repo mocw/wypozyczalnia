@@ -18,19 +18,20 @@ function wczytajTabele(){
     if($row_cnt>0){
         echo '
         <form method="POST" action="index.php?action=wnioskiDlaObslugi">
-    <table class="table">
-    <thead>
-        <tr>
-            <th>Nazwa użytkownika</th>
-            <th>Miejsce odbioru</th>
-            <th>Miejsce zwrotu</th>
-            <th>Samochód</th>
-            <th>Data odbioru</th>
-            <th>Data zwrotu</th>
-            <th>Data złożenia</th>
-            <th></th>
+        <div class="tableContainer">
+        <table id="dtOrderExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+          <thead>
+          <tr>
+            <th class="th-sm">Nazwa użytkownika</th>
+            <th class="th-sm">Miejsce odbioru</th>
+            <th class="th-sm">Miejsce zwrotu</th>
+            <th class="th-sm">Samochód</th>
+            <th class="th-sm">Data odbioru</th>
+            <th class="th-sm">Data zwrotu</th>
+            <th class="th-sm">Data złożenia</th>
+            <th class="th-sm"></th>
         </tr>
-    </thead>';
+    </thead><tbody>';
     while ($row = mysqli_fetch_row($result)){
         echo '<tr>
         <form method="POST" action="index.php?action=wnioskiDlaObslugi">
@@ -52,7 +53,21 @@ function wczytajTabele(){
         </tr>
         ';       
     }
-    echo '</table></form>
+    echo '
+    </tbody>
+    <tfoot>
+    <tr>
+    <th>Nazwa użytkownika</th>
+    <th>Miejsce odbioru</th>
+    <th>Miejsce zwrotu</th>
+    <th>Samochód</th>
+    <th>Data odbioru</th>
+    <th>Data zwrotu</th>
+    <th>Data złożenia</th>
+    <th></th>
+</tr>
+</tfoot>
+    </table></form></div>
     ';
     }
     else {

@@ -16,22 +16,22 @@ function loadTable(){
     $users=mysqli_stmt_get_result($stmt);
     mysqli_fetch_all($users,MYSQLI_ASSOC);
     echo '
-    <div id="toClose">
     <center><p>Z listy użytkowników wybierz tych, których chcesz dodać</p></center>
     <form method="POST" action="index.php?action=dodajPracownika">
-    <table class="table">
+    <div class="tableContainer">
+    <table id="dtOrderExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
     <thead>
         <tr>
-            <th>
+            <th class="th-sm">
             Dodaj
             </th>
-            <th>Imię</th>
-            <th>Nazwisko</th>
-            <th>Pesel</th>
-            <th>Data urodzenia</th>
-            <th>Numer telefonu</th>
+            <th class="th-sm">Imię</th>
+            <th class="th-sm">Nazwisko</th>
+            <th class="th-sm">Pesel</th>
+            <th class="th-sm">Data urodzenia</th>
+            <th class="th-sm">Numer telefonu</th>
         </tr>
-    </thead> ';
+    </thead><tbody>';
     foreach ($users as $row) {
         $id=$row['userID'];
         $username=$row['uidUsers'];
@@ -43,13 +43,14 @@ function loadTable(){
         $id_pracownika=$row['id_pracownika'];
         $data_zatr=$row['data_zatr'];
         $stanowisko=$row['stanowisko'];
+
+
         echo '
-        <tbody>
         <tr>';
         if($row['userID']!=$_SESSION['uID'])
         {
             if($id_pracownika!=NULL) {
-                echo '<td><input type="checkbox" name="'.$id.'" value="'.$id.'" checked></td>';
+                echo '<td><input type="checkbox" name="'.$id.'" value="'.$id.'"></td>';
             } else echo '<td><input type="checkbox" name="'.$id.'" value="'.$id.'"></td>';
         } else echo '<td></td>';     
             echo'
@@ -59,11 +60,25 @@ function loadTable(){
             <td><input type="text" class="pracownik" name="'.$data_ur.'" disabled value="'.$data_ur.'"></td>
             <td>'.$nr_tel.'</td>
         </tr>
-        </tbody>';
+        ';
     }    
-echo '</table>
+echo '</tbody>
+<tfoot>
+<tr>
+<th>
+            Dodaj
+            </th>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Pesel</th>
+            <th>Data urodzenia</th>
+            <th>Numer telefonu</th>
+        </tr>
+        </tfoot>
+        </table>
+</div>
 </br><center><input type="submit" VALUE="Zatwierdź" NAME="customer-submit"></center>
-</form></div>';
+</form>';
 }
 
 if(isset($_SESSION['uID']) && $_SESSION['isRoot']==1) {
@@ -123,6 +138,7 @@ if(isset($_POST['customer-submit'])||isset($fillError)){
     $cnt=0;
     foreach($_POST as $key => $name){
         if($key=='customer-submit') break;
+        if($key=='dtOrderExample_length') continue;
         $cnt++;
     }
 
@@ -135,19 +151,21 @@ if(isset($_POST['customer-submit'])||isset($fillError)){
         echo '
         <center><p>Uzypełnij dane</p></center>
         <form id="dodajPrac" method="POST" action="index.php?action=dodajPracownika">
-        <table class="table">
-        <thead>
-        <tr>
-            <th>Nazwa użytkownika</th>
-            <th>Imię</th>
-            <th>Nazwisko</th>
-            <th>Data urodzenia</th>    
-            <th>Data zatrudnienia</th>
-            <th>Stanowisko</th>        
+        <div class="tableContainer">
+        <table id="dtOrderExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+          <thead>
+          <tr>
+            <th class="th-sm">Nazwa użytkownika</th>
+            <th class="th-sm">Imię</th>
+            <th class="th-sm">Nazwisko</th>
+            <th class="th-sm">Data urodzenia</th>    
+            <th class="th-sm">Data zatrudnienia</th>
+            <th class="th-sm">Stanowisko</th>        
         </tr>
-    </thead>';
+    </thead><tbody>';
         foreach($_POST as $key => $name){
         if($key=='customer-submit') break;
+        if($key=='dtOrderExample_length') continue;
         $sql="SELECT uidUsers,imie,nazwisko,data_ur FROM users WHERE userID=?";
         $stmt=mysqli_stmt_init($conn);
         mysqli_stmt_prepare($stmt,$sql);
@@ -159,7 +177,7 @@ if(isset($_POST['customer-submit'])||isset($fillError)){
         $imie=$row[1];
         $nazwisko=$row[2];
         $data_ur=$row[3];
-        echo '<tbody></tr>
+        echo '</tr>
         <td><input type="text" class="pracownik" name="names[]" value="'.$nick.'" readonly></td>
         <td>'.$imie.'</td>
         <td>'.$nazwisko.'</td>
@@ -181,11 +199,20 @@ if(isset($_POST['customer-submit'])||isset($fillError)){
         echo'    
         </select>
         </td>
-        </tr>
-        </tbody>';
+        </tr>';
     }
     echo'
-    </table>
+    </tbody>
+    <tfoot>
+    <tr>
+    <th>Nazwa użytkownika</th>
+    <th>Imię</th>
+    <th>Nazwisko</th>
+    <th>Data urodzenia</th>    
+    <th>Data zatrudnienia</th>
+    <th>Stanowisko</th>        
+</tr></tfoot>
+    </table></div>
     </br><center><input type="submit" VALUE="Zatwierdź" NAME="customer-submit-data"></center>
     </form>';
 }

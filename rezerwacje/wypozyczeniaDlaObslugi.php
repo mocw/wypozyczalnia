@@ -18,19 +18,20 @@ function wczytajTabele(){
      if($row_cnt>0){
     echo '
     <form method="POST" action="index.php?action=wypozyczeniaDlaObslugi">
-    <table class="table">
-    <thead>
-        <tr>
-            <th>Użytkownik</th>
-            <th>Samochód</th>
-            <th>VIN</th>
-            <th>Miejsce odbioru</th>
-            <th>Miejsce zwrotu</th>
-            <th>Data odbioru</th>
-            <th>Data zwrotu</th>
-            <th>Przyjmij zwrot</th>
+    <div class="tableContainer">
+        <table id="dtOrderExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+          <thead>
+          <tr>
+            <th class="th-sm">Użytkownik</th>
+            <th class="th-sm">Samochód</th>
+            <th class="th-sm">VIN</th>
+            <th class="th-sm">Miejsce odbioru</th>
+            <th class="th-sm">Miejsce zwrotu</th>
+            <th class="th-sm">Data odbioru</th>
+            <th class="th-sm">Data zwrotu</th>
+            <th class="th-sm">Przyjmij zwrot</th>
         </tr>
-    </thead>';
+    </thead><tbody> ';
 
     while ($row = mysqli_fetch_row($result)){
         echo' <tr>
@@ -52,7 +53,21 @@ function wczytajTabele(){
             </td>
         ';
     }
-    echo '</table></form>';
+    echo '
+    </tbody>
+  <tfoot>
+  <tr>
+  <th>Użytkownik</th>
+  <th>Samochód</th>
+  <th>VIN</th>
+  <th>Miejsce odbioru</th>
+  <th>Miejsce zwrotu</th>
+  <th>Data odbioru</th>
+  <th>Data zwrotu</th>
+  <th>Przyjmij zwrot</th>
+</tr>
+  </tfoot>
+    </table></div></form>';
     } else {
         $sql="UPDATE samochody 
         SET czyDostepny=1";

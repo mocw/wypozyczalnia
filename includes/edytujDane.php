@@ -87,7 +87,7 @@ if(isset($_POST['editData-submit'])) {
 echo '
 <div id="toClose">
 <div class="container">  
-<form id="contact"  class="exceptModal" method="POST" action="index.php?action=editData" accept-charset="character_set">
+<form id="contact"  class="exceptModal" method="POST" action="index.php?action=editData" accept-charset="UTF-8">
 <center><b>Podaj hasło</b></center></br>
 <fieldset>
       <input placeholder="Hasło" name="password" type="password" tabindex="1" required autofocus>
