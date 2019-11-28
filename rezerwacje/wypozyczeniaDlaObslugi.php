@@ -48,7 +48,7 @@ function wczytajTabele(){
             <td>'.$row[6].'</td>
             <td>
             <input type="hidden" name="vin" value="'.$row[2].'">
-            <center><button class="wniosek" name="przyjmij" value="'.$row[7].'" type="submit">
+            <center><button id="przyjmij" class="wniosek" name="przyjmij" value="'.$row[7].'" type="submit">
             <img src="images/positive_tick.gif" width="30px" height="25px"></img></button></center>
             </td>
         ';
@@ -168,3 +168,4 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
 
 } else header('Location: index.php?action=home'); 
 ?>
+<script type="text/javascript" src="scripts/await.js"></script>
