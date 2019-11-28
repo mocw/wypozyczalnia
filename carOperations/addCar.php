@@ -55,7 +55,7 @@ if(isset($success)) echo '<div class="disappear"><div class="alert alert-success
       <input placeholder="Rok produkcji" name="rok_produkcji" name type="number" tabindex="3" required>
     </fieldset>
     <fieldset>
-      <input placeholder="Pojemność silnika" name="poj_silnika" type="number" tabindex="4" required>
+      <input placeholder="Pojemność silnika" name="poj_silnika" type="number" step="0.1" tabindex="4" required>
     </fieldset>
     <fieldset>
       <input placeholder="Cena za dobę" name="cena" type="number" step="0.01" tabindex="5" required>

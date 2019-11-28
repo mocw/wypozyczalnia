@@ -29,9 +29,8 @@ function showCars($page){
     $poj_silnika=$row["poj_silnika"];
     $rok_produkcji=$row["rok_produkcji"];
     $img=$row["zdjecie"];
-    $toBox=$marka."&#xa;".$model."&#xa;"."Silnik:".$poj_silnika."&#xa;"."$rok_produkcji";
-    $imgContent=base64_encode(base64_decode($img));
-  
+    $toBox=$marka."&#xa;".$model."&#xa;".$poj_silnika."&#xa;"."$rok_produkcji";
+    $imgContent=base64_encode(base64_decode($img));  
     echo'
     <li class="list-item">
       <div class="list-content">

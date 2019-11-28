@@ -48,7 +48,7 @@ session_start();
     <?php 
     if(isset($_SESSION['uID'])){
       echo '
-      <center></br></br><b>'.$_SESSION['imie'].' '.$_SESSION['nazwisko'].'</center></b>
+      <center></br><b>'.$_SESSION['imie'].' '.$_SESSION['nazwisko'].'</center></b>
       ';
     if($_SESSION['id_klienta']!=NULL && $_SESSION['id_pracownika']==NULL) echo 'Klient</br>';
     if($_SESSION['isRoot']==1) echo '<b>Administrator</b></br>';
@@ -73,11 +73,7 @@ session_start();
         echo '<li><a class="logout" href="index.php?action=logout">Wyloguj się</a></li>';
         echo '<li><a href="index.php?action=accountmgm">Zarządzaj kontem</a></li>';
         }
-        if(isset($_SESSION['uID'])){
-           if($site=='oferta' || $site=='carreserv') echo '<b><li><a href="index.php?action=oferta">Oferta</a></li></b>';
-            else echo '<li><a href="index.php?action=oferta">Oferta</a></li>';
-        } 
-        else echo '<li><a href="index.php?action=oferta">Oferta</a></li>';
+        echo '<li><a href="index.php?action=oferta">Oferta</a></li>';
         ?>
         <li><a href="index.php?action=kontakt">Kontakt</a></li>
         <li><a href="index.php?action=filie">Filie</a></li>
