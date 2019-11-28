@@ -37,6 +37,7 @@ button.wniosek2{
   input[type="search"] {
     position: relative;
     float: right;
+    background-color:khaki;
     left: 10%;
     bottom: 5px;
 }
