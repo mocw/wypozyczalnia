@@ -11,7 +11,7 @@ letter-spacing: -1px;
 -moz-box-shadow: 0 0 2px #888;; 
 box-shadow: 0 0 2px #888;;
 }
-form {
+form.login {
 margin: 15px;
 }
 

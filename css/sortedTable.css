@@ -14,12 +14,9 @@ bottom: .5em;
 
 div.tableContainer{
 width: 100%;
-position: relative;
-float: left;
 }
 
 button.wniosek2{
-    padding: 5;
     border: none;
     background: none;
     cursor: pointer;
@@ -29,7 +26,6 @@ button.wniosek2{
   button.wniosek{
     border: none;
     background: none;
-    display: inline;
   }
 
 
@@ -38,3 +34,9 @@ button.wniosek2{
   }
 
 
+  input[type="search"] {
+    position: relative;
+    float: right;
+    left: 10%;
+    bottom: 5px;
+}

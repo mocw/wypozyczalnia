@@ -1,6 +1,6 @@
 ﻿<?php
 if(!isset($_SESSION['uID'])) echo
-'<center><form method="POST" action="index.php?action=login" id="logowanie">
+'<center><form method="POST" class="login" action="index.php?action=login" id="logowanie">
 <label for="username">Nazwa użytkownika:</label>
 <input type="text" id="username" name="username" required autofocus>
 <label for="password">Hasło:</label>
