@@ -41,3 +41,11 @@ button.wniosek2{
     left: 10%;
     bottom: 5px;
 }
+
+div.tableContainer label{
+font-size: 16px;
+position: relative;
+float: right;
+text-align: center;
+display: block;
+}
