@@ -33,9 +33,11 @@ function wczytajTabele(){
         </tr>
     </thead><tbody> ';
 
+    $l=0;
     while ($row = mysqli_fetch_row($result)){
+        $l++;
         echo' <tr>
-            <form method="POST" action="index.php?action=wypozyczeniaDlaObslugi">
+            <form id="wypozyczenia" method="POST" action="index.php?action=wypozyczeniaDlaObslugi">
              <td  class="adress">
              <input type="hidden" name="userID" value="'.$row[8].'">
             <button type="submit" class="wniosek2" name="showProfile">'.$row[0].'</button>
@@ -45,10 +47,10 @@ function wczytajTabele(){
             <td>'.$row[3].'</td>
             <td>'.$row[4].'</td>
             <td>'.$row[5].'</td>
-            <td>'.$row[6].'</td>
+            <td>'.$row[6].'
+            </td>
             <td>
-            <input type="hidden" name="vin" value="'.$row[2].'">
-            <center><button id="przyjmij" class="wniosek" name="przyjmij" value="'.$row[7].'" type="submit">
+            <center><button id="przyjmij'.$l.'" class="wniosek" name="przyjmij" value="'.$row[7].'" type="submit" disabled>
             <img src="images/positive_tick.gif" width="30px" height="25px"></img></button></center>
             </td>
         ';
@@ -80,13 +82,27 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
     require 'includes/employeepanel.php';
     require 'includes/dbh.inc.php';
     if(isset($_POST['przyjmij'])){
-        $sql="UPDATE samochody SET czyDostepny=1
-        WHERE vin='$_POST[vin]'";
-        mysqli_query($conn,$sql);
+        // echo $_POST['przyjmij'];
+        // $today=date("Y-m-d");
+        // echo "Today is " . $today;
+        // echo '<br>';
+        // echo '</br>';
+        $sql="SELECT vin
+        FROM wypozyczenia w
+        JOIN samochody s ON w.id_egzemplarza=s.id
+        WHERE w.id='$_POST[przyjmij]'";
+        $result = mysqli_query($conn, $sql);
+        $row= mysqli_fetch_row($result);
+        $vin=$row[0];
+        //  if($_POST['data_zwrotu']==$today) echo 'Yes!';
+        //  else echo 'No!'; //WORK HERE!!!
+          $sql="UPDATE samochody SET czyDostepny=1
+          WHERE vin='$vin'";
+          mysqli_query($conn,$sql);
 
-        $sql="DELETE FROM wypozyczenia WHERE id='$_POST[przyjmij]'";
-        mysqli_query($conn,$sql);
-        echo '<div class="disappear"><div class="alert alert-success" role="alert">Sukces!</div></div>';
+          $sql="DELETE FROM wypozyczenia WHERE id='$_POST[przyjmij]'";
+          mysqli_query($conn,$sql);
+          echo '<div class="disappear"><div class="alert alert-success" role="alert">Sukces!</div></div>';
     }
     if(isset($_POST['showProfile'])){
         $id = $_POST["userID"];
