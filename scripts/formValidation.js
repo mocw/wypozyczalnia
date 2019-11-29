@@ -104,8 +104,13 @@ function validateFormReservation(){
     var dataZwrotu = new Date(inputdataZwrotu);
     var today = new Date();
 
-    if(dataOdbioru<today || dataZwrotu<today){
-        isCorrect=false;
+    if(dataOdbioru<=today || dataZwrotu<=today){
+        if(dataOdbioru.getDate()===today.getDate()){
+            //empty 
+        }
+        else {
+            isCorrect=false;
+        }
     }
 
     if(dataOdbioru.getTime()===dataZwrotu.getTime()){
