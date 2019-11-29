@@ -1,4 +1,4 @@
-function validateForm() {
+function validateForm() { //REJESTRACJA
     document.getElementById("komunikat").innerHTML = "";
     document.getElementById("nr_tel").style.outline="none";
     document.getElementById("pesel").style.outline="none";
@@ -90,3 +90,42 @@ function calculateYears(dateold, datenew){
     return diff;
 }
 
+
+function validateFormReservation(){
+    document.getElementById("komunikat").innerHTML = "";
+    var isCorrect=true;
+
+    document.getElementById("dataOdbioru").style.outline="none";
+    document.getElementById("dataZwrotu").style.outline="none";
+
+    var inputdataOdbioru = document.forms["rezerwacja"]["dataOdbioru"].value;
+    var inputdataZwrotu = document.forms["rezerwacja"]["dataZwrotu"].value;
+    var dataOdbioru = new Date(inputdataOdbioru);
+    var dataZwrotu = new Date(inputdataZwrotu);
+    var today = new Date();
+
+    if(dataOdbioru<today || dataZwrotu<today){
+        isCorrect=false;
+    }
+
+    if(dataOdbioru.getTime()===dataZwrotu.getTime()){
+        document.getElementById("komunikat").innerHTML += "<div class=\"oaerror warning\">Pojazd może być wypożyczony na co najmniej jeden dzień!</div>";
+        return false;
+    }
+
+    if(dataZwrotu<dataOdbioru){
+        isCorrect=false;
+    }
+
+    if(!isCorrect){
+       displayReservError();
+       return false;
+    } 
+    else return true;
+}
+
+function displayReservError(){
+    document.getElementById("komunikat").innerHTML += "<div class=\"error-notice\"><div class=\"oaerror danger\"><strong>Błąd!</strong> Wybierz prawidłową datę odbioru i zwrotu!</div></div>";
+    document.getElementById("dataOdbioru").style.outline="2px solid red";
+    document.getElementById("dataZwrotu").style.outline="2px solid red";
+}
