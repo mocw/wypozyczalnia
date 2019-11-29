@@ -5,7 +5,7 @@ if(!isset($_SESSION['uID'])){
 <form class="form-signin" method="POST" action="index.php?action=login" id="logowanie">       
 <h2 class="form-signin-heading">Zaloguj się</h2>
 <input type="text" class="form-control" name="username" placeholder="Nazwa użytkownika" required="" autofocus="" />
-<input type="password" class="form-control" name="password" placeholder="Hasło" required=""/>      
+</br><input type="password" class="form-control" name="password" placeholder="Hasło" required=""/>      
 <div id="lower">
 <center></br><p><a href="index.php?action=forgottenpassword">Zapomniałeś hasła?</a></p>
 <p>Nie masz konta? <a href="index.php?action=rejestracja">Zarejestruj się!</a></p></center>

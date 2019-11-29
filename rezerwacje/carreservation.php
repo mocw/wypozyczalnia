@@ -45,28 +45,26 @@ function pokazInfoSamochod($id,$page,$niezalogowany){
   <div class="item">
 
     <p class="car"></p><p size="20px"><b>Wyposażenie:</b></p>
-    <div class="stock">';
+    <div class="stock">
+    <table class="carReserv">';
     foreach ($result as $row){
         $img=$row['ikona'];
         $imgContent=base64_encode($img);
         echo'
-        <table class="carReserv">
         <tr>
         <td><img class="icon" src="data:image/png;base64,'.$imgContent.'"/></td>
         <td>'.$row['nazwa'].'</td>
-        </tr>
-        </table>
+        </tr>      
         ';
     }
-
-    echo '</div></div><br>
+    echo '<tr><td></br></td></tr></table></div></div><br>
     <div>
       
 
     <form method="POST" action="index.php?action=carreserv">
     <input type="hidden" name="carID" value="'.$id.'">
     <input type="hidden" name="page" value='.$page.'>
-    <div><button id="cart" name="wniosek" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">ZAREZERWUJ</button></div>
+    <div></br><button id="cart" name="wniosek" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">ZAREZERWUJ</button></div>
     </form>
 </div></center>                
                 '; 
