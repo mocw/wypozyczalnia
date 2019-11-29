@@ -93,10 +93,10 @@ require 'includes/dbh.inc.php';
            echo '<td><input type="checkbox" name="'.$id.'" value="'.$id.'"></td>';
         } else echo '<td></td>';     
             echo'
-            <td><input type="text" class="pracownik" name="'.$imie.'" disabled value="'.$imie.'"></td>
-            <td><input type="text" class="pracownik" name="'.$nazwisko.'" disabled value="'.$nazwisko.'"></td>
+            <td><input type="hidden" class="pracownik" name="'.$imie.'" disabled value="'.$imie.'">'.$imie.'</td>
+            <td><input type="hidden" class="pracownik" name="'.$nazwisko.'" disabled value="'.$nazwisko.'">'.$nazwisko.'</td>
             <td>'.$pesel.'</td>
-            <td><input type="text" class="pracownik" name="'.$data_ur.'" disabled value="'.$data_ur.'"></td>
+            <td><input type="hidden" class="pracownik" name="'.$data_ur.'" disabled value="'.$data_ur.'">'.$data_ur.'</td>
             <td>'.$nr_tel.'</td>
             <td>'.$data_zatr.'</td>
             <td>'.$stanowisko.'</td>
