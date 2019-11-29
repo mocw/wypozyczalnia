@@ -1,8 +1,9 @@
 ﻿<?php
 if(!isset($_SESSION['uID'])) 
 echo '
+<div id="komunikat"></div>
 <div class="container">  
-<form id="contact"  class="exceptModal" method="POST" action="index.php?action=register" accept-charset="UTF-8">
+<form id="contact" name="register" class="exceptModal" method="POST" action="index.php?action=register" onsubmit="return validateForm()" accept-charset="UTF-8">
 <fieldset>
       <input placeholder="Nazwa użytkownika*" name="username" type="text" tabindex="1" required autofocus>
 </fieldset>
@@ -22,10 +23,10 @@ echo '
       <input placeholder="Nazwisko*" name="nazwisko" type="text" tabindex="1" required autofocus>
 </fieldset>
 <fieldset>
-      <input placeholder="Pesel" name="pesel" type="text" tabindex="1">
+      <input placeholder="Pesel" name="pesel" type="text" id="pesel" tabindex="1">
 </fieldset>
 <fieldset>
-      <input placeholder="Numer telefonu*" name="nr_tel" type="text" tabindex="1" required autofocus>
+      <input placeholder="Numer telefonu*" name="nr_tel" id="nr_tel" type="text" tabindex="1" required autofocus>
 </fieldset>
 <fieldset>
       <input placeholder="Data urodzenia*" name="data_ur" type="date" tabindex="1" required autofocus>
@@ -39,7 +40,7 @@ echo '
 ';
 else  header('Location: index.php?action=home');
 ?>
-
+<script type="text/javascript" src="scripts/formValidation.js"></script>
 
 
 
