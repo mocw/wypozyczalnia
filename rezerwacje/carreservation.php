@@ -153,18 +153,22 @@ echo '
 <form action="index.php?action=carreserv" method="post">
 <input type="hidden" name="page" value="'.$page.'">
 <input type="hidden" name="carID" value="'.$carID.'">
+<div id="komunikat"></div>
 </form>
     <div class="container"><form id="contact" name="rezerwacja" onsubmit="return validateFormReservation()" action="index.php?action=carreserv" method="post" enctype="multipart/form-data">
 <center><p>Miejsce odbioru</center></p>    
 <fieldset>
-      <select class="egzemplarze" name="siedzibaOdbior" required autofocus>';
+      <select class="egzemplarze" id="egzemplarze" name="siedzibaOdbior" required autofocus>';
       while ($row = mysqli_fetch_row($result)) {
         $saEgzemplarze=1;
         echo '
         <option value="'.$row[0].'">'.$row[3].'</option>';
       }
       if(!isset($saEgzemplarze)){
-       echo '<option>Brak egemplarzy w tej chwili!</option>';
+       echo '<script>
+       document.getElementById("egzemplarze").disabled = true;
+       document.getElementById("komunikat").innerHTML += "<div class=\"oaerror warning\">Rezerwacja tego pojazdu tymczasowo niedostępna!</div>";
+       </script>';
       }      
     echo '</select>
     </fieldset>';
