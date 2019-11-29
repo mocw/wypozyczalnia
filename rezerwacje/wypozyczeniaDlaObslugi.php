@@ -82,27 +82,63 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
     require 'includes/employeepanel.php';
     require 'includes/dbh.inc.php';
     if(isset($_POST['przyjmij'])){
-        // echo $_POST['przyjmij'];
-        // $today=date("Y-m-d");
-        // echo "Today is " . $today;
-        // echo '<br>';
-        // echo '</br>';
-        $sql="SELECT vin
-        FROM wypozyczenia w
-        JOIN samochody s ON w.id_egzemplarza=s.id
-        WHERE w.id='$_POST[przyjmij]'";
+        $wID=$_POST['przyjmij'];
+         $today=date("Y-m-d");
+        $sql="SELECT w.data_zwrotu 
+        FROM wypozyczenia wp
+        JOIN wnioski w ON wp.id_wniosku=w.id
+        WHERE wp.id='$wID'";
         $result = mysqli_query($conn, $sql);
         $row= mysqli_fetch_row($result);
-        $vin=$row[0];
-        //  if($_POST['data_zwrotu']==$today) echo 'Yes!';
-        //  else echo 'No!'; //WORK HERE!!!
-          $sql="UPDATE samochody SET czyDostepny=1
-          WHERE vin='$vin'";
-          mysqli_query($conn,$sql);
+        $data_zw=$row[0];
 
-          $sql="DELETE FROM wypozyczenia WHERE id='$_POST[przyjmij]'";
-          mysqli_query($conn,$sql);
-          echo '<div class="disappear"><div class="alert alert-success" role="alert">Sukces!</div></div>';
+         if($data_zw!=$today){  //MODAL YES NO
+            echo '<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                     <center>UWAGA</center>
+                    </div>
+                    <div class="modal-body">
+                     Termin zwrotu jeszcze nie minął. Czy chcesz przyjąć zwrot?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+                        <form method="POST" action="index.php?action=wypozyczeniaDlaObslugi">
+                        <input type="hidden" name="idWniosku" value='.$wID.'>                        
+                        <button class="btn btn-success btn-ok" type="submit" name="potwierdz-zwrot">Potwierdź</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+          ';
+          
+
+            echo '<script>
+        $(\'#confirm-delete\').modal({
+          show: true
+      }); 
+        </script>
+        '; 
+         }
+          else {
+         $sql="SELECT vin
+         FROM wypozyczenia w
+         JOIN samochody s ON w.id_egzemplarza=s.id
+         WHERE w.id='$_POST[przyjmij]'";
+         $result = mysqli_query($conn, $sql);
+         $row= mysqli_fetch_row($result);
+         $vin=$row[0];          
+           $sql="UPDATE samochody SET czyDostepny=1
+           WHERE vin='$vin'";
+           mysqli_query($conn,$sql);
+
+           $sql="DELETE FROM wypozyczenia WHERE id='$_POST[przyjmij]'";
+           mysqli_query($conn,$sql);
+           echo '<div class="disappear"><div class="alert alert-success" role="alert">Sukces!</div></div>';
+          }
+        echo '<script type="text/javascript" src="scripts/modalConfirm.js"></script>';
     }
     if(isset($_POST['showProfile'])){
         $id = $_POST["userID"];
@@ -179,6 +215,23 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
       }); 
         </script>
         '; 
+    }
+
+    if(isset($_POST['potwierdz-zwrot'])){
+            $sql="SELECT vin
+            FROM wypozyczenia w
+            JOIN samochody s ON w.id_egzemplarza=s.id
+            WHERE w.id='$_POST[idWniosku]'";
+            $result = mysqli_query($conn, $sql);
+            $row= mysqli_fetch_row($result);
+            $vin=$row[0];          
+              $sql="UPDATE samochody SET czyDostepny=1
+              WHERE vin='$vin'";
+              mysqli_query($conn,$sql);
+   
+              $sql="DELETE FROM wypozyczenia WHERE id='$_POST[idWniosku]'";
+              mysqli_query($conn,$sql);
+              echo '<div class="disappear"><div class="alert alert-success" role="alert">Sukces!</div></div>';
     }
     wczytajTabele();
 
