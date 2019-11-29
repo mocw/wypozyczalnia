@@ -38,7 +38,7 @@ button.wniosek2{
   input[type="search"] {
     position: relative;
     float: right;
-    background-color:#2F4F4F;
+    background-color:lightslategrey;
     left: 10%;
     bottom: 5px;
 }
@@ -46,7 +46,7 @@ button.wniosek2{
 input[type="search"]:focus{
 
   outline: 2px solid #2F4F4F;
-  background-color: grey;
+  background-color: lightgray;
 }
 
 div.tableContainer label{

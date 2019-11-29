@@ -191,6 +191,13 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
 
     if(isset($_POST['przydzial-submit'])){
         require 'includes/dbh.inc.php';
+        $sql="SELECT czyDostepny
+        FROM samochody
+        WHERE id='$_POST[idEgzemplarza]' AND czyDostepny=0";
+        $result=mysqli_query($conn,$sql);
+        if(mysqli_num_rows($result)!=0){
+          echo '<div class="alert alert-danger" role="alert">Samochód już został wypożyczony!</div>';
+        } else {
         $sql="INSERT INTO wypozyczenia(id_wniosku,id_egzemplarza) VALUES('$_POST[idWniosku]',
         '$_POST[idEgzemplarza]')";
         mysqli_query($conn,$sql);
@@ -205,6 +212,7 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
         mysqli_stmt_execute($stmt);
         mysqli_stmt_store_result($stmt); 
         echo '<div class="disappear"><div class="alert alert-success" role="alert">Wniosek zaakceptowany!</div></div>';
+        }        
     }
     if(isset($_POST['accept'])){
         $id=$_POST['accept'];

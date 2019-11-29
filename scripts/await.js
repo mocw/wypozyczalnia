@@ -9,5 +9,5 @@ console.log("rows:",rows);
       for(i=1;i<=rows;i++){
         document.getElementById('przyjmij'+i).disabled = false;
       }
-    }, 3000);
+    }, 2000);
 
