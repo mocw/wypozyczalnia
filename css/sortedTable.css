@@ -27,6 +27,7 @@ button.wniosek2{
   button.wniosek{
     border: none;
     background: none;
+    outline: none;
   }
 
 
