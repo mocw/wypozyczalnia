@@ -23,7 +23,7 @@ function validateForm() { //REJESTRACJA
   var password = document.forms["register"]["password"].value;
   var password_rpt = document.forms["register"]["password_rpt"].value;
    if(password!=password_rpt){
-       document.getElementById("komunikat").innerHTML += "<div class=\"alert alert-danger\" role=\"alert\">Hasła nie są zgodne!</div>";
+       document.getElementById("komunikat").innerHTML += "<div class=\"error-notice\"><div class=\"oaerror danger\">Hasła nie są zgodne!</div></div>";
        document.getElementById("password").style.backgroundColor="rgba(248, 215, 218, 1)";
        document.getElementById("password").style.outline="2px solid red";
        document.getElementById("password_rpt").style.backgroundColor="rgba(248, 215, 218, 1)";
@@ -33,7 +33,7 @@ function validateForm() { //REJESTRACJA
 
    var pesel = document.forms["register"]["pesel"].value;
    if(!isValidPesel(pesel)){
-       document.getElementById("komunikat").innerHTML += "<div class=\"alert alert-danger\" role=\"alert\">Nieprawidłowy PESEL!</div>";
+       document.getElementById("komunikat").innerHTML += "<div class=\"error-notice\"><div class=\"oaerror danger\">Nieprawidłowy PESEL!</div></div></div>";
        document.getElementById("pesel").style.backgroundColor="rgba(248, 215, 218, 1)";
        document.getElementById("pesel").style.outline="2px solid red";
        isCorrect=false;
@@ -41,21 +41,26 @@ function validateForm() { //REJESTRACJA
 
    var nr_tel = document.forms["register"]["nr_tel"].value;
     if(nr_tel.length!=9 || isNaN(nr_tel)){
-        document.getElementById("komunikat").innerHTML += "<div class=\"alert alert-danger\" role=\"alert\">Nieprawidłowy numer telefonu!</div>";
+        document.getElementById("komunikat").innerHTML += "<div class=\"error-notice\"><div class=\"oaerror danger\">Nieprawidłowy numer telefonu!</div></div>";
         document.getElementById("nr_tel").style.backgroundColor="rgba(248, 215, 218, 1)";
         document.getElementById("nr_tel").style.outline="2px solid red";
         isCorrect=false;
     }
 
     if(dateEntered > today){
-        document.getElementById("komunikat").innerHTML += "<div class=\"alert alert-danger\" role=\"alert\">Nieprawidłowa data urodzenia!</div>";
+        document.getElementById("komunikat").innerHTML += "<div class=\"error-notice\"><div class=\"oaerror danger\">Nieprawidłowa data urodzenia!</div></div>";
         document.getElementById("dataur").style.backgroundColor="rgba(248, 215, 218, 1)";
         document.getElementById("dataur").style.outline="2px solid red";
         isCorrect=false;
     }
 
-        if(isCorrect) return true;
-        else return false;
+        if(isCorrect){
+            return true;
+        } 
+        else {
+            $("html, body").animate({scrollTop: 0}, 400);
+            return false;
+        }
 
 
   }
