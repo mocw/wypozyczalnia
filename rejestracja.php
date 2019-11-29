@@ -8,13 +8,13 @@ echo '
       <input placeholder="Nazwa użytkownika*" name="username" type="text" tabindex="1" required autofocus>
 </fieldset>
 <fieldset>
-      <input placeholder="Hasło*" name="password" type="password" tabindex="1" required autofocus>
+      <input placeholder="Hasło*" name="password" id="password" type="password" tabindex="1" required autofocus>
 </fieldset>
 <fieldset>
-      <input placeholder="Powtorz hasło*" name="password-rpt" type="password" tabindex="1" required autofocus>
+      <input placeholder="Powtorz hasło*" name="password-rpt" id="password_rpt" type="password" tabindex="1" required autofocus>
 </fieldset>
 <fieldset>
-      <input placeholder="Adres e-mail*" name="email" type="email" tabindex="1" required autofocus>
+      <input placeholder="Adres e-mail*" name="email" id="email" type="email" tabindex="1" required autofocus>
 </fieldset>
 <fieldset>
       <input placeholder="Imie*" name="imie" type="text" tabindex="1" required autofocus>
@@ -29,7 +29,7 @@ echo '
       <input placeholder="Numer telefonu*" name="nr_tel" id="nr_tel" type="text" tabindex="1" required autofocus>
 </fieldset>
 <fieldset>
-      <input placeholder="Data urodzenia*" name="data_ur" type="date" tabindex="1" required autofocus>
+      <input placeholder="Data urodzenia*" name="data_ur" id="dataur" type="date" tabindex="1" required autofocus>
 </fieldset>
 <p style="color:red">* - pola obowiązkowe</p>
 <fieldset>
@@ -38,6 +38,7 @@ echo '
 </div>
 </form>
 ';
+
 else  header('Location: index.php?action=home');
 ?>
 <script type="text/javascript" src="scripts/formValidation.js"></script>
