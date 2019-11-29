@@ -100,7 +100,7 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
                      <center>UWAGA</center>
                     </div>
                     <div class="modal-body">
-                     Termin zwrotu jeszcze nie minął. Czy chcesz przyjąć zwrot?
+                     Termin jeszcze nie minął. Czy chcesz przyjąć zwrot?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
