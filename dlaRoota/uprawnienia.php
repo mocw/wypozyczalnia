@@ -92,7 +92,7 @@ echo '
         </tr>
         </tfoot>
 </table></div>
-</br><center><input type="submit" VALUE="Zatwierdź" NAME="permiss-submit"></center>
+</br><center><input type="submit" class="btn btn-dark" VALUE="Zatwierdź" NAME="permiss-submit"></center>
 </form>';
 } else header('Location: index.php?action=home');
 ?>

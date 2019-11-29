@@ -119,7 +119,7 @@ Usuń
 </tr>
 </tfoot>
 </table></div>
-</br><center><input type="submit" VALUE="Zatwierdź" NAME="customer-delete-submit"></center>
+</br><center><input type="submit" class="btn btn-dark" VALUE="Zatwierdź" NAME="customer-delete-submit"></center>
 </form>';
 
 } else header('Location: index.php?action=home');

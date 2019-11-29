@@ -77,7 +77,7 @@ echo '</tbody>
         </tfoot>
         </table>
 </div>
-</br><center><input type="submit" VALUE="Zatwierdź" NAME="customer-submit"></center>
+</br><center><input type="submit" class="btn btn-dark" VALUE="Zatwierdź" NAME="customer-submit"></center>
 </form>';
 }
 
@@ -213,7 +213,7 @@ if(isset($_POST['customer-submit'])||isset($fillError)){
     <th>Stanowisko</th>        
 </tr></tfoot>
     </table></div>
-    </br><center><input type="submit" VALUE="Zatwierdź" NAME="customer-submit-data"></center>
+    </br><center><input type="submit" class="btn btn-dark" VALUE="Zatwierdź" NAME="customer-submit-data"></center>
     </form>';
 }
 } else {
