@@ -33,7 +33,7 @@ function wczytajTabele(){
             <th class="th-sm">Przyjmij zwrot</th>
             <th class="th-sm">Czas do zwrotu</th>
         </tr>
-    </thead><tbody> ';
+    </thead><tbody>';
 
     $l=0;
     while ($row = mysqli_fetch_row($result)){ // TMR
@@ -57,6 +57,7 @@ function wczytajTabele(){
             </td>
             <td id="timer'.$l.'">
             </td>
+            </tr>
         ';
     }
     echo '
@@ -76,9 +77,9 @@ function wczytajTabele(){
   </tfoot>
     </table></div></form>';
     } else {
-        $sql="UPDATE samochody 
-        SET czyDostepny=1";
-        mysqli_query($conn,$sql);
+        // $sql="UPDATE samochody 
+        // SET czyDostepny=1";
+        // mysqli_query($conn,$sql);
         echo '<div class="alert alert-warning" role="alert">Brak wypożyczeń!</div>'; 
     }
 }
@@ -138,6 +139,12 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
            $sql="UPDATE samochody SET czyDostepny=1
            WHERE vin='$vin'";
            mysqli_query($conn,$sql);
+
+           $sql="INSERT INTO archiwum_wypozyczen(id_wniosku,id_egzemplarza) 
+            SELECT id_wniosku,id_egzemplarza
+            FROM wypozyczenia 
+            WHERE id='$_POST[przyjmij]'";
+            mysqli_query($conn,$sql);
 
            $sql="DELETE FROM wypozyczenia WHERE id='$_POST[przyjmij]'";
            mysqli_query($conn,$sql);
@@ -230,13 +237,19 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
             $result = mysqli_query($conn, $sql);
             $row= mysqli_fetch_row($result);
             $vin=$row[0];          
-              $sql="UPDATE samochody SET czyDostepny=1
-              WHERE vin='$vin'";
-              mysqli_query($conn,$sql);
+            $sql="UPDATE samochody SET czyDostepny=1
+            WHERE vin='$vin'";
+            mysqli_query($conn,$sql);
+
+            $sql="INSERT INTO archiwum_wypozyczen(id_wniosku,id_egzemplarza) 
+            SELECT id_wniosku,id_egzemplarza
+            FROM wypozyczenia 
+            WHERE id='$_POST[idWniosku]'";
+            mysqli_query($conn,$sql);
    
-              $sql="DELETE FROM wypozyczenia WHERE id='$_POST[idWniosku]'";
-              mysqli_query($conn,$sql);
-              echo '<div class="disappear"><div class="alert alert-success" role="alert">Sukces!</div></div>';
+            $sql="DELETE FROM wypozyczenia WHERE id='$_POST[idWniosku]'";
+            mysqli_query($conn,$sql);
+            echo '<div class="disappear"><div class="alert alert-success" role="alert">Sukces!</div></div>';
     }
     wczytajTabele();
 

@@ -112,6 +112,7 @@ switch($site) {
   case 'wnioskiKlienta' : include 'rezerwacje/wnioskiKlienta.php'; break;
   case 'wnioskiDlaObslugi' : include 'rezerwacje/wnioskiDlaObslugi.php'; break;
   case 'wypozyczeniaDlaObslugi' : include 'rezerwacje/wypozyczeniaDlaObslugi.php'; break;
+  case 'wypozyczeniaKlienta' : include 'rezerwacje/wypozyczeniaKlienta.php'; break;
   case 'filie' : include 'filie.php'; break;
   default:
   echo '<div class="alert alert-danger" role="alert">Nieporawny link!</div>';

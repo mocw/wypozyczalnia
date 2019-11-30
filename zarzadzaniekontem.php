@@ -14,7 +14,7 @@ if(isset($_SESSION['uID']))
             echo'<u><li><b><a href="index.php?action=panelAdmin">Panel administracyjny</a></li></b></u>';
             else echo '<li><a href="index.php?action=panelAdmin">Panel administracyjny</a></li>';
         }
-           echo'<li><a href="#">Twoje wypożyczenia</a>
+           echo'<li><a href="index.php?action=wypozyczeniaKlienta">Twoje wypożyczenia</a>
             <!-- Pierwszy Drop Down -->    
             </li>';
             if($isDataFilled==1) echo '<li><a href="index.php?action=wnioskiKlienta">Twoje wnioski</a></li>';

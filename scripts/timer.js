@@ -22,7 +22,7 @@ function makeTimer() {
         if (seconds < "10") { seconds = "0" + seconds; }
           document.getElementById("timer"+i).innerHTML = "";
           if(days<0){
-            document.getElementById("timer"+i).innerHTML +="<p style=\"color:red\">"+ days + "d " + hours + "h " + minutes + "m " + seconds + "s ";	       
+            document.getElementById("timer"+i).innerHTML +="<div class=\"blink\">"+ days + "d " + hours + "h " + minutes + "m " + seconds + "s </div>";	       
           } 
           else {
             document.getElementById("timer"+i).innerHTML += days + "d " + hours + "h " + minutes + "m " + seconds + "s ";	       
