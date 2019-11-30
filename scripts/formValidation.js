@@ -139,3 +139,12 @@ function displayReservError(){
     document.getElementById("dataOdbioru").style.outline="2px solid red";
     document.getElementById("dataZwrotu").style.outline="2px solid red";
 }
+
+
+function validateFormPrzyjmij() {
+    var data = document.forms["wypozyczenia"]["test"].value;
+    var dataOdbioru = new Date(data);
+    alert(data);
+    document.getElementById("komunikat").innerHTML += "<div class=\"oaerror danger\">Data odbioru będzie !</div>";
+    return false;
+}

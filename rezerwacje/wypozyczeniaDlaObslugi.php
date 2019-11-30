@@ -1,6 +1,7 @@
 <?php
 function wczytajTabele(){
     require 'includes/dbh.inc.php';
+    echo '<div id="komunikat"></div>';
     $sql="SELECT u.uidUSers,CONCAT(p.marka,' ',p.model),sm.vin,
     CONCAT(so.miejscowosc,' ul.',so.ulica,' ',so.nr_posesji),
     CONCAT(sz.miejscowosc,' ul.',sz.ulica,' ',sz.nr_posesji),
@@ -17,7 +18,7 @@ function wczytajTabele(){
      $row_cnt = mysqli_num_rows($result);
      if($row_cnt>0){
     echo '
-    <form method="POST" action="index.php?action=wypozyczeniaDlaObslugi">
+    <form method="POST" name="wypozyczenia" id="wypozyczenia" action="index.php?action=wypozyczeniaDlaObslugi" onsubmit="return validateFormPrzyjmij()">
     <div class="tableContainer">
         <table id="dtOrderExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
           <thead class="table-dark">
@@ -30,14 +31,15 @@ function wczytajTabele(){
             <th class="th-sm">Data odbioru</th>
             <th class="th-sm">Data zwrotu</th>
             <th class="th-sm">Przyjmij zwrot</th>
+            <th class="th-sm">Czas do zwrotu</th>
         </tr>
     </thead><tbody> ';
 
     $l=0;
-    while ($row = mysqli_fetch_row($result)){
+    while ($row = mysqli_fetch_row($result)){ // TMR
         $l++;
         echo' <tr>
-            <form id="wypozyczenia" method="POST" action="index.php?action=wypozyczeniaDlaObslugi">
+            <form id="profile" method="POST" action="index.php?action=wypozyczeniaDlaObslugi">
              <td  class="adress">
              <input type="hidden" name="userID" value="'.$row[8].'">
             <button type="submit" class="wniosek2" name="showProfile">'.$row[0].'</button>
@@ -47,11 +49,13 @@ function wczytajTabele(){
             <td>'.$row[3].'</td>
             <td>'.$row[4].'</td>
             <td>'.$row[5].'</td>
-            <td>'.$row[6].'
+            <td id="datazwrotu'.$l.'">'.$row[6].'
             </td>
             <td>
             <center><button id="przyjmij'.$l.'" class="wniosek" name="przyjmij" value="'.$row[7].'" type="submit" disabled>
             <img src="images/positive_tick.gif" width="30px" height="25px"></img></button></center>
+            </td>
+            <td id="timer'.$l.'">
             </td>
         ';
     }
@@ -67,6 +71,7 @@ function wczytajTabele(){
   <th>Data odbioru</th>
   <th>Data zwrotu</th>
   <th>Przyjmij zwrot</th>
+  <th>Czas do zwrotu</th>
 </tr>
   </tfoot>
     </table></div></form>';
@@ -238,3 +243,5 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
 } else header('Location: index.php?action=home'); 
 ?>
 <script type="text/javascript" src="scripts/await.js"></script>
+<script type="text/javascript" src="scripts/timer.js"></script>
+<script type="text/javascript" src="scripts/formValidation.js"></script>

@@ -18,9 +18,9 @@ var modalConfirm = function(callback){
   modalConfirm(function(confirm){
     if(confirm){
       //TAK
-      $("#result").html
+      $("#result").html("");
     }else{
       //NIE
-      $("#result").html("<h2>SRAKA</h2>");
+      $("#result").html("");
     }
   });
