@@ -13,29 +13,107 @@ function updateData(){
     $_SESSION['nr_tel']=$_POST['nr_tel'];
 }
 
+function showUpdateDataForm(){
+      require 'zarzadzaniekontem.php';
+      require 'dbh.inc.php';
+      if(isset($_POST['updateSuccess'])) echo '<div class="disappear"><div class="alert alert-success" role="alert">Dane zaktualizowane!</div></div>';
+      $sql="SELECT * FROM users WHERE userID='$_SESSION[uID]'";
+      $result = mysqli_query($conn, $sql);
+      $row = mysqli_fetch_row($result);
+      $email=$row[3];
+      $imie=$row[4];
+      $nazwisko=$row[5];
+      $pesel=$row[6];
+      $nr_tel=$row[7];
+      $sql="SELECT * FROM klienci 
+      JOIN users ON klienci.id=users.id_klienta";
+      $result = mysqli_query($conn, $sql);
+      $row = mysqli_fetch_row($result);
+      $nr_dowodu=$row[1];
+      $nr_karty_kredytowej=$row[2];
+      $ulica=$row[3];
+      $miejscowosc=$row[4];
+      $kod_pocztowy=$row[5];
+      $nr_mieszkania=$row[6];
+      $nr_domu=$row[7];
+
+      echo '
+      <div id="toClose">
+      <div class="container">  
+      <form id="contact"  class="exceptModal" method="POST" action="index.php?action=editData" accept-charset="character_set">
+      <center><b>E-mail</b></center></br>
+      <fieldset>
+            <input placeholder="Adres e-mail*" name="email" type="text" tabindex="1" required autofocus
+            value="'.$email.'">
+      </fieldset>
+      <center><b>Imie</b></center></br>
+      <fieldset>
+            <input placeholder="Imie*" name="imie" type="text" tabindex="1" required autofocus
+            value="'.$imie.'">
+      </fieldset>
+      <center><b>Nazwisko</b></center></br>
+      <fieldset>
+            <input placeholder="Nazwisko*" name="nazwisko" type="text" tabindex="1" required autofocus
+            value="'.$nazwisko.'">
+      </fieldset>
+      <center><b>Numer telefonu</b></center></br>
+      <fieldset>
+            <input placeholder="Numer telefonu*" name="nr_tel" type="text" tabindex="1" required autofocus
+            value="'.$nr_tel.'">
+      </fieldset>';
+      if($_SESSION['id_klienta']!=NULL){
+          echo '
+          <center><b>Numer dowodu osobistego</b></center></br>
+          <fieldset>
+                <input placeholder="Numer dowodu osobistego*" name="nr_dowodu" type="text" tabindex="1" required autofocus
+                value="'.$nr_dowodu.'">
+          </fieldset>
+          <center><b>Numer karty kredytowej</b></center></br>
+          <fieldset>
+                <input placeholder="Numer karty kredytowej*" name="nr_karty" type="text" tabindex="1" required autofocus
+                value="'.$nr_karty_kredytowej.'">
+          </fieldset>
+          <center><b>Ulica</b></center></br>
+          <fieldset>
+                <input placeholder="Ulica*" name="ulica" type="text" tabindex="1" required autofocus
+                value="'.$ulica.'">
+          </fieldset>
+          <center><b>Miejscowość</b></center></br>
+          <fieldset>
+                <input placeholder="Miejscowość*" name="miejscowosc" type="text" tabindex="1" required autofocus
+                value="'.$miejscowosc.'">
+          </fieldset>
+          <center><b>Kod pocztowy</b></center></br>
+          <fieldset>
+                <input placeholder="Kod pocztowy*" name="kod_pocztowy" type="text" tabindex="1" required autofocus
+                value="'.$kod_pocztowy.'">
+          </fieldset>
+          <center><b>Numer mieszkania</b></center></br>
+          <fieldset>
+                <input placeholder="Numer mieszkania" name="numer_mieszkania" type="number" tabindex="1"
+                value="'.$nr_mieszkania.'">
+          </fieldset>
+          <center><b>Numer domu</b></center></br>
+          <fieldset>
+                <input placeholder="Numer domu*" name="numer_domu" type="number" tabindex="1" required autofocus
+                value="'.$nr_domu.'">
+          </fieldset>
+          ';
+      }
+      echo'
+      <p style="color:red">* - pola obowiązkowe</p>
+      <fieldset>
+            <button name="editData-submit" type="submit" id="contact-submit" data-submit="...Sending" data-toggle="modal" data-target="#exampleModalCenter">Zatwierdź</button>
+      </fieldset>
+      </div>
+      </form>
+      </div>
+      ';
+
+}
+
+
 if(isset($_SESSION['uID'])){
-require 'dbh.inc.php';
-require 'zarzadzaniekontem.php';
-if(isset($_POST['updateSuccess'])) echo '<div class="disappear"><div class="alert alert-success" role="alert">Dane zaktualizowane!</div></div>';
-$sql="SELECT * FROM users WHERE userID='$_SESSION[uID]'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_row($result);
-$email=$row[3];
-$imie=$row[4];
-$nazwisko=$row[5];
-$pesel=$row[6];
-$nr_tel=$row[7];
-$sql="SELECT * FROM klienci 
-JOIN users ON klienci.id=users.id_klienta";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_row($result);
-$nr_dowodu=$row[1];
-$nr_karty_kredytowej=$row[2];
-$ulica=$row[3];
-$miejscowosc=$row[4];
-$kod_pocztowy=$row[5];
-$nr_mieszkania=$row[6];
-$nr_domu=$row[7];
 
 if(isset($_POST['passwordValidation-submit'])){
       $password=$_POST['password'];
@@ -85,9 +163,18 @@ if(isset($_POST['passwordValidation-submit'])){
 
 if(isset($_POST['editData-submit'])) {
 echo '
-<div id="toClose">
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <center><h5 class="modal-title" id="exampleModalLongTitle">Potwierdź</h5></center>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
 <div class="container">  
-<form id="contact"  class="exceptModal" method="POST" action="index.php?action=editData" accept-charset="UTF-8">
+<form id="contact" method="POST" action="index.php?action=editData" accept-charset="UTF-8">
 <center><b>Podaj hasło</b></center></br>
 <fieldset>
       <input placeholder="Hasło" name="password" type="password" tabindex="1" required autofocus>
@@ -106,84 +193,19 @@ echo '
 <fieldset>
       <button name="passwordValidation-submit" type="submit" id="contact-submit" data-submit="...Sending">Zatwierdź</button>
 </fieldset>
-</div>
 </form>
-</div>
+</div></div></div></div></div>
 ';
+showUpdateDataForm();
+echo '<script>
+     $(\'#exampleModalCenter\').modal({
+       show: true
+   }); 
+     </script>
+     ';   
 }
 else {
-echo '
-<div id="toClose">
-<div class="container">  
-<form id="contact"  class="exceptModal" method="POST" action="index.php?action=editData" accept-charset="character_set">
-<center><b>E-mail</b></center></br>
-<fieldset>
-      <input placeholder="Adres e-mail*" name="email" type="text" tabindex="1" required autofocus
-      value="'.$email.'">
-</fieldset>
-<center><b>Imie</b></center></br>
-<fieldset>
-      <input placeholder="Imie*" name="imie" type="text" tabindex="1" required autofocus
-      value="'.$imie.'">
-</fieldset>
-<center><b>Nazwisko</b></center></br>
-<fieldset>
-      <input placeholder="Nazwisko*" name="nazwisko" type="text" tabindex="1" required autofocus
-      value="'.$nazwisko.'">
-</fieldset>
-<center><b>Numer telefonu</b></center></br>
-<fieldset>
-      <input placeholder="Numer telefonu*" name="nr_tel" type="text" tabindex="1" required autofocus
-      value="'.$nr_tel.'">
-</fieldset>';
-if($_SESSION['id_klienta']!=NULL){
-    echo '
-    <center><b>Numer dowodu osobistego</b></center></br>
-    <fieldset>
-          <input placeholder="Numer dowodu osobistego*" name="nr_dowodu" type="text" tabindex="1" required autofocus
-          value="'.$nr_dowodu.'">
-    </fieldset>
-    <center><b>Numer karty kredytowej</b></center></br>
-    <fieldset>
-          <input placeholder="Numer karty kredytowej*" name="nr_karty" type="text" tabindex="1" required autofocus
-          value="'.$nr_karty_kredytowej.'">
-    </fieldset>
-    <center><b>Ulica</b></center></br>
-    <fieldset>
-          <input placeholder="Ulica*" name="ulica" type="text" tabindex="1" required autofocus
-          value="'.$ulica.'">
-    </fieldset>
-    <center><b>Miejscowość</b></center></br>
-    <fieldset>
-          <input placeholder="Miejscowość*" name="miejscowosc" type="text" tabindex="1" required autofocus
-          value="'.$miejscowosc.'">
-    </fieldset>
-    <center><b>Kod pocztowy</b></center></br>
-    <fieldset>
-          <input placeholder="Kod pocztowy*" name="kod_pocztowy" type="text" tabindex="1" required autofocus
-          value="'.$kod_pocztowy.'">
-    </fieldset>
-    <center><b>Numer mieszkania</b></center></br>
-    <fieldset>
-          <input placeholder="Numer mieszkania" name="numer_mieszkania" type="number" tabindex="1"
-          value="'.$nr_mieszkania.'">
-    </fieldset>
-    <center><b>Numer domu</b></center></br>
-    <fieldset>
-          <input placeholder="Numer domu*" name="numer_domu" type="number" tabindex="1" required autofocus
-          value="'.$nr_domu.'">
-    </fieldset>
-    ';
-}
-echo'
-<p style="color:red">* - pola obowiązkowe</p>
-<fieldset>
-      <button name="editData-submit" type="submit" id="contact-submit" data-submit="...Sending">Zatwierdź</button>
-</fieldset>
-</div>
-</form>
-</div>
-';
+showUpdateDataForm();
 }
 } else header('Location: index.php?action=home');
 ?>

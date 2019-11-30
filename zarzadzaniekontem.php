@@ -1,6 +1,7 @@
 <?php
 if(isset($_SESSION['uID']))
 {
+    require 'includes/check_user_inc.php';
     echo '
     <div id="menu2" >
     <nav class="menu2">
