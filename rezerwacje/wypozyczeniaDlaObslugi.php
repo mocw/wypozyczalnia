@@ -97,7 +97,7 @@ if((isset($_SESSION['uID']) && $_SESSION['id_pracownika']!=NULL) ||
         $row= mysqli_fetch_row($result);
         $data_zw=$row[0];
 
-         if($data_zw!=$today){  //MODAL YES NO
+         if($data_zw>$today){  //MODAL YES NO
             echo '<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
