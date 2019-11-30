@@ -187,10 +187,10 @@ echo '
     $today = $year . '-' . $month . '-' . $day;   
     echo '</select></fieldset>
     <fieldset><center><p>Data odbioru</center></p>
-      <input placeholder="Data odbioru*" id="dataOdbioru"  value="'.$today.'" name="data_odbioru" type="date" tabindex="1" required autofocus>
+      <input placeholder="Data odbioru*" id="dataOdbioru"  value="'.$today.'" name="data_odbioru" type="text" tabindex="1" required autofocus>
     </fieldset>
     <fieldset><center><p>Data zwrotu</center></p>
-    <input placeholder="Data zwrotu*" id="dataZwrotu"  value="'.$today.'" name="data_zwrotu" type="date" tabindex="1" required autofocus>
+    <input placeholder="Data zwrotu*" id="dataZwrotu"  value="'.$today.'" name="data_zwrotu" type="text" tabindex="1" required autofocus>
   </fieldset>
     <input type="hidden" name="carID" value="'.$carID.'">
     </br></br><button name="wniosek-submit" type="submit" id="contact-submit" data-submit="...Sending">Zatwierdź</button>
@@ -239,4 +239,8 @@ else header('Location: index.php?action=home');
 
 ?>
 </div>
+<link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
+<script
+  src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="scripts/datePicker.js"></script>
 <script type="text/javascript" src="scripts/formValidation.js"></script>
