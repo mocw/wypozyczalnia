@@ -20,7 +20,7 @@ function wczytajTabele(){
     echo '
     <form method="POST" name="wypozyczenia" id="wypozyczenia" action="index.php?action=wypozyczeniaDlaObslugi" onsubmit="return validateFormPrzyjmij()">
     <div class="tableContainer">
-        <table id="dtOrderExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+        <table id="dtOrderExample" data-sort-name="name" data-sort-order="desc" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
           <thead class="table-dark">
           <tr>
             <th class="th-sm">Użytkownik</th>
@@ -29,7 +29,7 @@ function wczytajTabele(){
             <th class="th-sm">Miejsce odbioru</th>
             <th class="th-sm">Miejsce zwrotu</th>
             <th class="th-sm">Data odbioru</th>
-            <th class="th-sm">Data zwrotu</th>
+            <th class="th-sm" data-field="name">Data zwrotu</th>
             <th class="th-sm">Przyjmij zwrot</th>
             <th class="th-sm">Czas do zwrotu</th>
         </tr>
@@ -70,7 +70,7 @@ function wczytajTabele(){
   <th>Miejsce odbioru</th>
   <th>Miejsce zwrotu</th>
   <th>Data odbioru</th>
-  <th>Data zwrotu</th>
+  <th data-field="name">Data zwrotu</th>
   <th>Przyjmij zwrot</th>
   <th>Czas do zwrotu</th>
 </tr>
