@@ -148,7 +148,7 @@ echo '
       </div>
       <div class="modal-body">
       <div id="komunikat"></div> 
-<form action="index.php?action=carreserv" method="post">
+<form name="rezerwacja" action="index.php?action=carreserv" method="post">
 <input type="hidden" name="page" value="'.$page.'">
 <input type="hidden" name="carID" value="'.$carID.'">
 <div id="komunikat"></div>
@@ -187,10 +187,10 @@ echo '
     $today = $year . '-' . $month . '-' . $day;   
     echo '</select></fieldset>
     <fieldset><center><p>Data odbioru</center></p>
-      <input placeholder="Data odbioru*" id="dataOdbioru"  value="'.$today.'" name="data_odbioru" type="text" tabindex="1" required autofocus>
+      <input  type="text" placeholder="Data odbioru" id="dataOdbioru" name="data_odbioru" tabindex="1" required autofocus>
     </fieldset>
     <fieldset><center><p>Data zwrotu</center></p>
-    <input placeholder="Data zwrotu*" id="dataZwrotu"  value="'.$today.'" name="data_zwrotu" type="text" tabindex="1" required autofocus>
+    <input placeholder="Data zwrotu" id="dataZwrotu" name="data_zwrotu" type="text" tabindex="1" required autofocus>
   </fieldset>
     <input type="hidden" name="carID" value="'.$carID.'">
     </br></br><button name="wniosek-submit" type="submit" id="contact-submit" data-submit="...Sending">Zatwierdź</button>
@@ -242,5 +242,5 @@ else header('Location: index.php?action=home');
 <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
 <script
   src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-  <script type="text/javascript" src="scripts/datePicker.js"></script>
-<script type="text/javascript" src="scripts/formValidation.js"></script>
+<script type="text/javascript" src="scripts/formValidation.js"></script> 
+<script type="text/javascript" src="scripts/datePicker.js"></script>
