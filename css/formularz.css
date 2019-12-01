@@ -188,5 +188,15 @@ option.brakEgzemplarzy{
     -webkit-animation-direction: alternate;
   }
 
+/* #exampleModalCenter input[type="text"]{
+border-color:red;
+} */
 
 
+  .Highlighted a{
+    background-color : red !important;
+    background-image :none !important;
+    color: White !important;
+    font-weight:bold !important;
+    font-size: 12pt;
+ }

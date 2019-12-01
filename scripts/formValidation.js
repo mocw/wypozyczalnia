@@ -99,55 +99,40 @@ function calculateYears(dateold, datenew){
 
 
 function validateFormReservation(){
+    clearstatement();
+    dataOdb = document.getElementById('dataOdbioru').value;
+    dataZwr = document.getElementById('dataZwrotu').value;
+    if(dataOdb==""){
+        $("#dataOdbioru").css("border-color", "red"); 
+    }
+    if(dataZwr==""){
+        $("#dataZwrotu").css("border-color", "red"); 
+    }
+
+    if(dataOdb=="" || dataZwr==""){
+        displayReservError();
+        return false;
+    }
+    return false;
+}
+
+function clearstatement(){
+    $("#dataOdbioru").css("border-color", "#ccc"); 
+    $("#dataZwrotu").css("border-color", "#ccc"); 
     document.getElementById("komunikat").innerHTML = "";
-    var isCorrect=true;
-     document.getElementById("dataOdbioru").style.outline="none";
-     document.getElementById("dataZwrotu").style.outline="none";
 
-    var inputdataOdbioru = document.forms["rezerwacja"]["data_odbioru"].value;
-    var inputdataZwrotu = document.forms["rezerwacja"]["data_zwrotu"].value;
-
-    
-     var dataOdbioru = new Date(inputdataOdbioru);
-    var dataZwrotu = new Date(inputdataZwrotu);
-     var today = new Date();
-
-     if(dataOdbioru<=today || dataZwrotu<=today){
-         if(dataOdbioru.getDate()===today.getDate()){
-             //empty 
-         }
-         else {
-             isCorrect=false;
-         }
-     }
-
-     if(dataOdbioru.getTime()===dataZwrotu.getTime()){
-         document.getElementById("komunikat").innerHTML += "<div class=\"oaerror warning\">Pojazd może być wypożyczony na co najmniej jeden dzień!</div>";
-         return false;
-     }
-
-    if(dataZwrotu<dataOdbioru){
-         isCorrect=false;
-     }
-
-    if(!isCorrect){
-       displayReservError();
-       return false;
-    } 
-    else return true;
 }
 
 function displayReservError(){
-    document.getElementById("komunikat").innerHTML += "<div class=\"error-notice\"><div class=\"oaerror danger\"><strong>Błąd!</strong> Wybierz prawidłową datę odbioru i zwrotu!</div></div>";
-    document.getElementById("dataOdbioru").style.outline="2px solid red";
-    document.getElementById("dataZwrotu").style.outline="2px solid red";
+     document.getElementById("komunikat").innerHTML += "<div class=\"error-notice\"><div class=\"oaerror danger\"><strong>Błąd!</strong> Wybierz datę!</div></div>";
+    // document.getElementById("dataOdbioru").style.outline="2px solid red";
+    // document.getElementById("dataZwrotu").style.outline="2px solid red";
 }
 
 
 function validateFormPrzyjmij() {
-    var data = document.forms["wypozyczenia"]["test"].value;
-    var dataOdbioru = new Date(data);
-    alert(data);
-    document.getElementById("komunikat").innerHTML += "<div class=\"oaerror danger\">Data odbioru będzie !</div>";
-    return false;
+    // var data = document.forms["wypozyczenia"]["test"].value;
+    // var dataOdbioru = new Date(data);
+    // document.getElementById("komunikat").innerHTML += "<div class=\"oaerror danger\">Data odbioru będzie !</div>";
+    // return false;
 }
