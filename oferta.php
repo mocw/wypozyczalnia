@@ -56,7 +56,7 @@ function showCars($page){
           <ul>
             <li>'.$rok_produkcji.'</li>
            <li>'.$poj_silnika.'l. </li>
-           <div class="roll'.$l.'" style="cursor:pointer;" onclick="showWyposazenie('.$l.')"><div id="pokaz/chowaj'.$l.'">Pokaż wyposażenie</div></div>
+           <div class="roll'.$l.'" style="cursor:pointer; color: red;" onclick="showWyposazenie('.$l.')"><div id="pokaz/chowaj'.$l.'">Pokaż wyposażenie</div></div>
            ';
            $sql="SELECT wyposazenie.id,wyposazenie.nazwa, wyposazenie.ikona 
            FROM wyposazenie
@@ -78,6 +78,34 @@ function showCars($page){
         }
 
         echo '</table></center>
+        <center>
+        <div class="roll'.$l.'" style="cursor:pointer; color: green;" onclick="showDostepnosc('.$l.')"><div id="pokaz/chowajDostepnosc'.$l.'"><p class="blink" style="color: green; cursor: pointer;">Sprawdź dostępność</p></div></div>
+        <table class="dostepnosc'.$l.'" style="display:none" >';
+        $sql="SELECT CONCAT(miejscowosc,' ul. ',ulica,' nr. ', nr_posesji) as miejsce,vin,marka,model, \"wolny\"
+        FROM samochody_siedziby ss 
+        JOIN siedziby s ON ss.id_siedziby=s.id 
+        JOIN samochody sm ON ss.id_pojazdu=sm.id 
+        JOIN pojazdy p ON sm.id_samochodu=p.id 
+        WHERE p.id=$id and czyDostepny=1
+        GROUP BY 1
+        UNION
+        SELECT CONCAT(miejscowosc,' ',ulica,' nr. ', nr_posesji) as miejsce,vin,marka,model, data_zwrotu
+        FROM wypozyczenia w
+        JOIN samochody sm ON w.id_egzemplarza=sm.id
+        JOIN wnioski wn ON w.id_wniosku=wn.id
+        JOIN pojazdy p ON wn.id_samochodu=p.id
+        JOIN siedziby s ON wn.id_miejsca_odbioru=s.id
+        WHERE wn.id_samochodu='.$id.'";
+        $result = mysqli_query($conn, $sql);
+        mysqli_fetch_all($result,MYSQLI_ASSOC);
+        foreach ($result as $row){
+          echo' <tr>
+          <td>'
+          .$row['miejsce'].'          
+          </td>
+          </tr>';
+        }
+     echo'</table></center>
 		</figcaption>
 		<div class="bottom-wrap">
 			<div class="price-wrap h5">
