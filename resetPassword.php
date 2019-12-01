@@ -104,7 +104,7 @@ if((isset($_SESSION['uID']))) header('Location: index.php?action=home');
         </ul>
     </div>
     </div>
-    <div id="container"> <!-- BEGIN -->
+    <div id="containerForm"> <!-- BEGIN -->
     <?php
     if(isset($_POST['setNewPassowrd-submit'])){  //SET NEW PASSWORD
       $newpassword=$_POST['newPassword'];

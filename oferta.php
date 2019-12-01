@@ -1,3 +1,10 @@
+
+<link rel="stylesheet" type="text/css" href="css/grid.css"/>
+<link rel="stylesheet" type="text/css" href="css/rollWyposazenie.css"/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="scripts/grid.js"></script>
+
 <?php
 function showCars($page){
   require 'includes/dbh.inc.php';
@@ -18,32 +25,70 @@ function showCars($page){
   mysqli_stmt_execute($stmt);
   $cars=mysqli_stmt_get_result($stmt);
   mysqli_fetch_all($cars,MYSQLI_ASSOC);
-  echo '  <div class="box">
-  <div class="demo">
+  echo ' 
   <form method="POST" action="index.php?action=oferta">
-  <ul class="list">';
+  <div class="container"></br>
+  <div class="row">';
+  $l=0;
   foreach ($cars as $row) {
+    $l++;
     $id=$row["id"];
     $marka=$row["marka"];
     $model=$row["model"];
     $poj_silnika=$row["poj_silnika"];
     $rok_produkcji=$row["rok_produkcji"];
     $img=$row["zdjecie"];
-    $toBox=$marka."&#xa;".$model."&#xa;".$poj_silnika."&#xa;"."$rok_produkcji";
+    $cena=$row["Cena"];
+    $toBox=$marka."&#xa;".$model."&#xa;";
     $imgContent=base64_encode(base64_decode($img));  
     echo'
-    <li class="list-item">
-      <div class="list-content">
-        <center>
+    <div class="col-md-4"> 
+    <figure class="card card-product">
+      <div class="img-wrap">
+        </br></br>
           <button data-html="true" data-tooltip='.$toBox.' name="carID" class="offerbtn" value='.$id.'>
           <img class="offer" src="data:image/png;base64,'.$imgContent.'"/>
-        </button>
-      </center>
-      </div>
-    </li>
+          </button>
+          </div>
+		<figcaption class="info-wrap">
+				<center><h4 class="title">'.$toBox.'</h4></center>
+				<center>
+          <ul>
+            <li>'.$rok_produkcji.'</li>
+           <li>'.$poj_silnika.'l. </li>
+           <div class="roll'.$l.'" style="cursor:pointer;" onclick="showWyposazenie('.$l.')"><div id="pokaz/chowaj'.$l.'">Pokaż wyposażenie</div></div>
+           ';
+           $sql="SELECT wyposazenie.id,wyposazenie.nazwa, wyposazenie.ikona 
+           FROM wyposazenie
+           JOIN samochody_wyposazenie ON  wyposazenie.id=samochody_wyposazenie.id_wyposazenia
+           WHERE samochody_wyposazenie.id_samochodu=$id";
+
+           $result = mysqli_query($conn, $sql);
+           mysqli_fetch_all($result,MYSQLI_ASSOC);
+
+           echo '<table class="carReserv'.$l.'" style="display:none" >';
+           foreach ($result as $row){
+            $img=$row['ikona'];
+            $imgContent=base64_encode($img);
+            echo'
+            <tr>
+            <td><img class="icon" src="data:image/png;base64,'.$imgContent.'"/></td>
+            <td>'.$row['nazwa'].'</td></tr>
+            ';
+        }
+
+        echo '</table></center>
+		</figcaption>
+		<div class="bottom-wrap">
+			<div class="price-wrap h5">
+			<center>	<span class="price-new">'.$cena.' zł</span></center>
+			</div> 
+		</div> 
+	</figure>
+</div> 
     ';   
   }
-  echo '</ul>
+  echo '
   <input type="hidden" name="page" value='.$page.'>
   </form>
   </div>

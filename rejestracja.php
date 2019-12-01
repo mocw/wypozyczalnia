@@ -2,7 +2,7 @@
 if(!isset($_SESSION['uID'])) 
 echo '
 <div id="komunikat"></div>
-<div class="container">  
+<div class="containerForm">  
 <form id="contact" name="register" class="exceptModal" method="POST" action="index.php?action=register" onsubmit="return validateForm()" accept-charset="UTF-8">
 <fieldset>
       <input placeholder="Nazwa użytkownika*" name="username" type="text" tabindex="1" required autofocus>

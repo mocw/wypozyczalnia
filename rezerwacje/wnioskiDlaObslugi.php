@@ -108,7 +108,7 @@ function przydzielPojazd($id){
         $result = mysqli_query($conn, $sql);
 
         echo '
-        <div class="container">
+        <div class="containerForm">
         <form id="contact" action="index.php?action=wnioskiDlaObslugi" method="post" enctype="multipart/form-data">
         <center><b>Przydziel egzemplarz:</b></br></br></center>
         <fieldset>
@@ -148,7 +148,7 @@ function odrzucWniosek($id){
         </button>
       </div>
       <div class="modal-body">
-    <div class="container">
+    <div class="containerForm">
     <form id="contact" action="index.php?action=wnioskiDlaObslugi" method="post" enctype="multipart/form-data">
     <center><b>Podaj powód:</b></br></br></center>
     <fieldset>

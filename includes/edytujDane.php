@@ -39,7 +39,7 @@ function showUpdateDataForm(){
 
       echo '
       <div id="toClose">
-      <div class="container">  
+      <div class="containerForm">  
       <form id="contact"  class="exceptModal" method="POST" action="index.php?action=editData" accept-charset="character_set">
       <center><b>E-mail</b></center></br>
       <fieldset>
@@ -173,7 +173,7 @@ echo '
         </button>
       </div>
       <div class="modal-body">
-<div class="container">  
+<div class="containerForm">  
 <form id="contact" method="POST" action="index.php?action=editData" accept-charset="UTF-8">
 <center><b>Podaj hasło</b></center></br>
 <fieldset>

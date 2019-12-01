@@ -3,7 +3,7 @@ function loadForm(){
 
     require 'includes/dbh.inc.php';
     echo '
-    <div class="container">  
+    <div class="containerForm">  
   <form id="contact"  class="exceptModal" action="index.php?action=dodajEgzemplarz" method="post" enctype="multipart/form-data">
     <fieldset>
       <input placeholder="Numer VIN" name="vin" type="text" tabindex="1" required autofocus>

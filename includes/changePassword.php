@@ -38,7 +38,7 @@ if(isset($_POST['passwordChange-submit'])){
 
 if(isset($_SESSION['uID'])){
 echo '
-<div class="container">  
+<div class="containerForm">  
 <form id="contact"  class="exceptModal" method="POST" action="index.php?action=changePassword" accept-charset="character_set">
 <fieldset>
       <input placeholder="Stare hasło" name="old-password" type="password" tabindex="1" required autofocus>

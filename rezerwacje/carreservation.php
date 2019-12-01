@@ -3,7 +3,7 @@
 <script>
 
 </script>
-
+<script type="text/javascript" src="scripts/formValidation.js"></script> 
 <div id="toClose">
 <?php
 
@@ -152,7 +152,7 @@ echo '
 <input type="hidden" name="page" value="'.$page.'">
 <input type="hidden" name="carID" value="'.$carID.'">
 </form>
-    <div class="container">
+    <div class="containerForm">
     <form id="contact" name="rezerwacja" onsubmit="return validateFormReservation()" action="index.php?action=carreserv" method="post" enctype="multipart/form-data">
 <center><p>Miejsce odbioru</center></p>    
 <fieldset>
@@ -253,4 +253,3 @@ $('#dataOdbioru').datepicker( $.datepicker.regional[ "pl" ] );
 $('#dataZwrotu').datepicker( $.datepicker.regional[ "pl" ] );
 });
 </script>
-<script type="text/javascript" src="scripts/formValidation.js"></script> 

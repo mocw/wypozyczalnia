@@ -43,7 +43,7 @@ require 'includes/dbh.inc.php';
 if(isset($dodajZdj)) echo '<div class="alert alert-danger" role="alert">Dodaj zdjęcie!</div>';
 if(isset($success)) echo '<div class="disappear"><div class="alert alert-success" role="alert">Pojazd został dodany!</div></div>';
 ?>
-<div class="container">  
+<div class="containerForm">  
   <form id="contact"  class="exceptModal" action="index.php?action=addCar" method="post" enctype="multipart/form-data">
     <fieldset>
       <input placeholder="Marka" name="marka" type="text" tabindex="1" required autofocus>

@@ -112,8 +112,13 @@ function validateFormReservation(){
     if(dataOdb=="" || dataZwr==""){
         displayReservError();
         return false;
-    }
-    return false;
+     }
+     if(dataOdb==dataZwr){
+        document.getElementById("komunikat").innerHTML += "<div class=\"oaerror warning\">Pojazd może być zarezerwowany na co najmniej jeden dzień!</div>";
+        return false;
+     }
+
+    return true;
 }
 
 function clearstatement(){
@@ -125,14 +130,4 @@ function clearstatement(){
 
 function displayReservError(){
      document.getElementById("komunikat").innerHTML += "<div class=\"error-notice\"><div class=\"oaerror danger\"><strong>Błąd!</strong> Wybierz datę!</div></div>";
-    // document.getElementById("dataOdbioru").style.outline="2px solid red";
-    // document.getElementById("dataZwrotu").style.outline="2px solid red";
-}
-
-
-function validateFormPrzyjmij() {
-    // var data = document.forms["wypozyczenia"]["test"].value;
-    // var dataOdbioru = new Date(data);
-    // document.getElementById("komunikat").innerHTML += "<div class=\"oaerror danger\">Data odbioru będzie !</div>";
-    // return false;
 }
