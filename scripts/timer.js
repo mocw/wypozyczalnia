@@ -19,7 +19,7 @@ function makeTimer() {
     
         if (hours < "10") { hours = "0" + hours; }
         if (minutes < "10") { minutes = "0" + minutes; }
-        if (seconds < "10") { seconds = "0" + seconds; }
+        if (seconds < "10") { seconds = "0" + seconds; }        
           document.getElementById("timer"+i).innerHTML = "";
           if(days<0){
             if(days===-1) document.getElementById("timer"+i).innerHTML +="<div class=\"blink\">ZWROT DZISIAJ</div>";	       

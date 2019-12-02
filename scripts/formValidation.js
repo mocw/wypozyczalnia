@@ -1,20 +1,19 @@
 
   
-function validateForm() { //REJESTRACJA
+function validateForm(){ //REJESTRACJA
     document.getElementById("komunikat").innerHTML = "";
-    document.getElementById("nr_tel").style.outline="none";
-    document.getElementById("pesel").style.outline="none";
-    document.getElementById("dataur").style.outline="none";
-    document.getElementById("email").style.outline="none";
-    document.getElementById("password").style.outline="none";
-    document.getElementById("password_rpt").style.outline="none";
-    document.getElementById("nr_tel").style.backgroundColor="white";
-    document.getElementById("pesel").style.backgroundColor="white";
-    document.getElementById("dataur").style.backgroundColor="white";
-    document.getElementById("email").style.backgroundColor="white";
-    document.getElementById("password").style.backgroundColor="white";
-    document.getElementById("password_rpt").style.backgroundColor="white";
-
+    var names=[
+        'nr_tel',
+        'pesel',
+        'dataur',
+        'email',
+        'password',
+        'password_rpt'
+    ];
+    for(var i=0;i<names.length;i++){
+        document.getElementById(names[i]).style.outline="none";
+        document.getElementById(names[i]).style.backgroundColor="white";
+    }
     var isCorrect=true;
 
     var input = document.getElementById("dataur").value;
@@ -68,6 +67,9 @@ function validateForm() { //REJESTRACJA
   }
 
   function isValidPesel(pesel) {
+      if(pesel==""){
+          return true;
+      }
     let weight = [1, 3, 7, 9, 1, 3, 7, 9, 1, 3];
     let sum = 0;
     let controlNumber = parseInt(pesel.substring(10, 11));

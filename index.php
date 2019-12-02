@@ -18,6 +18,7 @@ session_start();
 <script type="text/javascript" src="scripts/loadLanguage.js"></script>
  <link rel="stylesheet" type="text/css" href="css/style.css" />
  <link rel="stylesheet" type="text/css" href="css/slider.css" />
+ <link rel="stylesheet" type="text/css" href="css/loginBar.css" />
  <link rel="stylesheet" type="text/css" href="css/panel_log.css" />
  <link rel="stylesheet" type="text/css" href="css/offer.css" />
  <link rel="stylesheet" type="text/css" href="css/menu.css" />
@@ -80,8 +81,10 @@ session_start();
         <li><a href="index.php?action=filie">Filie</a></li>
         </ul>
     </div>
+    
     </div>
     <div id="container">
+    
     <?php
     if(isset($_SESSION['uID'])) require 'includes/check_user_inc.php';
 switch($site) {

@@ -34,7 +34,7 @@ else{
             echo '<div class="alert alert-danger" role="alert">Błędne hasło!</div>';
             require 'logowanie.php';  
           }
-          else if($pwdCheck==true) {
+          else{
               $_SESSION['uID'] = $row['userID'];
               $_SESSION['uUID'] = $row['uidUsers'];
               $_SESSION['email'] = $row['email'];
@@ -47,10 +47,6 @@ else{
               $_SESSION['stanowisko'] = $row['nazwa'];               
               if(isset($_SESSION['doZalogowania'])) header('Location: index.php?action=oferta');
               else header('Location: index.php?action=home');
-          }
-          else {
-            echo '<div class="alert alert-danger" role="alert">Błędne hasło!</div>';
-            require 'logowanie.php';    
           }
         }
         else
