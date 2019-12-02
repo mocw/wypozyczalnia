@@ -25,7 +25,8 @@ function showUpdateDataForm(){
       $pesel=$row[6];
       $nr_tel=$row[7];
       $sql="SELECT * FROM klienci 
-      JOIN users ON klienci.id=users.id_klienta";
+      JOIN users ON klienci.id=users.id_klienta
+      WHERE users.userID='$_SESSION[uID]'";
       $result = mysqli_query($conn, $sql);
       $row = mysqli_fetch_row($result);
       $nr_dowodu=$row[1];
@@ -113,6 +114,7 @@ function showUpdateDataForm(){
 
 
 if(isset($_SESSION['uID'])){
+      require 'dbh.inc.php';
       require 'zarzadzaniekontem.php';
 
 if(isset($_POST['passwordValidation-submit'])){
