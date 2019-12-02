@@ -37,7 +37,7 @@ else {
         $_SESSION['id_klienta']=$id;
         $isDataFilled=1;
         echo '<div class="disappear"><div class="alert alert-success" role="alert">Dane wypełnione!</div></div>';
-        header('Location: index.php?action=accountmgm');
+        require 'home.php';
     }
 }
 } else header('Location: index.php?action=home');

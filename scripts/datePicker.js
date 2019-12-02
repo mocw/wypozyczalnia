@@ -1,6 +1,3 @@
-// function hoverEffect(){
-//   $("#dataOdbioru").css("background-color", "gray");
-// }
 
 
 var holidays = [
@@ -22,14 +19,14 @@ function noSundaysOrHolidays(date) {
     var m = date.getMonth();
     var y = date.getFullYear();
     for (i = 0; i < holidays.length; i++) {
-      if($.inArray((d) + '.' + (m+1) + '.' + y, holidays) != -1) {
+      if($.inArray((d) + '.' + (m + 1) + '.' + y, holidays) !== -1) {
         return [false];
       }
     }
     console.log(i);
     return [true];
   } else {
-    return [day != 0, ''];
+    return [day !== 0, ''];
   }
 }
 

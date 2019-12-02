@@ -14,7 +14,6 @@ function updateData(){
 }
 
 function showUpdateDataForm(){
-      require 'zarzadzaniekontem.php';
       require 'dbh.inc.php';
       if(isset($_POST['updateSuccess'])) echo '<div class="disappear"><div class="alert alert-success" role="alert">Dane zaktualizowane!</div></div>';
       $sql="SELECT * FROM users WHERE userID='$_SESSION[uID]'";
@@ -114,6 +113,7 @@ function showUpdateDataForm(){
 
 
 if(isset($_SESSION['uID'])){
+      require 'zarzadzaniekontem.php';
 
 if(isset($_POST['passwordValidation-submit'])){
       $password=$_POST['password'];
