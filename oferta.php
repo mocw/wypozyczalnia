@@ -56,7 +56,8 @@ function showCars($page){
           <ul>
             <li>'.$rok_produkcji.'</li>
            <li>'.$poj_silnika.'l. </li>
-           <div class="roll'.$l.'" style="cursor:pointer; color: red;" onclick="showWyposazenie('.$l.')"><div id="pokaz/chowaj'.$l.'">Pokaż wyposażenie</div></div>
+           <div class="roll'.$l.'" style="cursor:pointer; color: red;" onclick="showWyposazenie('.$l.')">
+           <div id="pokaz/chowaj'.$l.'">Pokaż wyposażenie</div></div>
            ';
            $sql="SELECT wyposazenie.id,wyposazenie.nazwa, wyposazenie.ikona 
            FROM wyposazenie
@@ -79,7 +80,9 @@ function showCars($page){
 
         echo '</table></center>
         <center>
-        <div class="roll'.$l.'" style="cursor:pointer; color: green;" onclick="showDostepnosc('.$l.')"><div id="pokaz/chowajDostepnosc'.$l.'"><p class="blink" style="color: green; cursor: pointer;">Sprawdź dostępność</p></div></div>
+        <div class="roll'.$l.'" style="cursor:pointer; color: green;" onclick="showDostepnosc('.$l.')">
+        <div id="pokaz/chowajDostepnosc'.$l.'">
+        <p class="blink" style="color: green; cursor: pointer;">Sprawdź dostępność</p></div></div>
         <table class="dostepnosc'.$l.'" style="display:none" >';
         $sql="SELECT CONCAT(miejscowosc,' ul. ',ulica,' nr. ', nr_posesji) as miejsce,vin,marka,model, \"wolny\"
         FROM samochody_siedziby ss 
@@ -98,12 +101,17 @@ function showCars($page){
         WHERE wn.id_samochodu='.$id.'";
         $result = mysqli_query($conn, $sql);
         mysqli_fetch_all($result,MYSQLI_ASSOC);
+        $li=0;
         foreach ($result as $row){
+          $li++;
           echo' <tr>
           <td>'
           .$row['miejsce'].'          
           </td>
           </tr>';
+        }
+        if($li==0){
+          echo '<tr><td><b><p style="color:red">Brak</p></b></tr></td>';
         }
      echo'</table></center>
 		</figcaption>

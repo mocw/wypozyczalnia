@@ -63,8 +63,8 @@ else {
         <td>'.$row[5].'</td>
         <td id="datazwrotu'.$l.'">'.$row[6].'</td>
         <td>'.$row[9].'</td>';
-        if($row[9]!="zwrócony")  echo '<td id="timer'.$l.'"></td>';
-        else echo '<td>Pojazd zwrócony</td>';
+        if($row[9]!="zwrócony")  echo '<td id="timer'.$l.'"></td>'; //TIMER
+        else echo '<td>Pojazd zwrócony</td>'; 
         echo'
         </tr>
         ';
