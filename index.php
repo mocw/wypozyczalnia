@@ -66,7 +66,25 @@ session_start();
         if(!isset($_SESSION['uID'])){
           echo
         '<li><a href="index.php?action=rejestracja">Zarejestruj się</a></li>
-        <li><a href="index.php?action=logowanie">Zaloguj się</a></li>';
+        <li>  <a id="dropdownMenu1" data-toggle="dropdown" class=" dropdown-toggle">Zaloguj się</a>
+                    <ul class="dropdown-menu dropdown-menu-right mt-2">
+                       <li class="px-3 py-2">
+                           <form class="form" role="form" method="POST" action="index.php?action=login" id="logowanie">
+                                <div class="form-group">
+                                    <input id="userInput" placeholder="Nazwa użytkownika" class="form-control form-control-sm" type="text" required="" name="username">
+                                </div>
+                                <div class="form-group">
+                                    <input id="passwordInput" placeholder="Hasło" class="form-control form-control-sm" type="password" required="" name="password">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-dark" name="login-submit">Zaloguj się</button>
+                                </div>
+                                <div class="form-group text-center">
+                                <small><center><a href="index.php?action=forgottenpassword">Zapomniałeś hasła?</a></small>
+                                </div>
+                            </form>
+                        </li>
+                    </ul></li>';
         } 
         else 
         {

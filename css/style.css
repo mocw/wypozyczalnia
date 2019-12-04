@@ -63,14 +63,13 @@ a:hover {
 }
 
 #menu ul {
-	list-style: none;
-	margin:0 auto!important;
-	height: 80px;
-	padding: 0px 0px 0px 0px;
-	text-align: center;
-	float: left;
-	clear: left;
 
+
+
+}
+
+#dropdownMenu1:hover{
+	cursor: pointer;
 }
 
 #menu li {

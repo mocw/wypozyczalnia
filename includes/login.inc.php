@@ -5,8 +5,7 @@ $username=$_POST['username'];
 $password=$_POST['password'];
 
 if(empty($username) or empty($password)){
-    echo '<div class="alert alert-danger" role="alert">Uzupełnij dane!</div>';
-   require 'logowanie.php';   
+    echo '<div class="alert alert-danger" role="alert">Uzupełnij dane!</div>'; 
 }
 else{
     $sql="SELECT * 
@@ -20,7 +19,6 @@ else{
      if(!mysqli_stmt_prepare($stmt,$sql))
      {
         echo '<p class="alert">>Błąd SQL!</p>';
-        require 'logowanie.php'; 
      }
      else {
         mysqli_stmt_bind_param($stmt,"s",$username);
@@ -32,7 +30,6 @@ else{
           if($pwdCheck==false)
           {
             echo '<div class="alert alert-danger" role="alert">Błędne hasło!</div>';
-            require 'logowanie.php';  
           }
           else{
               $_SESSION['uID'] = $row['userID'];
@@ -40,25 +37,21 @@ else{
               $_SESSION['email'] = $row['email'];
               $_SESSION['imie'] = $row['imie'];
               $_SESSION['nazwisko'] = $row['nazwisko'];
-              $_SESSION['czyPracownik'] = $row['czyPracownik']; 
               $_SESSION['id_klienta'] = $row['id_klienta'];   
               $_SESSION['id_pracownika'] = $row['id_pracownika'];
               $_SESSION['isRoot'] = $row['isRoot'];    
-              $_SESSION['stanowisko'] = $row['nazwa'];               
-              if(isset($_SESSION['doZalogowania'])) header('Location: index.php?action=oferta');
-              else header('Location: index.php?action=home');
+              $_SESSION['stanowisko'] = $row['nazwa'];   
+              echo'<form method="POST" action="index.php?action=home" id="logg"></form>
+              ';  
+              echo '<script>document.getElementById("logg").submit();
+              </script>';
           }
         }
         else
         {
           echo '<div class="alert alert-danger" role="alert">Nie ma takiego użytkownika!</div>';
-          require 'logowanie.php'; 
         }
      }
 }
 }
-else {
-    header('Location: index.php?action=home');
-}
-
 ?>
