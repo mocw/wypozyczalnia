@@ -47,9 +47,9 @@ function wczytajTabele(){
         <td>'.$row[7].'</td>
         <td>
         <button class="wniosek" name="accept" value="'.$row[0].'" type="submit">
-        <img src="images/positive_tick.gif" width="30px" height="25px"></img></button>
+        <img src="images/positive_tick.gif" width="25px" height="25px"></img></button>
         <button class="wniosek" name="decline" value="'.$row[0].'" type="submit">
-        <img src="images/negative_tick.gif" width="30px" height="28px"></img></button>
+        <img src="images/negative_tick.gif" width="25px" height="26px"></img></button>
         </tr>
         ';       
     }

@@ -50,12 +50,12 @@ session_start();
     <div id="logo">
     <?php 
     if(isset($_SESSION['uID'])){
-      echo '
-      <center></br><b>'.$_SESSION['imie'].' '.$_SESSION['nazwisko'].'</center></b>
-      ';
-    if($_SESSION['id_klienta']!=NULL && $_SESSION['id_pracownika']==NULL) echo 'Klient</br>';
-    if($_SESSION['isRoot']==1) echo '<b>Administrator</b></br>';
-    if($_SESSION['id_pracownika']!=NULL) echo 'Pracownik na stanowisku: '.$_SESSION['stanowisko'].'';
+    //   echo '
+    //   <center></br><b>'.$_SESSION['imie'].' '.$_SESSION['nazwisko'].'</center></b>
+    //   ';
+    // if($_SESSION['id_klienta']!=NULL && $_SESSION['id_pracownika']==NULL) echo 'Klient</br>';
+    // if($_SESSION['isRoot']==1) echo '<b>Administrator</b></br>';
+    // if($_SESSION['id_pracownika']!=NULL) echo 'Pracownik na stanowisku: '.$_SESSION['stanowisko'].'';
     }
     ?>
     </div>
@@ -71,10 +71,10 @@ session_start();
                        <li class="px-3 py-2">
                            <form class="form" role="form" method="POST" action="index.php?action=login" id="logowanie">
                                 <div class="form-group">
-                                    <input id="userInput" placeholder="Nazwa użytkownika" class="form-control form-control-sm" type="text" required="" name="username">
+                                    <input id="userInput" placeholder="Nazwa użytkownika" class="form-control form-control-sm" type="text" required autofocus name="username">
                                 </div>
                                 <div class="form-group">
-                                    <input id="passwordInput" placeholder="Hasło" class="form-control form-control-sm" type="password" required="" name="password">
+                                    <input id="passwordInput" placeholder="Hasło" class="form-control form-control-sm" type="password" required autofocus name="password">
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-dark" name="login-submit">Zaloguj się</button>

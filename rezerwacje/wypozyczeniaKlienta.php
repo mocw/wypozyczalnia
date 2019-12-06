@@ -47,13 +47,14 @@ else {
             <th class="th-sm">Data zwrotu</th>
             <th class="th-sm">Status</th>
             <th class="th-sm">Pozostały czas</th>
+            <th class="th-sm">PDF</th>
         </tr>
     </thead><tbody>     
     ';
     $l=0;
     while ($row = mysqli_fetch_row($result)){
         $l++;
-        if($row[9]=="zwrócony") echo '<tr style="background-color:green">';
+        if($row[9]=="zwrócony") echo '<tr style="background-color:#34A853">';
         else echo'<tr>';
         echo '
         <td>'.$row[1].'</td>
@@ -64,10 +65,25 @@ else {
         <td id="datazwrotu'.$l.'">'.$row[6].'</td>
         <td>'.$row[9].'</td>';
         if($row[9]!="zwrócony")  echo '<td id="timer'.$l.'"></td>'; //TIMER
-        else echo '<td>Pojazd zwrócony</td>'; 
-        echo'
+        else echo '<td>Pojazd zwrócony</td>';  
+        //PDF
+        echo' 
+        <td style="white-space:nowrap;">
+        <div id="target'.$l.'" style="display: none"> 
+        <p><b>Imie i nazwisko:</b> '.$_SESSION['imie'].'.'.$_SESSION['nazwisko'].' 
+        <p><b>Pojazd:</b> '.$row[1].'</p>
+        <p><b>Numer VIN:</b> '.$row[2].'</p>
+        <p><b>Miejsce odbioru:</b> '.$row[3].'</p>
+        <p><b>Miejsce zwrotu:</b>  '.$row[4].'</p>
+        <p><b>Data odbioru:</b> '.$row[5].'</p>
+        <p><b>Data zwrotu:</b>  '.$row[6].'</p>
+      </div>
+        <center><button class="wniosek" id="cmd'.$l.'" name="accept" value="" type="submit">
+        <img src="images/pdf.gif" width="30px" height="25px"></img></button></center>
+        </td>
         </tr>
         ';
+        
     }
     echo '
     </tbody>
@@ -81,11 +97,13 @@ else {
     <th>Data zwrotu</th>
     <th>Status</th>
     <th>Pozostały czas</th>
+    <th>PDF</th>
     </tr>
     </tfoot>
     </table></div>
     ';
 }
 ?>
-
+<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+<script type="text/javascript" src="scripts/generatePDF.js"></script>
 <script type="text/javascript" src="scripts/timer.js"></script>
