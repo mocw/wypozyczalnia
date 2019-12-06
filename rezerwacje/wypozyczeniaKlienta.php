@@ -70,7 +70,7 @@ else {
         echo' 
         <td style="white-space:nowrap;">
         <div id="target'.$l.'" style="display: none"> 
-        <p><b>Imie i nazwisko:</b> '.$_SESSION['imie'].'.'.$_SESSION['nazwisko'].' 
+        <p><b>Imie i nazwisko:</b> '.$_SESSION['imie'].' '.$_SESSION['nazwisko'].' 
         <p><b>Pojazd:</b> '.$row[1].'</p>
         <p><b>Numer VIN:</b> '.$row[2].'</p>
         <p><b>Miejsce odbioru:</b> '.$row[3].'</p>
@@ -78,7 +78,7 @@ else {
         <p><b>Data odbioru:</b> '.$row[5].'</p>
         <p><b>Data zwrotu:</b>  '.$row[6].'</p>
       </div>
-        <center><button class="wniosek" id="cmd'.$l.'" name="accept" value="" type="submit">
+        <center><button class="wniosek" id="cmd'.$l.'" onClick="generatepdf()" name="accept" value="" type="submit">
         <img src="images/pdf.gif" width="30px" height="25px"></img></button></center>
         </td>
         </tr>

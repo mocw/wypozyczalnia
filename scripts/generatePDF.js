@@ -23,3 +23,5 @@ for(let l=1;l<=rowsPDF;l++) {
     });
   }
 
+
+//https://blog.jayway.com/2017/07/13/open-pdf-downloaded-api-javascript/

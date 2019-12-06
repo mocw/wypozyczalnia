@@ -40,7 +40,6 @@ session_start();
  <link rel="icon" type="image/ico" href="images/favicon.gif" >
 </head>
 <body>
-<div id="facebook_slider_widget" style="display: none"><script type="text/javascript" src="http://webfrik.pl/widget/facebook_slider.html?fb_url=https://www.facebook.com/carthrottle/&amp;fb_width=290&amp;fb_height=590&amp;fb_faces=true&amp;fb_stream=true&amp;fb_header=true&amp;fb_border=true&amp;fb_theme=light&amp;chx=787&amp;speed=SLOW&amp;fb_pic=logo&amp;position=RIGHT"></script></div>
   <div id="wrapper">
  
     <div id="header" onclick="openPage('index.php?action=home');">
@@ -148,5 +147,5 @@ switch($site) {
         <p>&copy 2019 Wszelkie prawa zastrzeżone. <br></p>
     </div>
     </div>
-</body>
+    <div id="facebook_slider_widget" style="display: none"><script type="text/javascript" src="http://webfrik.pl/widget/facebook_slider.html?fb_url=https://www.facebook.com/carthrottle/&amp;fb_width=290&amp;fb_height=590&amp;fb_faces=true&amp;fb_stream=true&amp;fb_header=true&amp;fb_border=false&amp;fb_theme=undefined&amp;chx=787&amp;speed=FAST&amp;fb_pic=sign&amp;position=TOP"></script></div></body>
 </html>
