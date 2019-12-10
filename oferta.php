@@ -46,7 +46,7 @@ function showCars($page){
     <figure class="card card-product">
       <div class="img-wrap">
         </br></br>
-          <button data-html="true" data-tooltip='.$toBox.' name="carID" class="offerbtn" value='.$id.'>
+          <button data-html="true" data-tooltip='.$toBox.' name="carID" class="offerbtn" value='.$id.' disabled>
           <img class="offer" src="data:image/png;base64,'.$imgContent.'"/>
           </button>
           </div>
@@ -168,3 +168,9 @@ if(isset($_POST['carID'])){
   showCars($page);
 }
 ?>
+
+<script>
+$(function(){
+  $('.offerbtn').prop('disabled', false);
+});
+</script>
