@@ -45,11 +45,11 @@ function wczytajTabele(){
         <td>'.$row[5].'</td>
         <td>'.$row[6].'</td>
         <td>'.$row[7].'</td>
-        <td>
+        <td style="white-space: nowrap;">
         <button class="wniosek" name="accept" value="'.$row[0].'" type="submit">
-        <img src="images/positive_tick.gif" width="25px" height="25px"></img></button>
+        <img src="images/positive_tick.gif" width="27px" height="25px"></img></button>
         <button class="wniosek" name="decline" value="'.$row[0].'" type="submit">
-        <img src="images/negative_tick.gif" width="25px" height="26px"></img></button>
+        <img src="images/negative_tick.gif" width="27px" height="26px"></img></button>
         </tr>
         ';       
     }
