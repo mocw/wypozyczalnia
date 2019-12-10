@@ -19,8 +19,8 @@ for(let l=1;l<=rowsPDF;l++) {
                 subject: 'Umowa'
             });
             
-            //window.open(doc.output('bloburl'), '_blank'); 
-            window.location.replace(doc.output('bloburl'), '_blank');
+            //window.open(doc.output('bloburl'), '_blank');             
+            window.open(doc.output('bloburl'),'_self');
     });
   }
 
