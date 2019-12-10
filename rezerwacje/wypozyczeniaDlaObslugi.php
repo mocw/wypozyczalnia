@@ -55,7 +55,7 @@ function wczytajTabele(){
             <center><button id="przyjmij'.$l.'" class="wniosek" name="przyjmij" value="'.$row[7].'" type="submit" disabled>
             <img src="images/positive_tick.gif" width="30px" height="25px"></img></button></center>
             </td>
-            <td id="timer'.$l.'">  '.(/*TIMER*/ NULL).'
+            <td id="timer'.$l.'" style="white-space: nowrap;">  '.(/*TIMER*/ NULL).'
             </td>
             </tr>
         ';
