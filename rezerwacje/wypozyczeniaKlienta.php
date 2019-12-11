@@ -81,8 +81,9 @@ else {
         $now = time(); // or your date as well
         $expiry_date = strtotime($row[6]);
         $datediff = $expiry_date - $now;
-        $days=round($datediff / (60 * 60 * 24));
+        $days=round($datediff / (60 * 60 * 24))+1;
         $cena=$row[10];
+        echo $days;
         $charge=$days*$cena;
         echo '
         <p><b><strong>Naleznosc:</b>  '.$charge.' zl</p></strong>
