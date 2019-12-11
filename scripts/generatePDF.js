@@ -20,7 +20,8 @@ for(let l=1;l<=rowsPDF;l++) {
             });
             
             //window.open(doc.output('bloburl'), '_blank');             
-            window.open(doc.output('bloburl'),'_self');
+            //window.open(doc.output('bloburl'),'_self');
+            doc.save("Umowa");
     });
   }
 

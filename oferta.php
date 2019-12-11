@@ -4,7 +4,9 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="scripts/grid.js"></script>
-
+<script>
+var toFade=[];
+</script>
 <?php
 function showCars($page){
   require 'includes/dbh.inc.php';
@@ -42,14 +44,16 @@ function showCars($page){
     $toBox=$marka."&#xa;".$model."&#xa;";
     $imgContent=base64_encode(base64_decode($img));  
     echo'
-    <div class="col-md-4"> 
+    <div class="col-md-4" style="position: relative;"> 
     <figure class="card card-product">
-      <div class="img-wrap">
-        </br></br>
+      <div class="img-wrap">     
           <button data-html="true" data-tooltip='.$toBox.' name="carID" class="offerbtn" value='.$id.' disabled>
+          <div class="offer'.$l.'">
           <img class="offer" src="data:image/png;base64,'.$imgContent.'"/>
+          </div>
           </button>
           </div>
+      <div class="fadeText"><center><h2 class="offer'.$l.'" style="color:#d64161; display: none"><p class="blink">NIEDOSTĘPNY<p></h2></center></div>
 		<figcaption class="info-wrap">
 				<center><h4 class="title">'.$toBox.'</h4></center>
 				<center>
@@ -111,6 +115,11 @@ function showCars($page){
           </tr>';
         }
         if($li==0){
+          echo '
+          <script>
+          toFade.push('.$l.');
+          </script>
+          ';
           echo '<tr><td><b><p style="color:red">Brak</p></b></tr></td>';
         }
      echo'</table></center>
@@ -172,5 +181,12 @@ if(isset($_POST['carID'])){
 <script>
 $(function(){
   $('.offerbtn').prop('disabled', false);
+  for(let i=0;i<toFade.length;i++){
+    $('.offer'+toFade[i]+'>.offer').fadeTo("slow", 0.15);
+    $('h2.offer'+toFade[i]).show();
+    $('.roll'+toFade[i]).replaceWith("---------</br>");
+  }
+  // console.log(toFade);
 });
 </script>
+

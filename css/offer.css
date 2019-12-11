@@ -164,3 +164,36 @@ header,
   filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }
+
+
+.image { 
+   position: relative; 
+   width: 100%; /* for IE 6 */
+}
+h2.overImage { 
+  position: absolute; 
+  top: 200px; 
+  left: 30px; 
+  width: 100%; 
+}
+h2.overImage span { 
+  color: white; 
+  font: bold 24px/45px Helvetica, Sans-Serif; 
+  letter-spacing: -1px;  
+  background: rgb(0, 0, 0); /* fallback color */
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px; 
+}
+h2.overImage span.spacer {
+  padding:0 5px;
+}
+
+div.fadeText{
+  position: absolute;
+  overflow: hidden;
+  z-index: 1;
+  bottom: 65%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}

@@ -1,10 +1,11 @@
 <?php
+if(isset($_SESSION['uID'])){
 require 'zarzadzaniekontem.php';
 require 'includes/dbh.inc.php';
 $sql="SELECT u.uidUSers,CONCAT(p.marka,' ',p.model),sm.vin,
 CONCAT(so.miejscowosc,' ul.',so.ulica,' ',so.nr_posesji),
 CONCAT(sz.miejscowosc,' ul.',sz.ulica,' ',sz.nr_posesji),
-w.data_odbioru,w.data_zwrotu,wp.id,u.userID,\"aktualny\"
+w.data_odbioru,w.data_zwrotu,wp.id,u.userID,\"aktualny\",p.cena
 FROM wypozyczenia wp 
 JOIN wnioski w ON wp.id_wniosku=w.id
 JOIN siedziby so ON w.id_miejsca_odbioru=so.id
@@ -17,7 +18,7 @@ UNION
 SELECT u.uidUSers,CONCAT(p.marka,' ',p.model),sm.vin,
 CONCAT(so.miejscowosc,' ul.',so.ulica,' ',so.nr_posesji),
 CONCAT(sz.miejscowosc,' ul.',sz.ulica,' ',sz.nr_posesji),
-w.data_odbioru,w.data_zwrotu,wp.id,u.userID,\"zwrócony\"
+w.data_odbioru,w.data_zwrotu,wp.id,u.userID,\"zwrócony\",p.cena
 FROM archiwum_wypozyczen wp  
 JOIN wnioski w ON wp.id_wniosku=w.id
 JOIN siedziby so ON w.id_miejsca_odbioru=so.id
@@ -76,9 +77,17 @@ else {
         <p><b>Miejsce odbioru:</b> '.$row[3].'</p>
         <p><b>Miejsce zwrotu:</b>  '.$row[4].'</p>
         <p><b>Data odbioru:</b> '.$row[5].'</p>
-        <p><b>Data zwrotu:</b>  '.$row[6].'</p>
-      </div>
-        <center><button class="wniosek" id="cmd'.$l.'" onClick="generatepdf()" name="accept" value="" type="submit">
+        <p><b>Data zwrotu:</b>  '.$row[6].'</p>';
+        $now = time(); // or your date as well
+        $expiry_date = strtotime($row[6]);
+        $datediff = $now - $expiry_date;
+        $days=round($datediff / (60 * 60 * 24));
+        $cena=$row[10];
+        $charge=$days*$cena;
+        echo '
+        <p><b><strong>Naleznosc:</b>  '.$charge.' zl</p></strong>
+        </div>
+        <center><button class="wniosek" id="cmd'.$l.'" name="accept" value="" type="submit">
         <img src="images/pdf.gif" width="30px" height="25px"></img></button></center>
         </td>
         </tr>
@@ -102,6 +111,7 @@ else {
     </tfoot>
     </table></div>
     ';
+}
 }
 ?>
 <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
