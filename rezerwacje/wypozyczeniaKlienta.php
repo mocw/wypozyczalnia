@@ -80,7 +80,7 @@ else {
         <p><b>Data zwrotu:</b>  '.$row[6].'</p>';
         $now = time(); // or your date as well
         $expiry_date = strtotime($row[6]);
-        $datediff = $now - $expiry_date;
+        $datediff = $expiry_date - $now;
         $days=round($datediff / (60 * 60 * 24));
         $cena=$row[10];
         $charge=$days*$cena;

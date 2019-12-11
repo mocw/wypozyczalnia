@@ -23,7 +23,6 @@ function noSundaysOrHolidays(date) {
         return [false];
       }
     }
-    console.log(i);
     return [true];
   } else {
     return [day !== 0, ''];
