@@ -70,6 +70,15 @@ function pokazInfoSamochod($id,$page,$niezalogowany){
                 '; 
 if($niezalogowany==1){
   echo '<script>
+  $(document).ready(function(){
+    $(\'[data-toggle="tooltip"]\').tooltip();  
+    $("#cart").attr("type", "button");
+    $("#cart").attr("class", "btn btn-secondary");
+    $("#cart").attr("data-toggle", "tooltip");
+    $("#cart").attr("data-placement", "top");
+    $("#cart").attr("title", "ZALOGUJ SIĘ!");
+    $("#cart").tooltip(); 
+  });
   document.getElementById("cart").disabled = true;
   document.getElementById("cart").style.cursor = "not-allowed";
 </script>';
@@ -246,7 +255,6 @@ else header('Location: index.php?action=home');
 <script src='scripts/datepicker-pl.js' type='text/javascript'></script>
 <script>
 $( function() {
-// Initialize and change language to hindi
 $('#dataOdbioru').datepicker( $.datepicker.regional[ "pl" ] );
 $('#dataZwrotu').datepicker( $.datepicker.regional[ "pl" ] );
 });
