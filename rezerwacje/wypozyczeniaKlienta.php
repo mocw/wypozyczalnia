@@ -78,10 +78,10 @@ else {
         <p><b>Miejsce zwrotu:</b>  '.$row[4].'</p>
         <p><b>Data odbioru:</b> '.$row[5].'</p>
         <p><b>Data zwrotu:</b>  '.$row[6].'</p>';
-        $now = time(); // or your date as well
+        $date_reception = strtotime($row[5]); // or your date as well
         $expiry_date = strtotime($row[6]);
-        $datediff = $expiry_date - $now;
-        $days=round($datediff / (60 * 60 * 24))+1;
+        $datediff = $expiry_date - $date_reception;
+        $days=round($datediff / (60 * 60 * 24));
         $cena=$row[10];
         $charge=$days*$cena;
         echo '
