@@ -21,8 +21,8 @@ function makeTimer() {
         if (minutes < "10") { minutes = "0" + minutes; }
         if (seconds < "10") { seconds = "0" + seconds; }        
           document.getElementById("timer"+i).innerHTML = "";
-          if(days<0){
-            if(days===-1) document.getElementById("timer"+i).innerHTML +="<div class=\"blink\">ZWROT DZISIAJ</div>";	       
+          if(days<=0){
+            if(days===0) document.getElementById("timer"+i).innerHTML +="<div class=\"blink\">ZWROT DZISIAJ</div>";	       
             else document.getElementById("timer"+i).innerHTML +="<div class=\"blink\">"+ days + "d " + hours + "h " + minutes + "m " + seconds + "s </div>";	       
           } 
           else {
