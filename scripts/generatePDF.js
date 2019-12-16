@@ -18,7 +18,7 @@ for(let l=1;l<=rowsPDF;l++) {
             doc.text(doc.internal.pageSize.getWidth()/2, 105, "§1");  
             doc.text(10, doc.internal.pageSize.getHeight()-30, "Podpis wynajmujacego");
             doc.text(10, doc.internal.pageSize.getHeight()-10, "......................................");  
-            doc.text(doc.internal.pageSize.getWidth()-45, doc.internal.pageSize.getHeight()-30, "Podpis najemcy");
+            doc.text(doc.internal.pageSize.getWidth()-50, doc.internal.pageSize.getHeight()-30, "Podpis najemcy");
             doc.text(doc.internal.pageSize.getWidth()-58, doc.internal.pageSize.getHeight()-10, "......................................");
             doc.setProperties({
                 title: 'Umowa',
