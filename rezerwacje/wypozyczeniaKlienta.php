@@ -83,18 +83,18 @@ else {
         <p>PESEL: '.$row[14].'</p>
         <p>Zwany dalej Pozyczajacy</p>
         </br></br></br>
-        <p style="line-height: 1.5; size: "10px""><b>1.</b>  Pozyczajacy wypozycza samochod osobowy marki '.$row[1].' o numerze vin '.$row[2].' na czas od 
+        <p style="line-height: 1.5; size: "15px""><b>1.</b>  Pozyczajacy wypozycza samochod osobowy marki '.$row[1].' o numerze vin '.$row[2].' na czas od 
         '.$row[5].' do '.$row[6].'</p>
-        <p style="line-height: 1.5; size: "10px""><b>2.</b> Zwrot wypozyczonego samochodu musi nastapic w nieprzekraczalnym terminie do godz. 21.30</p>';
-        $date_reception = strtotime($row[5]); // or your date as well
+        <p style="line-height: 1.5; size: "15px""><b>2.</b> Zwrot wypozyczonego samochodu musi nastapic w nieprzekraczalnym terminie do godz. 21.30</p>';
+        $date_reception = strtotime($row[5]); 
         $expiry_date = strtotime($row[6]);
         $datediff = $expiry_date - $date_reception;
-        $days=round($datediff / (60 * 60 * 24));
+        $days=round($datediff / (60 * 60 * 24))+1;
         $cena=$row[10];
         $charge=$days*$cena;
-        echo '<p style="line-height: 1.5; size: "10px""><b>3.</b> Za  wypozyczenie  samochodu,  pozyczajacy  uiszcza  oplate  w wysokosci <strong>'.$charge.'</strong> zlotych</p>
-        <p><b>Miejsce odbioru:</b> '.$row[3].'</p>
-        <p><b>Miejsce zwrotu:</b>  '.$row[4].'</p>';
+        echo '<p style="line-height: 1.5; size: "15px""><b>3.</b> Za  wypozyczenie  samochodu,  pozyczajacy  
+        uiszcza  oplate  w wysokosci <strong>'.$charge.'</strong> zlotych</p>
+        <p style="line-height: 1.5; size: "15px""><b>4.</b> Przedmiotowy samochod jest w pelni sprawny.</p>';
         echo '
         </div>
         <center><button class="wniosek" id="cmd'.$l.'" name="accept" value="" type="submit">
