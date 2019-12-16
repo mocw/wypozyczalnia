@@ -5,7 +5,7 @@ require 'includes/dbh.inc.php';
 $sql="SELECT u.uidUSers,CONCAT(p.marka,' ',p.model),sm.vin,
 CONCAT(so.miejscowosc,' ul.',so.ulica,' ',so.nr_posesji),
 CONCAT(sz.miejscowosc,' ul.',sz.ulica,' ',sz.nr_posesji),
-w.data_odbioru,w.data_zwrotu,wp.id,u.userID,\"aktualny\",p.cena
+w.data_odbioru,w.data_zwrotu,wp.id,u.userID,\"aktualny\",p.cena,k.miejscowosc,k.ulica,k.nr_mieszkania,u.pesel
 FROM wypozyczenia wp 
 JOIN wnioski w ON wp.id_wniosku=w.id
 JOIN siedziby so ON w.id_miejsca_odbioru=so.id
@@ -13,12 +13,13 @@ JOIN siedziby sz ON w.id_miejsca_zwrotu=sz.id
 JOIN samochody sm ON wp.id_egzemplarza=sm.id
 JOIN pojazdy p ON sm.id_samochodu=p.id
 JOIN users u ON w.id_uzytkownika=u.userID
+JOIN klienci k ON u.id_klienta=k.id
 WHERE u.userID='$_SESSION[uID]'
 UNION
 SELECT u.uidUSers,CONCAT(p.marka,' ',p.model),sm.vin,
 CONCAT(so.miejscowosc,' ul.',so.ulica,' ',so.nr_posesji),
 CONCAT(sz.miejscowosc,' ul.',sz.ulica,' ',sz.nr_posesji),
-w.data_odbioru,w.data_zwrotu,wp.id,u.userID,\"zwrócony\",p.cena
+w.data_odbioru,w.data_zwrotu,wp.id,u.userID,\"zwrócony\",p.cena,k.miejscowosc,k.ulica,k.nr_mieszkania,u.pesel
 FROM archiwum_wypozyczen wp  
 JOIN wnioski w ON wp.id_wniosku=w.id
 JOIN siedziby so ON w.id_miejsca_odbioru=so.id
@@ -26,6 +27,7 @@ JOIN siedziby sz ON w.id_miejsca_zwrotu=sz.id
 JOIN samochody sm ON wp.id_egzemplarza=sm.id
 JOIN pojazdy p ON sm.id_samochodu=p.id
 JOIN users u ON w.id_uzytkownika=u.userID
+JOIN klienci k ON u.id_klienta=k.id
 WHERE u.userID='$_SESSION[uID]'"
 ;
 
@@ -71,21 +73,29 @@ else {
         echo' 
         <td style="white-space:nowrap;">
         <div id="target'.$l.'" style="display: none"> 
-        <p><b>Imie i nazwisko:</b> '.$_SESSION['imie'].' '.$_SESSION['nazwisko'].' 
-        <p><b>Pojazd:</b> '.$row[1].'</p>
-        <p><b>Numer VIN:</b> '.$row[2].'</p>
-        <p><b>Miejsce odbioru:</b> '.$row[3].'</p>
-        <p><b>Miejsce zwrotu:</b>  '.$row[4].'</p>
-        <p><b>Data odbioru:</b> '.$row[5].'</p>
-        <p><b>Data zwrotu:</b>  '.$row[6].'</p>';
+        </br></br>Stronami niniejszej umowy sa:
+        <p><b>1. </b> Wypozyczalnia samochodow
+        <p>Filia w: '.$row[3].'</p>
+        <p>NIP:  848-138-84-23</p>
+        <p>Zwany dalej Wypozyczajacy</p>
+        <p><b>2. </b> '.$_SESSION['imie'].' '.$_SESSION['nazwisko'].'
+        <p>ul. '.$row[12].' '.$row[13].'</p>
+        <p>PESEL: '.$row[14].'</p>
+        <p>Zwany dalej Pozyczajacy</p>
+        </br></br></br>
+        <p style="line-height: 1.5; size: "10px""><b>1.</b>  Pozyczajacy wypozycza samochod osobowy marki '.$row[1].' o numerze vin '.$row[2].' na czas od 
+        '.$row[5].' do '.$row[6].'</p>
+        <p style="line-height: 1.5; size: "10px""><b>2.</b> Zwrot wypozyczonego samochodu musi nastapic w nieprzekraczalnym terminie do godz. 21.30</p>';
         $date_reception = strtotime($row[5]); // or your date as well
         $expiry_date = strtotime($row[6]);
         $datediff = $expiry_date - $date_reception;
         $days=round($datediff / (60 * 60 * 24));
         $cena=$row[10];
         $charge=$days*$cena;
+        echo '<p style="line-height: 1.5; size: "10px""><b>3.</b> Za  wypozyczenie  samochodu,  pozyczajacy  uiszcza  oplate  w wysokosci <strong>'.$charge.'</strong> zlotych</p>
+        <p><b>Miejsce odbioru:</b> '.$row[3].'</p>
+        <p><b>Miejsce zwrotu:</b>  '.$row[4].'</p>';
         echo '
-        <p><b><strong>Naleznosc:</b>  '.$charge.' zl</p></strong>
         </div>
         <center><button class="wniosek" id="cmd'.$l.'" name="accept" value="" type="submit">
         <img src="images/pdf.gif" width="30px" height="25px"></img></button></center>

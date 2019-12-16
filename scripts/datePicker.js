@@ -9,6 +9,7 @@ var holidays = [
   '15.8.2020',
   '1.11.2020',
   '8.12.2019',
+  '24.12.2019',
   '25.12.2019',
   '26.12.2019'
 ];
@@ -32,10 +33,23 @@ function noSundaysOrHolidays(date) {
 
 
 var dateToday = new Date();
+var dayToday=dateToday.getDate();
+var monthDay=dateToday.getMonth()+1;
+var yearDay=dateToday.getFullYear();
+var today=dayToday+'.'+monthDay+'.'+yearDay;
 var dates = $("#dataOdbioru, #dataZwrotu").datepicker({
   onClose: function(dateText, inst) { 
+    if(typeof(unAvailible) === 'undefined') $("#contact-submit").attr("disabled", false);
     x = document.getElementById('dataOdbioru').value;
     y = document.getElementById('dataZwrotu').value;
+    if(x==today){
+      document.getElementById("komunikat").innerHTML = "";
+      var komunikat="<div class=\"oaerror warning\">Pojazd może być odebrany najwcześniej następnego dnia!</div>";
+      document.getElementById("komunikat").innerHTML += komunikat;
+      $("#contact-submit").attr("disabled", true);
+    } else {
+      document.getElementById("komunikat").innerHTML = "";
+    }
     if(x!=""){
       var date=new Date(x);
       var dd=date.getDate();

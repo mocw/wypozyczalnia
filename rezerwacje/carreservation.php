@@ -214,6 +214,7 @@ echo '
     ;
     if(!isset($saEgzemplarze)){
       echo '<script>
+      var unAvailible=true;
       document.getElementById("contact-submit").disabled = true;
       document.getElementById("contact-submit").style.cursor = "not-allowed";
       </script>';

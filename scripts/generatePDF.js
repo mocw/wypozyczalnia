@@ -12,6 +12,10 @@ for(let l=1;l<=rowsPDF;l++) {
             doc.fromHTML($('#target'+l).html(), 15, 15, {
                 'width': 190,'elementHandlers': specialElementHandlers
             });
+            doc.setFontSize(15);
+            doc.text(doc.internal.pageSize.getWidth()/2-30, 13, "Umowa wynajmu samochodu"); 
+            doc.setFontSize(13);      
+            doc.text(doc.internal.pageSize.getWidth()/2, 105, "§1");    
             doc.text(doc.internal.pageSize.getWidth()-40, doc.internal.pageSize.getHeight()-30, "Podpis");
             doc.text(doc.internal.pageSize.getWidth()-70, doc.internal.pageSize.getHeight()-10, "......................................");
             doc.setProperties({
@@ -20,8 +24,8 @@ for(let l=1;l<=rowsPDF;l++) {
             });
             
             //window.open(doc.output('bloburl'), '_blank');             
-            //window.open(doc.output('bloburl'),'_self');
-            doc.save("Umowa");
+            window.open(doc.output('bloburl'),'_self');
+            //doc.save("Umowa");
     });
   }
 
