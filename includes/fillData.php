@@ -28,7 +28,7 @@ if(isset($_SESSION['uID']) && $isDataFilled==0) {
 </fieldset>
 <p style="color:red">* - pola obowiązkowe</p>
 <fieldset>
-      <button name="fillData-submitee" type="submit" id="contact-submit" data-submit="...Sending">Zatwierdź</button>
+      <button name="fillData-submit" type="submit" id="contact-submit" data-submit="...Sending">Zatwierdź</button>
 </fieldset>
 </div>
 </form>
