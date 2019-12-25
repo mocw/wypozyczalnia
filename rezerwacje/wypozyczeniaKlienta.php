@@ -2,6 +2,7 @@
 if(isset($_SESSION['uID'])){
 require 'zarzadzaniekontem.php';
 require 'includes/dbh.inc.php';
+
 $sql="SELECT u.uidUSers,CONCAT(p.marka,' ',p.model),sm.vin,
 CONCAT(so.miejscowosc,' ul.',so.ulica,' ',so.nr_posesji),
 CONCAT(sz.miejscowosc,' ul.',sz.ulica,' ',sz.nr_posesji),
@@ -92,9 +93,15 @@ else {
         $days=round($datediff / (60 * 60 * 24))+1;
         $cena=$row[10];
         $charge=$days*$cena;
+        $whole = floor($charge);
+        $fraction=$charge - $whole;
+        $fraction*=100;
         echo '<p style="line-height: 1.5;  font-size: 18px"><b>3.</b> Za  wypozyczenie  samochodu,  pozyczajacy  
-        uiszcza  oplate  w wysokosci <strong>'.$charge.'</strong> zlotych</p>
-        <p style="line-height: 1.5;  font-size: 18px"><b>4.</b> Przedmiotowy samochod jest w pelni sprawny.</p>';
+        uiszcza  oplate  w wysokosci <strong>'.$whole.' zlotych ';
+        if($fraction!=0){
+            echo ''.$fraction.' groszy</strong></p>';
+        } else echo '</strong></p>';
+        echo '<p style="line-height: 1.5;  font-size: 18px"><b>4.</b> Przedmiotowy samochod jest w pelni sprawny.</p>';
         echo '
         </div>
         <center><button class="wniosek" id="cmd'.$l.'" name="accept" value="" type="submit">
